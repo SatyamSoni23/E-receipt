@@ -16,16 +16,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2"></LinearLayout>
+            android:layout_weight="1.5"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="6"
-            android:src="@drawable/f2"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"/>
+            android:layout_weight="9"
+            android:src="@drawable/logo" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -43,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.5"
-            android:text="Save Paper | Save Tree | Save Your Breath"
+            android:text="Save Paper | Save Tree | Save Your Breathe"
             android:textColor="#ffffff"
             android:textStyle="italic|bold"
             android:fontFamily="cursive"

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">E-receipt</string>
+    <string name="Open">E-receipt</string>
+    <string name="Close">E-receipt</string>
 </resources>
