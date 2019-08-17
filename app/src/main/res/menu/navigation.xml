@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/invoice"
+            android:icon="@drawable/taskinvoice"
+            android:title="Make Invoice"/>
+ 
+    <item
+            android:id="@+id/transferMoney"
+            android:icon="@drawable/transfermoney"
+            android:title="Transfer Money"/>
+ 
+    <item
+            android:id="@+id/customerDetails"
+            android:icon="@drawable/customerdetail"
+            android:title="Customer Details"/>
+ 
+</menu>

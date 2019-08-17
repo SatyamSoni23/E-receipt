@@ -33,7 +33,7 @@
             android:layout_height="0dp"
             android:layout_weight="0.4"/>
         <EditText
-            android:id="@+id/ownerName"
+            android:id="@+id/customerName"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.8"
@@ -48,7 +48,7 @@
             android:paddingTop="10dp"
             />
         <EditText
-            android:id="@+id/ownerMobile"
+            android:id="@+id/customerMobile"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.8"
@@ -63,7 +63,7 @@
             android:paddingTop="10dp"
             />
         <EditText
-            android:id="@+id/ownerAddress"
+            android:id="@+id/customerAddress"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.8"
@@ -78,7 +78,7 @@
             android:paddingTop="10dp"
             />
         <EditText
-            android:id="@+id/onwerPincode"
+            android:id="@+id/customerPincode"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.8"

@@ -31,21 +31,31 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="6">
+            android:layout_weight="6.5">
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/invoicecreated"/>
+                android:src="@drawable/offline"/>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.5"
-            android:text="Invoice has been successfully created"
+            android:text="Access denied"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="22sp"
+            android:autoSizeMinTextSize="10sp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:textStyle="italic|bold"
+            android:textColor="#c30000"
+            android:textColorHint="@color/colorPrimary"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:text="You are offline"
             android:autoSizeTextType="uniform"
             android:autoSizeMaxTextSize="22sp"
             android:autoSizeMinTextSize="10sp"
@@ -68,16 +78,16 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="3.25"/>
+                android:layout_weight="2.25"/>
             <Button
-                android:id="@+id/view"
+                android:id="@+id/tryAgain"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="3.5"
+                android:layout_weight="5.5"
                 android:background="@drawable/anibutton"
                 android:stateListAnimator="@animator/button_state_list_anim"
                 android:gravity="center"
-                android:text="View"
+                android:text="Try Again"
                 android:fontFamily="monospace"
                 android:textColor="#FFFFFF"
                 android:autoSizeTextType="uniform"
@@ -87,7 +97,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="3.25"/>
+                android:layout_weight="2.25"/>
         </LinearLayout>\
         <LinearLayout
             android:layout_width="match_parent"
@@ -104,14 +114,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2.25"/>
             <Button
-                android:id="@+id/send"
+                android:id="@+id/signup"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="5.5"
                 android:background="@drawable/anibutton"
                 android:stateListAnimator="@animator/button_state_list_anim"
                 android:gravity="center"
-                android:text="Send"
+                android:text="Signup"
                 android:fontFamily="monospace"
                 android:textColor="#FFFFFF"
                 android:autoSizeTextType="uniform"
@@ -127,35 +137,5 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.5"
-            android:orientation="horizontal"
-            android:weightSum="10">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-            <Button
-                android:id="@+id/makeAnotherInvoice"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="8"
-                android:background="@drawable/anibutton"
-                android:stateListAnimator="@animator/button_state_list_anim"
-                android:gravity="center"
-                android:text="Make Another Invoice"
-                android:fontFamily="monospace"
-                android:textColor="#FFFFFF"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMaxTextSize="20sp"
-                android:autoSizeMinTextSize="10sp"
-                android:textStyle="italic" />
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

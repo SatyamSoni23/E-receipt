@@ -54,6 +54,7 @@
             android:layout_height="0dp"
             android:layout_weight="0.3"/>
         <Button
+            android:id="@+id/register"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.8"
@@ -73,6 +74,7 @@
             android:layout_height="0dp"
             android:layout_weight="0.3"/>
         <Button
+            android:id="@+id/login"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.8"
