@@ -102,14 +102,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2.25"/>
             <Button
-                android:id="@+id/next"
+                android:id="@+id/login"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="5.5"
                 android:background="@drawable/anibutton"
                 android:stateListAnimator="@animator/button_state_list_anim"
                 android:gravity="center"
-                android:text="Next"
+                android:text="Login"
                 android:fontFamily="monospace"
                 android:textColor="#FFFFFF"
                 android:autoSizeTextType="uniform"

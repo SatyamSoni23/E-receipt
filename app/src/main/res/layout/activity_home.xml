@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="4"
+            android:layout_weight="3.8"
             android:text="E-Receipt"
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="italic|bold"
@@ -39,6 +39,30 @@
                 android:layout_height="match_parent" />
         </LinearLayout>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.8"
+            android:text="Our Mission"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="italic|bold"
+            android:fontFamily="cursive"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="50sp"
+            android:autoSizeMinTextSize="10sp"
+            android:gravity="center|bottom"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:layout_marginHorizontal="20dp"
+            android:text="Around the world we use 1 million tonnes of paper every day. Too much of this paper usage is wasteful and unnecessary and puts huge pressures on the environment. Our mission to save paper as well as support cashless transaction. "
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="italic"
+            android:fontFamily="sans-serif-condensed"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="25sp"
+            android:autoSizeMinTextSize="10sp" />
     </LinearLayout>
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigationView"
