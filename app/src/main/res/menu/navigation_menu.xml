@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/aboutEreceipt"
+        android:icon="@drawable/aboutus"
+        android:title="About E-Receipt">
+    </item>
+    <item
+        android:id="@+id/updatePassword"
+        android:icon="@drawable/ic_arrow_upward_black_24dp"
+        android:title="Update Password">
+    </item>
+    <item
+        android:id="@+id/contactUs"
+        android:icon="@drawable/ic_contacts_black_24dp"
+        android:title="Contact Us">
+
+    </item>
+    <item
+        android:id="@+id/Logout"
+        android:icon="@drawable/ic_power_settings_new_black_24dp"
+        android:title="Logout">
+    </item>
+</menu>
