@@ -42,6 +42,7 @@
             android:layout_height="0dp"
             android:layout_weight="6">
             <ImageView
+                android:id="@+id/upload"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/uploadimage"/>
@@ -83,7 +84,24 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.2"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp">
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:indeterminateTint="@android:color/black"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"

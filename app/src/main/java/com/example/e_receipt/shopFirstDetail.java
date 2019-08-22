@@ -125,6 +125,7 @@ public class shopFirstDetail extends AppCompatActivity {
                 strShopMobile = shopMobile.getText().toString();
                 strShopAddress = shopAddress.getText().toString();
                 strShopPincode = shopPincode.getText().toString();
+                strShopEmail = shopEmail.getText().toString();
                 strGstNumber = gstNumber.getText().toString();
                 strSlogan = slogan.getText().toString();
 
@@ -148,12 +149,17 @@ public class shopFirstDetail extends AppCompatActivity {
                     Toast.makeText(shopFirstDetail.this, "You did not enter GST Number",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(strGstNumber.matches("")){
+                    Toast.makeText(shopFirstDetail.this, "You did not enter Shop Email",Toast.LENGTH_LONG).show();
+                    return;
+                }
                 demoRef1 = demoRef.child("shopDetail");
                 demoRef1.child("shopName").setValue(strShopName);
                 demoRef1.child("shopMobile").setValue(strShopMobile);
                 demoRef1.child("shopAddress").setValue(strShopAddress);
                 demoRef1.child("shopPincode").setValue(strShopPincode);
                 demoRef1.child("gstNumber").setValue(strGstNumber);
+                demoRef1.child("shopEmail").setValue(strShopEmail);
                 if(slogan.length() == 0){
                     demoRef1.child("slogan").setValue("None");
                 }
