@@ -123,7 +123,7 @@
             android:paddingTop="10dp"
             />
         <EditText
-            android:id="@+id/yourSlogan"
+            android:id="@+id/slogan"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.8"
