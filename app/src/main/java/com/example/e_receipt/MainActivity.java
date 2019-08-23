@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void startHomeAcitvity(){
-        Intent intent = new Intent(this, home.class);
+        Intent intent = new Intent(this, login.class);
         startActivity(intent);
     }
     public void startRegisterActivity(){
