@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,6 +21,7 @@ public class home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
 
         dl = (DrawerLayout) findViewById(R.id.dl);
         abdt = new ActionBarDrawerToggle(this,dl,R.string.Open,R.string.Close);
@@ -55,9 +57,34 @@ public class home extends AppCompatActivity {
                 return false;
             }
         });
+
+        final BottomNavigationView navigationView = (BottomNavigationView) findViewById(R.id.navigationView);
+        navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                if(id == R.id.invoice){
+                    Toast.makeText(home.this, "Make Invoice", Toast.LENGTH_SHORT).show();
+                    startInvoiceActivity();
+                }
+                else if(id == R.id.transferMoney){
+                    Toast.makeText(home.this, "Transfer Money", Toast.LENGTH_SHORT).show();
+
+                }
+                else if(id == R.id.customerDetails){
+                    Toast.makeText(home.this, "Customer Details", Toast.LENGTH_SHORT).show();
+
+                }
+                return false;
+            }
+        });
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return abdt.onOptionsItemSelected(item) || super.onOptionsItemSelected(item);
+    }
+    public void startInvoiceActivity(){
+        Intent intent = new Intent(this, customerDetail.class);
+        startActivity(intent);
     }
 }
