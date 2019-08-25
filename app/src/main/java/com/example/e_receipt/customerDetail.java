@@ -17,6 +17,14 @@ public class customerDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_detail);
 
+        customerName = findViewById(R.id.customerName);
+        customerMobile = findViewById(R.id.customerMobile);
+        customerAddress = findViewById(R.id.customerAddress);
+        customerPincode = findViewById(R.id.customerPincode);
+        customerEmail = findViewById(R.id.customerEmail);
+        otherDetail = findViewById(R.id.otherDetail);
+        next = findViewById(R.id.next);
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

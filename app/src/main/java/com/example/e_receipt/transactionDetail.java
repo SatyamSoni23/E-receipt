@@ -1,13 +1,14 @@
 package com.example.e_receipt;
-
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
@@ -19,59 +20,127 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Document;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
-
-//import com.itextpdf.text.Document;
+import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.squareup.picasso.Picasso;
 
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
 public class transactionDetail extends AppCompatActivity {
-    public final int REQUEST_CODE_ASK_PERMISSIONS = 1;
-    private static final String TAG = "PdfCreatorActivity";
-    private File pdfFile;
-
-    LinearLayout invoicePage;
+    DatabaseReference rootRef, demoRef;
+    private StorageReference storageRef, dataRef;
+    private RelativeLayout invoicePage;
     EditText invoiceNo, invoiceDate, customerName, customerMobile, customerAddress, sNo, description, qty, rate, amount, total, discount, amountCustomer;
     TextView shopName, shopAddress, shopMobile, shopEmail;
     ImageView shopLogo;
-    Button save;
+    private Button save;
+    String dirpath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_detail);
 
-        invoicePage = findViewById(R.id.invoicePage);
-        invoiceNo = findViewById(R.id.invoiceNo);
-        invoiceDate = findViewById(R.id.invoiceDate);
-        customerName = findViewById(R.id.customerName);
-        customerMobile = findViewById(R.id.customerMobile);
-        customerAddress = findViewById(R.id.customerAddress);
-        sNo = findViewById(R.id.sNo);
-        description = findViewById(R.id.description);
-        qty = findViewById(R.id.qty);
-        rate = findViewById(R.id.rate);
-        amount = findViewById(R.id.amount);
-        total = findViewById(R.id.total);
-        discount = findViewById(R.id.discount);
-        amountCustomer = findViewById(R.id.amountCustomer);
-        shopName = findViewById(R.id.shopName);
-        shopAddress = findViewById(R.id.shopAddress);
-        shopMobile = findViewById(R.id.shopMobile);
-        shopEmail = findViewById(R.id.shopEmail);
-        shopLogo = findViewById(R.id.shopLogo);
-        save = findViewById(R.id.save);
+        invoicePage = (RelativeLayout)findViewById(R.id.invoicePage);
+        invoiceNo = (EditText) findViewById(R.id.invoiceNo);
+        invoiceDate = (EditText)findViewById(R.id.invoiceDate);
+        customerName = (EditText)findViewById(R.id.customerName);
+        customerMobile = (EditText)findViewById(R.id.customerMobile);
+        customerAddress = (EditText)findViewById(R.id.customerAddress);
+        sNo = (EditText)findViewById(R.id.sNo);
+        description = (EditText)findViewById(R.id.description);
+        qty = (EditText)findViewById(R.id.qty);
+        rate = (EditText)findViewById(R.id.rate);
+        amount = (EditText)findViewById(R.id.amount);
+        total = (EditText)findViewById(R.id.total);
+        discount = (EditText)findViewById(R.id.discount);
+        amountCustomer = (EditText)findViewById(R.id.amountCustomer);
+        shopName = (TextView)findViewById(R.id.shopName);
+        shopAddress = (TextView)findViewById(R.id.shopAddress);
+        shopMobile = (TextView)findViewById(R.id.shopMobile);
+        shopEmail = (TextView)findViewById(R.id.shopEmail);
+        shopLogo = (ImageView)findViewById(R.id.shopLogo);
+        save = (Button) findViewById(R.id.save);
+
+
+        customerName.setText(customerDetail.strCustomerName);
+        customerMobile.setText(customerDetail.strCustomerMobile);
+        customerAddress.setText(customerDetail.strCustomerAddress + " " + customerDetail.strCustomerPincode);
+
+        storageRef = FirebaseStorage.getInstance().getReference().child("shopLogo").child(login.strUsername);
+        dataRef = storageRef.child(login.strUsername + ".jpg");
+        dataRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Picasso.with(transactionDetail.this).load(uri).into(shopLogo);
+            }
+        });
+        rootRef = FirebaseDatabase.getInstance().getReference();
+        demoRef = rootRef.child("E-Receipt").child(login.strUsername).child("shopDetail");
+        demoRef.child("shopName").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                shopName.setText(dataSnapshot.getValue().toString());
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                startErrorActivity();
+            }
+        });
+        demoRef.child("shopAddress").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                shopAddress.setText(dataSnapshot.getValue().toString());
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                startErrorActivity();
+            }
+        });
+        demoRef.child("shopMobile").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                shopMobile.setText(dataSnapshot.getValue().toString());
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                startErrorActivity();
+            }
+        });
+        demoRef.child("shopEmail").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                shopEmail.setText(dataSnapshot.getValue().toString());
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                startErrorActivity();
+            }
+        });
+
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,103 +175,55 @@ public class transactionDetail extends AppCompatActivity {
                     description.requestFocus();
                     return;
                 }
-                try {
-                    createPdfWrapper();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (DocumentException e) {
-                    e.printStackTrace();
-                }
+                layoutToImage();
+                imageToPDF();
             }
         });
     }
-    private void createPdfWrapper() throws FileNotFoundException,DocumentException{
+    public void layoutToImage() {
 
-        int hasWriteStoragePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (hasWriteStoragePermission != PackageManager.PERMISSION_GRANTED) {
+        invoicePage.setDrawingCacheEnabled(true);
+        invoicePage.buildDrawingCache();
+        Bitmap bm = invoicePage.getDrawingCache();
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("image/jpeg");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_CONTACTS)) {
-                    showMessageOKCancel("You need to allow access to Storage",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                                REQUEST_CODE_ASK_PERMISSIONS);
-                                    }
-                                }
-                            });
-                    return;
-                }
+        File f = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
+        try {
+            f.createNewFile();
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        REQUEST_CODE_ASK_PERMISSIONS);
-            }
-            return;
-        }else {
-            //createPdf();
+    }
+    public void imageToPDF() {
+        try {
+            Document document = new Document();
+            dirpath = android.os.Environment.getExternalStorageDirectory().toString();
+            PdfWriter.getInstance(document, new FileOutputStream(dirpath + "/NewPDF.pdf")); //  Change pdf's name.
+            document.open();
+            Image img = Image.getInstance(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
+            float scaler = ((document.getPageSize().getWidth() - document.leftMargin()
+                    - document.rightMargin() - 0) / img.getWidth()) * 100;
+            img.scalePercent(scaler);
+            img.setAlignment(Image.ALIGN_CENTER | Image.ALIGN_TOP);
+            document.add(img);
+            document.close();
+            Toast.makeText(this, "PDF Generated successfully!..", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+
         }
     }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_CODE_ASK_PERMISSIONS:
-                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // Permission Granted
-                    try {
-                        createPdfWrapper();
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (DocumentException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    // Permission Denied
-                    Toast.makeText(this, "WRITE_EXTERNAL Permission Denied", Toast.LENGTH_SHORT)
-                            .show();
-                }
-                break;
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
+    public void startSaveActivity(){
+        Intent intent = new Intent(this, invoiceSend.class);
+        startActivity(intent);
     }
-    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
-        new AlertDialog.Builder(this)
-                .setMessage(message)
-                .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", null)
-                .create()
-                .show();
+    public void startErrorActivity(){
+        Intent intent = new Intent(this, offline.class);
+        startActivity(intent);
     }
-/*
-    private void createPdf() throws FileNotFoundException, DocumentException {
-
-        File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents");
-        if (!docsFolder.exists()) {
-            docsFolder.mkdir();
-            Log.i(TAG, "Created a new directory for PDF");
-        }
-
-        pdfFile = new File(docsFolder.getAbsolutePath(),"HelloWorld.pdf");
-        OutputStream output = new FileOutputStream(pdfFile);
-        Document document = new Document();
-        PdfWriter.getInstance(document, output);
-        document.open();
-        document.add(new Paragraph(mContentEditText.getText().toString()));
-
-        document.close();
-
-        Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse(docsFolder + "/HelloWorld.pdf"));
-        intent.setType("application/pdf");
-        PackageManager pm = getPackageManager();
-        List<ResolveInfo> activities = pm.queryIntentActivities(intent, 0);
-        if (activities.size() > 0) {
-            startActivity(intent);
-        } else {
-            // Do something else here. Maybe pop up a Dialog or Toast
-        }
-
-    }*/
 }
