@@ -53,11 +53,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="6.5"
                 android:orientation="vertical"
+                android:layout_marginHorizontal="20dp"
                 android:weightSum="10">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
+
                 <TextView
                     android:id="@+id/shopAddress"
                     android:layout_width="match_parent"
@@ -147,9 +145,10 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
+                    android:background="@null"
                     android:autoSizeTextType="uniform"
                     android:autoSizeMaxTextSize="25sp"
-                    android:autoSizeMinTextSize="10sp"
+                    android:autoSizeMinTextSize="5sp"
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="italic|bold"
                     android:textColor="@color/colorPrimaryDark"
@@ -172,9 +171,10 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
+                    android:background="@null"
                     android:autoSizeTextType="uniform"
                     android:autoSizeMaxTextSize="25sp"
-                    android:autoSizeMinTextSize="10sp"
+                    android:autoSizeMinTextSize="5sp"
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="italic|bold"
                     android:textColor="@color/colorPrimaryDark"
@@ -199,14 +199,14 @@
                     android:textStyle="italic|bold"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorHint="@color/colorPrimary"/>
-                <EditText
+                <TextView
                     android:id="@+id/customerName"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="4"
                     android:autoSizeTextType="uniform"
                     android:autoSizeMaxTextSize="25sp"
-                    android:autoSizeMinTextSize="10sp"
+                    android:autoSizeMinTextSize="5sp"
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="italic|bold"
                     android:textColor="@color/colorPrimaryDark"
@@ -224,14 +224,14 @@
                     android:textStyle="italic|bold"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorHint="@color/colorPrimary"/>
-                <EditText
+                <TextView
                     android:id="@+id/customerMobile"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="3.2"
                     android:autoSizeTextType="uniform"
                     android:autoSizeMaxTextSize="25sp"
-                    android:autoSizeMinTextSize="10sp"
+                    android:autoSizeMinTextSize="5sp"
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="italic|bold"
                     android:textColor="@color/colorPrimaryDark"
@@ -256,14 +256,14 @@
                     android:textStyle="italic|bold"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorHint="@color/colorPrimary"/>
-                <EditText
+                <TextView
                     android:id="@+id/customerAddress"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="9.5"
                     android:autoSizeTextType="uniform"
                     android:autoSizeMaxTextSize="25sp"
-                    android:autoSizeMinTextSize="10sp"
+                    android:autoSizeMinTextSize="5sp"
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="italic|bold"
                     android:textColor="@color/colorPrimaryDark"
@@ -388,7 +388,7 @@
                         android:textStyle="italic|bold"
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
-                        android:gravity="center_vertical"
+                        android:gravity="center"
                         />
                     <EditText
                         android:id="@+id/description"

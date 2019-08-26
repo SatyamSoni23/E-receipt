@@ -110,7 +110,7 @@
             android:textColorHint="@color/colorPrimary"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:inputType="number"
+            android:inputType="text"
             />
         <LinearLayout
             android:layout_width="match_parent"

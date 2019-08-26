@@ -50,11 +50,12 @@ import java.io.OutputStream;
 import java.util.List;
 
 public class transactionDetail extends AppCompatActivity {
+    public final int REQUEST_CODE_ASK_PERMISSIONS = 1;
     DatabaseReference rootRef, demoRef;
     private StorageReference storageRef, dataRef;
     private RelativeLayout invoicePage;
-    EditText invoiceNo, invoiceDate, customerName, customerMobile, customerAddress, sNo, description, qty, rate, amount, total, discount, amountCustomer;
-    TextView shopName, shopAddress, shopMobile, shopEmail;
+    EditText invoiceNo, invoiceDate, sNo, description, qty, rate, amount, total, discount, amountCustomer;
+    TextView shopName,customerName, customerMobile, customerAddress, shopAddress, shopMobile, shopEmail;
     ImageView shopLogo;
     private Button save;
     String dirpath;
@@ -67,9 +68,9 @@ public class transactionDetail extends AppCompatActivity {
         invoicePage = (RelativeLayout)findViewById(R.id.invoicePage);
         invoiceNo = (EditText) findViewById(R.id.invoiceNo);
         invoiceDate = (EditText)findViewById(R.id.invoiceDate);
-        customerName = (EditText)findViewById(R.id.customerName);
-        customerMobile = (EditText)findViewById(R.id.customerMobile);
-        customerAddress = (EditText)findViewById(R.id.customerAddress);
+        customerName = (TextView) findViewById(R.id.customerName);
+        customerMobile = (TextView) findViewById(R.id.customerMobile);
+        customerAddress = (TextView) findViewById(R.id.customerAddress);
         sNo = (EditText)findViewById(R.id.sNo);
         description = (EditText)findViewById(R.id.description);
         qty = (EditText)findViewById(R.id.qty);
@@ -84,7 +85,6 @@ public class transactionDetail extends AppCompatActivity {
         shopEmail = (TextView)findViewById(R.id.shopEmail);
         shopLogo = (ImageView)findViewById(R.id.shopLogo);
         save = (Button) findViewById(R.id.save);
-
 
         customerName.setText(customerDetail.strCustomerName);
         customerMobile.setText(customerDetail.strCustomerMobile);
@@ -130,6 +130,7 @@ public class transactionDetail extends AppCompatActivity {
                 startErrorActivity();
             }
         });
+
         demoRef.child("shopEmail").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -181,7 +182,6 @@ public class transactionDetail extends AppCompatActivity {
         });
     }
     public void layoutToImage() {
-
         invoicePage.setDrawingCacheEnabled(true);
         invoicePage.buildDrawingCache();
         Bitmap bm = invoicePage.getDrawingCache();
@@ -190,21 +190,53 @@ public class transactionDetail extends AppCompatActivity {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bm.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
 
-        File f = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
-        try {
-            f.createNewFile();
-            FileOutputStream fo = new FileOutputStream(f);
-            fo.write(bytes.toByteArray());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
+        int hasWriteStoragePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (hasWriteStoragePermission != PackageManager.PERMISSION_GRANTED) {
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (!shouldShowRequestPermissionRationale(Manifest.permission.WRITE_CONTACTS)) {
+                    showMessageOKCancel("You need to allow access to Storage",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                                REQUEST_CODE_ASK_PERMISSIONS);
+                                    }
+                                }
+                            });
+                    return;
+                }
+
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        REQUEST_CODE_ASK_PERMISSIONS);
+            }
+            return;
+        }else {
+            File f = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
+            try {
+                f.createNewFile();
+                FileOutputStream fo = new FileOutputStream(f);
+                fo.write(bytes.toByteArray());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
+        new AlertDialog.Builder(this)
+                .setMessage(message)
+                .setPositiveButton("OK", okListener)
+                .setNegativeButton("Cancel", null)
+                .create()
+                .show();
     }
     public void imageToPDF() {
         try {
             Document document = new Document();
             dirpath = android.os.Environment.getExternalStorageDirectory().toString();
-            PdfWriter.getInstance(document, new FileOutputStream(dirpath + "/NewPDF.pdf")); //  Change pdf's name.
+            PdfWriter.getInstance(document, new FileOutputStream(dirpath +"/Documents" + "/" + customerDetail.strCustomerName + ".pdf")); //  Change pdf's name.
             document.open();
             Image img = Image.getInstance(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
             float scaler = ((document.getPageSize().getWidth() - document.leftMargin()
@@ -214,6 +246,7 @@ public class transactionDetail extends AppCompatActivity {
             document.add(img);
             document.close();
             Toast.makeText(this, "PDF Generated successfully!..", Toast.LENGTH_SHORT).show();
+            startSaveActivity();
         } catch (Exception e) {
 
         }
