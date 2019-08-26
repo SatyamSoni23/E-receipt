@@ -176,6 +176,7 @@ public class transactionDetail extends AppCompatActivity {
                     description.requestFocus();
                     return;
                 }
+
                 layoutToImage();
                 imageToPDF();
             }
