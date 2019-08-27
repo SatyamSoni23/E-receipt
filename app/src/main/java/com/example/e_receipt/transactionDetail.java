@@ -55,7 +55,7 @@ public class transactionDetail extends AppCompatActivity {
     private StorageReference storageRef, dataRef;
     private RelativeLayout invoicePage;
     EditText invoiceNo, invoiceDate, sNo, description, qty, rate, amount, total, discount, amountCustomer;
-    TextView shopName,customerName, customerMobile, customerAddress, shopAddress, shopMobile, shopEmail;
+    TextView shopName,customerName, customerMobile, customerAddress, shopAddress, shopMobile, shopEmail, gstNumber;
     ImageView shopLogo;
     private Button save;
     String dirpath;
@@ -83,6 +83,7 @@ public class transactionDetail extends AppCompatActivity {
         shopAddress = (TextView)findViewById(R.id.shopAddress);
         shopMobile = (TextView)findViewById(R.id.shopMobile);
         shopEmail = (TextView)findViewById(R.id.shopEmail);
+        gstNumber = (TextView)findViewById(R.id.gstNumber);
         shopLogo = (ImageView)findViewById(R.id.shopLogo);
         save = (Button) findViewById(R.id.save);
 
@@ -135,6 +136,16 @@ public class transactionDetail extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 shopEmail.setText(dataSnapshot.getValue().toString());
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                startErrorActivity();
+            }
+        });
+        demoRef.child("gstNumber").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                gstNumber.setText("Invoice - GST Number : " + dataSnapshot.getValue().toString());
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

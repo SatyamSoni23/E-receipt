@@ -107,10 +107,10 @@
             android:orientation="vertical"
             android:weightSum="12">
             <TextView
+                android:id="@+id/gstNumber"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
-                android:text="Invoice"
                 android:layout_marginHorizontal="10dp"
                 android:autoSizeTextType="uniform"
                 android:autoSizeMaxTextSize="25sp"
@@ -178,7 +178,8 @@
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="italic|bold"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textColorHint="@color/colorPrimary"/>
+                    android:textColorHint="@color/colorPrimary"
+                    android:layout_marginHorizontal="5dp"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
