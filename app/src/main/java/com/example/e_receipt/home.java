@@ -44,7 +44,7 @@ public class home extends AppCompatActivity {
                 }
                 else if(id == R.id.updatePassword){
                     Toast.makeText(home.this, "Update Password", Toast.LENGTH_SHORT).show();
-
+                    startUpdatePasswordActivity();
                 }
                 else if(id == R.id.contactUs){
                     Toast.makeText(home.this, "Contact Us", Toast.LENGTH_SHORT).show();
@@ -52,7 +52,7 @@ public class home extends AppCompatActivity {
                 }
                 else if(id == R.id.Logout){
                     Toast.makeText(home.this, "Logout", Toast.LENGTH_SHORT).show();
-
+                    startLogoutActivity();
                 }
                 return false;
             }
@@ -85,6 +85,14 @@ public class home extends AppCompatActivity {
     }
     public void startInvoiceActivity(){
         Intent intent = new Intent(this, customerDetail.class);
+        startActivity(intent);
+    }
+    public void startLogoutActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void startUpdatePasswordActivity(){
+        Intent intent = new Intent(this, updatePassword.class);
         startActivity(intent);
     }
 }

@@ -2,6 +2,8 @@ package com.example.e_receipt;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.v4.content.FileProvider;
@@ -12,6 +14,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.List;
 
 public class invoiceSend extends AppCompatActivity {
 
@@ -68,6 +71,17 @@ public class invoiceSend extends AppCompatActivity {
     public void startViewPageActivity(){
         File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents");
         pdfFile = new File(docsFolder.getAbsolutePath(),customerDetail.strCustomerName + ".pdf");
+        Intent intent = new Intent(Intent.ACTION_VIEW,
+                Uri.parse(String.valueOf(pdfFile)));
+        intent.setType("application/pdf");
+        PackageManager pm = getPackageManager();
+        List<ResolveInfo> activities = pm.queryIntentActivities(intent, 0);
+        if (activities.size() > 0) {
+            startActivity(intent);
+        } else {
+            // Do something else here. Maybe pop up a Dialog or Toast
+        }
+        /*
         Intent intentShareFile = new Intent(Intent.ACTION_SEND);
         File fileWithinMyDir = new File(pdfFile.getAbsolutePath());
         if(fileWithinMyDir.exists()) {
@@ -76,6 +90,7 @@ public class invoiceSend extends AppCompatActivity {
             intentShareFile.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(Intent.createChooser(intentShareFile, "Open File"));
         }
+         */
         /*String filename = "blabla.pdf";
         File file = new File(pdfFile.getAbsolutePath());
         Uri internal = Uri.fromFile(file);
