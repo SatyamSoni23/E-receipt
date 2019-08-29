@@ -9,7 +9,9 @@
         android:roundIcon="@drawable/receipt"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".updatePassword"></activity>
+        <activity android:name=".contactUs"></activity>
+        <activity android:name=".aboutEreceipt" />
+        <activity android:name=".updatePassword" />
         <activity android:name=".home" />
         <activity android:name=".offline" />
         <activity android:name=".somethingWentWrong" />

@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="4"
-            android:text="Contact Us"
+            android:text="About Me"
             android:textColor="@color/colorPrimaryDark"
             android:textStyle="italic|bold"
             android:fontFamily="cursive"
@@ -28,82 +28,24 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5"/>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:src="@drawable/contactus"
-            android:layout_weight="4"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="5"
-            android:text="Developed by :- Team Abstract Connoisseurs\nAddress :- Varanasi, Uttar Pradesh, India \nEmail us :- e_receipt@gmail.com\nPhone No :- 9170451811 \nFollow us :- Facebook, LinkedIn, Instagram"
+            android:layout_weight="12"
+            android:text="         E-Receipt is the only app in the GLOBE that you to create invoice of bill into your own ways. It provides  feature i which you can send invoice via whatsapp, gmail or other ways within single click to the target customer and also its carbon copy will be saved into your internal storage.
+\n\n      These app also allow you to transfer money via phonepe, googlepay or others. The main aim of these app is reduce the use of paper and enter in the digital world without wasting the natural resources. "
             android:lineSpacingMultiplier="1.2"
             android:autoSizeTextType="uniform"
-            android:autoSizeMaxTextSize="22sp"
+            android:autoSizeMaxTextSize="30sp"
             android:autoSizeMinTextSize="10sp"
             android:fontFamily="sans-serif-condensed"
+            android:layout_marginHorizontal="30dp"
             android:textStyle="italic"
-            android:layout_marginHorizontal="20dp"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorPrimary"
-            android:gravity="left"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="20dp"
-            android:weightSum="20">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"/>
-            <ImageView
-                android:id="@+id/facebook"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/facebook"
-                android:layout_weight="4"
-                android:stateListAnimator="@animator/button_state_list_anim"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-            <ImageView
-                android:id="@+id/linkedIn"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/linkedin"
-                android:layout_weight="4"
-                android:stateListAnimator="@animator/button_state_list_anim"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-            <ImageView
-                android:id="@+id/instagram"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/instagram"
-                android:layout_weight="4"
-                android:stateListAnimator="@animator/button_state_list_anim"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-            <ImageView
-                android:id="@+id/youTube"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/youtube"
-                android:layout_weight="4"
-                android:stateListAnimator="@animator/button_state_list_anim"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.5"/>
-        </LinearLayout>
+            android:gravity="left"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"

@@ -40,7 +40,7 @@ public class home extends AppCompatActivity {
                 int id = item.getItemId();
                 if(id == R.id.aboutEreceipt){
                     Toast.makeText(home.this, "About E-Receipt", Toast.LENGTH_SHORT).show();
-
+                    startAboutEreceiptActivity();
                 }
                 else if(id == R.id.updatePassword){
                     Toast.makeText(home.this, "Update Password", Toast.LENGTH_SHORT).show();
@@ -48,7 +48,7 @@ public class home extends AppCompatActivity {
                 }
                 else if(id == R.id.contactUs){
                     Toast.makeText(home.this, "Contact Us", Toast.LENGTH_SHORT).show();
-
+                    startContactUsActivity();
                 }
                 else if(id == R.id.Logout){
                     Toast.makeText(home.this, "Logout", Toast.LENGTH_SHORT).show();
@@ -93,6 +93,14 @@ public class home extends AppCompatActivity {
     }
     public void startUpdatePasswordActivity(){
         Intent intent = new Intent(this, updatePassword.class);
+        startActivity(intent);
+    }
+    public void startContactUsActivity(){
+        Intent intent = new Intent(this, contactUs.class);
+        startActivity(intent);
+    }
+    public void startAboutEreceiptActivity(){
+        Intent intent = new Intent(this, aboutEreceipt.class);
         startActivity(intent);
     }
 }
