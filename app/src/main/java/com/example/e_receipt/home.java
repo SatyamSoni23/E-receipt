@@ -12,16 +12,30 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.MediaController;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 public class home extends AppCompatActivity {
     private DrawerLayout dl;
     private ActionBarDrawerToggle abdt;
+    VideoView videoView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        videoView = findViewById(R.id.video);
+        //Set MediaController  to enable play, pause, forward, etc options.
+        MediaController mediaController= new MediaController(this);
+        mediaController.setAnchorView(videoView);
+        //Location of Media File
+        Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.video1);
+        //Starting VideView By Setting MediaController and URI
+        videoView.setMediaController(mediaController);
+        videoView.setVideoURI(uri);
+        videoView.requestFocus();
+        videoView.start();
 
         dl = (DrawerLayout) findViewById(R.id.dl);
         abdt = new ActionBarDrawerToggle(this,dl,R.string.Open,R.string.Close);

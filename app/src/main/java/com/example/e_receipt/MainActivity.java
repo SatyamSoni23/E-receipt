@@ -10,13 +10,12 @@ import android.widget.RelativeLayout;
 import jp.wasabeef.blurry.Blurry;
 
 public class MainActivity extends AppCompatActivity {
-    RelativeLayout rootView;
     Button login, register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        rootView = findViewById(R.id.rootView);
+
         login = findViewById(R.id.login);
         register = findViewById(R.id.register);
         login.setOnClickListener(new View.OnClickListener() {
