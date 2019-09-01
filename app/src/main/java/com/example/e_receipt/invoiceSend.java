@@ -69,10 +69,24 @@ public class invoiceSend extends AppCompatActivity {
         startActivity(intent);
     }
     public void startViewPageActivity(){
-        File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents");
-        pdfFile = new File(docsFolder.getAbsolutePath(),customerDetail.strCustomerName + ".pdf");
+        /*
+        File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents" + "/" +customerDetail.strCustomerName + ".pdf");
+        Uri path = Uri.fromFile(docsFolder);
+        Intent pdfOpenintent = new Intent(Intent.ACTION_VIEW);
+        pdfOpenintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        pdfOpenintent.setDataAndType(path, "application/pdf");
+        try {
+            startActivity(pdfOpenintent);
+        }
+        catch (ActivityNotFoundException e) {
+
+        }
+         */
+        File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents" + "/" +customerDetail.strCustomerName + ".pdf");
+        //File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents");
+        //pdfFile = new File(docsFolder.getAbsolutePath(),customerDetail.strCustomerName + ".pdf");
         Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse(String.valueOf(pdfFile)));
+                Uri.parse(String.valueOf(docsFolder)));
         intent.setType("application/pdf");
         PackageManager pm = getPackageManager();
         List<ResolveInfo> activities = pm.queryIntentActivities(intent, 0);
@@ -81,6 +95,8 @@ public class invoiceSend extends AppCompatActivity {
         } else {
             // Do something else here. Maybe pop up a Dialog or Toast
         }
+
+
         /*
         Intent intentShareFile = new Intent(Intent.ACTION_SEND);
         File fileWithinMyDir = new File(pdfFile.getAbsolutePath());
