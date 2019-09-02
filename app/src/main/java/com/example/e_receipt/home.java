@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import java.io.File;
+import java.util.List;
 
 public class home extends AppCompatActivity {
     public final int REQUEST_CODE_ASK_PERMISSIONS = 1;
@@ -129,19 +131,10 @@ public class home extends AppCompatActivity {
     public void startCustomerDetailActivity() {
         //String dirpath;
         //dirpath = android.os.Environment.getExternalStorageDirectory().toString();
-
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        Uri uri = Uri.parse(android.os.Environment.getExternalStorageDirectory().getPath()
+        Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
                 +  File.separator + "Documents" + File.separator);
         intent.setDataAndType(uri, "resource/folder");
         startActivity(Intent.createChooser(intent, "Open folder"));
-
-
-        /*
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        Uri uri = Uri.parse(dirpath + "/Documents");
-        intent.setDataAndType(uri, "text/csv");
-        startActivity(Intent.createChooser(intent, "Open folder"));
-         */
     }
 }
