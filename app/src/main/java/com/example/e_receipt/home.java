@@ -95,8 +95,8 @@ public class home extends AppCompatActivity {
 
                 }
                 else if(id == R.id.customerDetails){
-                    startCustomerDetailActivity();
                     Toast.makeText(home.this, "Customer Details", Toast.LENGTH_SHORT).show();
+                    startCustomerDetailActivity();
                 }
                 return false;
             }
@@ -126,61 +126,22 @@ public class home extends AppCompatActivity {
         Intent intent = new Intent(this, aboutEreceipt.class);
         startActivity(intent);
     }
-    public void startCustomerDetailActivity(){
-        /*File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents/");
-        Uri path = Uri.fromFile(docsFolder);
-        Intent pdfOpenintent = new Intent(Intent.ACTION_VIEW);
-        pdfOpenintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        pdfOpenintent.setDataAndType(path, "resource/folder");
-        try {
-            startActivity(pdfOpenintent);
-        }
-        catch (ActivityNotFoundException e) {
+    public void startCustomerDetailActivity() {
+        //String dirpath;
+        //dirpath = android.os.Environment.getExternalStorageDirectory().toString();
 
-        }*/
-        int hasReadStoragePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
-        if(hasReadStoragePermission != PackageManager.PERMISSION_GRANTED){
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                if (!shouldShowRequestPermissionRationale(Manifest.permission.READ_CONTACTS)) {
-                    showMessageOKCancel("You need to allow access to Storage",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                                                REQUEST_CODE_ASK_PERMISSIONS);
-                                    }
-                                }
-                            });
-                    return;
-                }
-                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        REQUEST_CODE_ASK_PERMISSIONS);
-            }
-            return;
-        }
-        else{
-            Uri selectedUri = Uri.parse(Environment.getExternalStorageDirectory() + "/Documents/");
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(selectedUri, "resource/folder");
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        Uri uri = Uri.parse(android.os.Environment.getExternalStorageDirectory().getPath()
+                +  File.separator + "Documents" + File.separator);
+        intent.setDataAndType(uri, "resource/folder");
+        startActivity(Intent.createChooser(intent, "Open folder"));
 
-            if (intent.resolveActivityInfo(getPackageManager(), 0) != null)
-            {
-                startActivity(intent);
-            }
-            else
-            {
-                // if you reach this place, it means there is no any file
-                // explorer app installed on your device
-            }
-        }
-    }
-    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
-        new AlertDialog.Builder(this)
-                .setMessage(message)
-                .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", null)
-                .create()
-                .show();
+
+        /*
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        Uri uri = Uri.parse(dirpath + "/Documents");
+        intent.setDataAndType(uri, "text/csv");
+        startActivity(Intent.createChooser(intent, "Open folder"));
+         */
     }
 }

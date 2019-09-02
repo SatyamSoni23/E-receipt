@@ -82,9 +82,10 @@ public class invoiceSend extends AppCompatActivity {
 
         }
          */
-        File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents" + "/" +customerDetail.strCustomerName + ".pdf");
+        //File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents" + "/" +customerDetail.strCustomerName + ".pdf");
         //File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents");
         //pdfFile = new File(docsFolder.getAbsolutePath(),customerDetail.strCustomerName + ".pdf");
+        /*
         Intent intent = new Intent(Intent.ACTION_VIEW,
                 Uri.parse(String.valueOf(docsFolder)));
         intent.setType("application/pdf");
@@ -95,6 +96,13 @@ public class invoiceSend extends AppCompatActivity {
         } else {
             // Do something else here. Maybe pop up a Dialog or Toast
         }
+        */
+        String dirpath;
+        dirpath = android.os.Environment.getExternalStorageDirectory().toString();
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Uri uri = Uri.parse(dirpath + "/Documents/" + customerDetail.strCustomerName + ".pdf");
+        intent.setDataAndType(uri, "application/*");
+        startActivity(intent);
 
 
         /*
