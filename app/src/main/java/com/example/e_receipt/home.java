@@ -94,7 +94,7 @@ public class home extends AppCompatActivity {
                 }
                 else if(id == R.id.transferMoney){
                     Toast.makeText(home.this, "Transfer Money", Toast.LENGTH_SHORT).show();
-
+                    startTransferMoneyActivity();
                 }
                 else if(id == R.id.customerDetails){
                     Toast.makeText(home.this, "Customer Details", Toast.LENGTH_SHORT).show();
@@ -136,5 +136,9 @@ public class home extends AppCompatActivity {
                 +  File.separator + "Documents" + File.separator);
         intent.setDataAndType(uri, "resource/folder");
         startActivity(Intent.createChooser(intent, "Open folder"));
+    }
+    public void startTransferMoneyActivity(){
+        Intent intent = new Intent(this, transferMoney.class);
+        startActivity(intent);
     }
 }
