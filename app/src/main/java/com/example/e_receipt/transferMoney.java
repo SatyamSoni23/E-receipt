@@ -1,149 +1,81 @@
 package com.example.e_receipt;
-
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import android.widget.ImageView;
 
 public class transferMoney extends AppCompatActivity {
-
-    EditText amountEt, noteEt, nameEt, upiIdEt;
-    Button send;
-
-    final int UPI_PAYMENT = 0;
+    ImageView phonePe, googlePay, amazonPay, bhim, paytm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transfer_money);
-
-        send = findViewById(R.id.send);
-        amountEt = findViewById(R.id.amount_et);
-        noteEt = findViewById(R.id.note);
-        nameEt = findViewById(R.id.name);
-        upiIdEt = findViewById(R.id.upi_id);
-
-        send.setOnClickListener(new View.OnClickListener() {
+        phonePe = findViewById(R.id.phonePe);
+        googlePay = findViewById(R.id.googlePay);
+        amazonPay = findViewById(R.id.amazonPay);
+        bhim = findViewById(R.id.bhim);
+        paytm = findViewById(R.id.paytm);
+        phonePe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String amount = amountEt.getText().toString();
-                String note = noteEt.getText().toString();
-                String name = nameEt.getText().toString();
-                String upi_Id = upiIdEt.getText().toString();
-                payUsingUpi(amount, note, name, upi_Id);
+                startPhonePeActivity();
+            }
+        });
+        googlePay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startGooglePayActivity();
+            }
+        });
+        amazonPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startAmazonPayActivity();
+            }
+        });
+        bhim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startBhimActivity();
+            }
+        });
+        paytm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startPaytmActivity();
             }
         });
     }
-
-    void payUsingUpi(String amount, String upiId, String name, String note) {
-        Uri uri = Uri.parse("upi://pay").buildUpon()
-                .appendQueryParameter("pa", upiId)
-                .appendQueryParameter("pn", name)
-                .appendQueryParameter("tn", note)
-                .appendQueryParameter("am", amount)
-                .appendQueryParameter("cu", "INR")
-                .build();
-        Intent upipayIntent = new Intent(Intent.ACTION_VIEW);
-        upipayIntent.setData(uri);
-        Intent chooser = Intent.createChooser(upipayIntent, "Pay with");
-        if (null != chooser.resolveActivity(getPackageManager())) {
-            startActivityForResult(chooser, UPI_PAYMENT);
-        } else {
-            Toast.makeText(transferMoney.this, "No upi app found, please install one to continue", Toast.LENGTH_SHORT).show();
-        }
+    public void startPhonePeActivity(){
 
     }
+    public void startGooglePayActivity(){
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case UPI_PAYMENT:
-                if (RESULT_OK == resultCode || requestCode == 11) {
-                    if (data != null) {
-                        String trxt = data.getStringExtra("response");
-                        Log.d("UPI", "onActivityResult: " + trxt);
-                        ArrayList<String> dataList = new ArrayList<>();
-                        dataList.add(trxt);
-                        upiPaymentDataOperation(dataList);
-                    } else {
-                        Log.d("UPI", "onActivityResult" + "Return data is null");
-                        ArrayList<String> dataList = new ArrayList<>();
-                        dataList.add("nothing");
-                        upiPaymentDataOperation(dataList);
-                    }
-                } else {
-                    Log.d("UPI", "onActivityResult" + "Return data is null");
-                    ArrayList<String> dataList = new ArrayList<>();
-                    dataList.add("nothing");
-                    upiPaymentDataOperation(dataList);
-                }
-
-        }
     }
+    public void startAmazonPayActivity(){
 
-    private void upiPaymentDataOperation(ArrayList<String> data) {
-        if (isConnectionAvailable(transferMoney.this)) {
-            String str = data.get(0);
-            Log.d("UPIPAY", "upiPaymentDataOperation: "+str);
-            String paymentCancel = "";
-            if(str == null) str = "discard";
-            String status = "";
-            String approvalRefNo = "";
-            String response[] = str.split("&");
-            for (int i = 0; i < response.length; i++) {
-                String equalStr[] = response[i].split("=");
-                if(equalStr.length >= 2) {
-                    if (equalStr[0].toLowerCase().equals("Status".toLowerCase())) {
-                        status = equalStr[1].toLowerCase();
-                    }
-                    else if (equalStr[0].toLowerCase().equals("ApprovalRefNo".toLowerCase()) || equalStr[0].toLowerCase().equals("txnRef".toLowerCase())) {
-                        approvalRefNo = equalStr[1];
-                    }
-                }
-                else {
-                    paymentCancel = "Payment cancelled by user.";
-                }
-            }
-
-            if (status.equals("success")) {
-                //Code to handle successful transaction here.
-                Toast.makeText(transferMoney.this, "Transaction successful.", Toast.LENGTH_SHORT).show();
-                Log.d("UPI", "responseStr: "+approvalRefNo);
-            }
-            else if("Payment cancelled by user.".equals(paymentCancel)) {
-                Toast.makeText(transferMoney.this, "Payment cancelled by user.", Toast.LENGTH_SHORT).show();
-            }
-            else {
-                Toast.makeText(transferMoney.this, "Transaction failed.Please try again", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(transferMoney.this, "Internet connection is not available. Please check and try again", Toast.LENGTH_SHORT).show();
-        }
     }
+    public void startBhimActivity(){
+        /*
+        Uri uri = Uri.parse("upi://pay?pa=8866616231@upi&pn=Aayushi%20Shah&tn=Test%20for%20Deeplinking&am=1&cu=INR&url=https://mystar.co"); // missing 'http://' will cause crashed
+        Log.d(TAG, "onClick: uri: "+uri);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivityForResult(intent,1);
 
-    public static boolean isConnectionAvailable(Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager != null) {
-            NetworkInfo netInfo = connectivityManager.getActiveNetworkInfo();
-            if (netInfo != null && netInfo.isConnected()
-                    && netInfo.isConnectedOrConnecting()
-                    && netInfo.isAvailable()) {
-                return true;
-            }
-        }
-        return false;
+         */
+    }
+    public void startPaytmActivity(){
+        /*
+        Uri uri = Uri.parse("net.one97.paytm"); // missing 'http://' will cause crashed
+        //String appPackageName = "net.one97.paytm";
+        Log.d(TAG, "onClick: uri: "+uri);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivityForResult(intent,1);
+        
+         */
     }
 }

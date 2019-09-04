@@ -37,103 +37,111 @@
             android:layout_height="0dp"
             android:layout_weight="4"
             android:src="@drawable/sendmoney"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.4"/>
-        <EditText
-            android:id="@+id/amount_et"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.8"
-            android:layout_marginHorizontal="35dp"
-            android:hint="Amount"
-            android:textSize="25dp"
-            android:fontFamily="sans-serif-condensed"
-            android:textStyle="italic"
+            android:layout_weight="3"
+            android:text="Transfer Money"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="10sp"
+            android:fontFamily="sans-serif-condensed-light"
+            android:textStyle="italic|bold"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorPrimary"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            />
-        <EditText
-            android:id="@+id/upi_id"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.8"
-            android:layout_marginHorizontal="35dp"
-            android:hint="UPI ID"
-            android:textSize="25dp"
-            android:fontFamily="sans-serif-condensed"
-            android:textStyle="italic"
-            android:textColor="@color/colorPrimaryDark"
-            android:textColorHint="@color/colorPrimary"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            />
-        <EditText
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.8"
-            android:layout_marginHorizontal="35dp"
-            android:hint="Name"
-            android:textSize="25dp"
-            android:fontFamily="sans-serif-condensed"
-            android:textStyle="italic"
-            android:textColor="@color/colorPrimaryDark"
-            android:textColorHint="@color/colorPrimary"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            />
-        <EditText
-            android:id="@+id/note"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.8"
-            android:layout_marginHorizontal="35dp"
-            android:hint="Note"
-            android:textSize="25dp"
-            android:fontFamily="sans-serif-condensed"
-            android:textStyle="italic"
-            android:textColor="@color/colorPrimaryDark"
-            android:textColorHint="@color/colorPrimary"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            />
+            android:gravity="center"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="0.4"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.6"
+            android:layout_weight="3"
             android:orientation="horizontal"
-            android:weightSum="10">
+            android:layout_marginHorizontal="20dp"
+            android:weightSum="21">
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2.25"/>
-            <Button
-                android:id="@+id/send"
+                android:layout_weight="0.5"/>
+            <ImageView
+                android:id="@+id/phonePe"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="5.5"
-                android:background="@drawable/anibutton"
-                android:stateListAnimator="@animator/button_state_list_anim"
-                android:gravity="center"
-                android:text="Send"
-                android:fontFamily="monospace"
-                android:textColor="#FFFFFF"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMaxTextSize="22sp"
-                android:autoSizeMinTextSize="10sp"
-                android:textStyle="italic" />
+                android:src="@drawable/phonepe"
+                android:layout_weight="6"
+                android:stateListAnimator="@animator/button_state_list_anim"/>
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2.25"/>
+                android:layout_weight="1"/>
+            <ImageView
+                android:id="@+id/googlePay"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/googlepay"
+                android:layout_weight="6"
+                android:stateListAnimator="@animator/button_state_list_anim"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <ImageView
+                android:id="@+id/amazonPay"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/amazonpay"
+                android:layout_weight="6"
+                android:stateListAnimator="@animator/button_state_list_anim"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="20dp"
+            android:weightSum="21">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"/>
+            <ImageView
+                android:id="@+id/bhim"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/bhim"
+                android:layout_weight="6"
+                android:stateListAnimator="@animator/button_state_list_anim"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <ImageView
+                android:id="@+id/paytm"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/paytm"
+                android:layout_weight="6"
+                android:stateListAnimator="@animator/button_state_list_anim"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"/>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
