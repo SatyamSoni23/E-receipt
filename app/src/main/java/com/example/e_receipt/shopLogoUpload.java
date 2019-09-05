@@ -56,6 +56,10 @@ public class shopLogoUpload extends AppCompatActivity {
                 if (mUploadTask != null && mUploadTask.isInProgress()) {
                     Toast.makeText(shopLogoUpload.this, "Upload in Progress", Toast.LENGTH_SHORT).show();
                 } else {
+                    if(upload.getDrawable() == null){
+                        Toast.makeText(shopLogoUpload.this, "Attach logo of your shop",Toast.LENGTH_LONG).show();
+                        return;
+                    }
                     uploadFile();
                 }
 
@@ -79,13 +83,7 @@ public class shopLogoUpload extends AppCompatActivity {
             Picasso.with(this).load(mImageUri).into(upload);
         }
     }
-/*
-    private String getFilExtension(Uri uri){
-        ContentResolver cR = getContentResolver();
-        MimeTypeMap mine = MimeTypeMap.getSingleton();
-        return mine.getExtensionFromMimeType(cR.getType(uri));
-    }
-*/
+
     private void uploadFile(){
         if(upload != null){
             StorageReference fileReference = mStorageRef.child(registerPage.username + ".jpg");

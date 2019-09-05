@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class transferMoney extends AppCompatActivity {
     ImageView phonePe, googlePay, amazonPay, bhim, paytm;
@@ -53,39 +54,46 @@ public class transferMoney extends AppCompatActivity {
     public void startPhonePeActivity(){
         Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.phonepe.app");
         if (launchIntent != null) {
-            startActivity(launchIntent);//null pointer check in case package name was not found
+            startActivity(launchIntent);
+        }
+        else{
+            Toast.makeText(this, "App not installed", Toast.LENGTH_SHORT).show();
         }
     }
     public void startGooglePayActivity(){
-        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.gms.wallet.api.enabled");
+        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.apps.nbu.paisa.user");
         if (launchIntent != null) {
-            startActivity(launchIntent);//null pointer check in case package name was not found
+            startActivity(launchIntent);
+        }
+        else{
+            Toast.makeText(this, "App not installed", Toast.LENGTH_SHORT).show();
         }
     }
     public void startAmazonPayActivity(){
         Intent launchIntent = getPackageManager().getLaunchIntentForPackage("in.amazon.mShop.android.shopping");
         if (launchIntent != null) {
-            startActivity(launchIntent);//null pointer check in case package name was not found
+            startActivity(launchIntent);
+        }
+        else{
+            Toast.makeText(this, "App not installed", Toast.LENGTH_SHORT).show();
         }
     }
     public void startBhimActivity(){
-        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("upi://pay?pa=8866616231@upi&pn=Aayushi%20Shah&tn=Test%20for%20Deeplinking&am=1&cu=INR&url=https://mystar.co");
+        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("in.org.npci.upiapp");
         if (launchIntent != null) {
-            startActivity(launchIntent);//null pointer check in case package name was not found
+            startActivity(launchIntent);
+        }
+        else{
+            Toast.makeText(this, "App not installed", Toast.LENGTH_SHORT).show();
         }
     }
     public void startPaytmActivity(){
         Intent launchIntent = getPackageManager().getLaunchIntentForPackage("net.one97.paytm");
         if (launchIntent != null) {
-            startActivity(launchIntent);//null pointer check in case package name was not found
+            startActivity(launchIntent);
         }
-        /*
-        Uri uri = Uri.parse("net.one97.paytm"); // missing 'http://' will cause crashed
-        //String appPackageName = "net.one97.paytm";
-        Log.d(TAG, "onClick: uri: "+uri);
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        startActivityForResult(intent,1);
-
-         */
+        else{
+            Toast.makeText(this, "App not installed", Toast.LENGTH_SHORT).show();
+        }
     }
 }

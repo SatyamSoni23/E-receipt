@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class customerDetail extends AppCompatActivity {
 
@@ -108,6 +109,42 @@ public class customerDetail extends AppCompatActivity {
                 strCustomerPincode = customerPincode.getText().toString();
                 strCustomerEmail = customerEmail.getText().toString();
                 strOtherDetail = otherDetail.getText().toString();
+                if(strCustomerName.matches("")){
+                    Toast.makeText(customerDetail.this, "You did not enter Shop Name",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(!strCustomerName.matches("[a-zA-Z]*")){
+                    Toast.makeText(customerDetail.this, "Enter valid Name",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(strCustomerMobile.matches("")){
+                    Toast.makeText(customerDetail.this, "You did not enter Mobile Number",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(strCustomerMobile.length() != 10){
+                    Toast.makeText(customerDetail.this, "Enter valid mobile number",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(strCustomerAddress.matches("")){
+                    Toast.makeText(customerDetail.this, "You did not enter Address",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(strCustomerPincode.matches("")){
+                    Toast.makeText(customerDetail.this, "You did not enter Pincode",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(strCustomerPincode.length() != 6){
+                    Toast.makeText(customerDetail.this, "Enter valid Pincode number",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(strCustomerEmail.matches("")){
+                    Toast.makeText(customerDetail.this, "You did not enter Email",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(!strCustomerEmail.matches("[a-zA-Z0-9]+@[a-z]+\\.+[a-z]+")){
+                    Toast.makeText(customerDetail.this, "Enter valid Email",Toast.LENGTH_LONG).show();
+                    return;
+                }
                 startNextActivity();
             }
         });

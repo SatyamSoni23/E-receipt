@@ -108,8 +108,16 @@ public class owerDetail extends AppCompatActivity {
                     Toast.makeText(owerDetail.this, "You did not enter Shop Name",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!strOwnerName.matches("[a-zA-Z]*")){
+                    Toast.makeText(owerDetail.this, "Enter valid Name",Toast.LENGTH_LONG).show();
+                    return;
+                }
                 if(strOwnerMobile.matches("")){
                     Toast.makeText(owerDetail.this, "You did not enter Mobile No.",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(strOwnerMobile.length() != 10){
+                    Toast.makeText(owerDetail.this, "Enter valid mobile number",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(strOwnerAddress.matches("")){
@@ -120,11 +128,19 @@ public class owerDetail extends AppCompatActivity {
                     Toast.makeText(owerDetail.this, "You did not enter Pincode",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(strOwnerPincode.length() != 6){
+                    Toast.makeText(owerDetail.this, "Enter valid pincode number",Toast.LENGTH_LONG).show();
+                    return;
+                }
                 if(strOwnerEmail.matches("")){
-                    Toast.makeText(owerDetail.this, "You did not enter Pincode",Toast.LENGTH_LONG).show();
+                    Toast.makeText(owerDetail.this, "You did not enter Email",Toast.LENGTH_LONG).show();
                     return;
                 }
 
+                if(!strOwnerEmail.matches("[a-zA-Z0-9]+@[a-z]+\\.+[a-z]+")){
+                    Toast.makeText(owerDetail.this, "Enter valid Email",Toast.LENGTH_LONG).show();
+                    return;
+                }
                 demoRef1 = demoRef.child("ownerDetail");
                 demoRef1.child("ownerName").setValue(strOwnerAddress);
                 demoRef1.child("ownerMobile").setValue(strOwnerMobile);

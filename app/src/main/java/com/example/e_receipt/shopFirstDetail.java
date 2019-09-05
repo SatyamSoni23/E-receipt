@@ -137,6 +137,10 @@ public class shopFirstDetail extends AppCompatActivity {
                     Toast.makeText(shopFirstDetail.this, "You did not enter Mobile No.",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(strShopMobile.length() != 10){
+                    Toast.makeText(shopFirstDetail.this, "Enter valid mobile number",Toast.LENGTH_LONG).show();
+                    return;
+                }
                 if(strShopAddress.matches("")){
                     Toast.makeText(shopFirstDetail.this, "You did not enter Address",Toast.LENGTH_LONG).show();
                     return;
@@ -145,14 +149,23 @@ public class shopFirstDetail extends AppCompatActivity {
                     Toast.makeText(shopFirstDetail.this, "You did not enter Pincode",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(strShopPincode.length() != 6){
+                    Toast.makeText(shopFirstDetail.this, "Enter valid pincode number",Toast.LENGTH_LONG).show();
+                    return;
+                }
                 if(strGstNumber.matches("")){
                     Toast.makeText(shopFirstDetail.this, "You did not enter GST Number",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(strGstNumber.length() != 15){
+                    Toast.makeText(shopFirstDetail.this, "Enter valid GST Number",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(strGstNumber.matches("")){
                     Toast.makeText(shopFirstDetail.this, "You did not enter Shop Email",Toast.LENGTH_LONG).show();
                     return;
                 }
+
                 demoRef1 = demoRef.child("shopDetail");
                 demoRef1.child("shopName").setValue(strShopName);
                 demoRef1.child("shopMobile").setValue(strShopMobile);

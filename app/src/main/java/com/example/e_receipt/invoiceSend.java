@@ -97,41 +97,25 @@ public class invoiceSend extends AppCompatActivity {
             // Do something else here. Maybe pop up a Dialog or Toast
         }
         */
+        /*
         String dirpath;
         dirpath = android.os.Environment.getExternalStorageDirectory().toString();
         Intent intent = new Intent(Intent.ACTION_VIEW);
         Uri uri = Uri.parse(dirpath + "/Documents/" + customerDetail.strCustomerName + ".pdf");
         intent.setDataAndType(uri, "application/*");
         startActivity(intent);
-
-
-        /*
-        Intent intentShareFile = new Intent(Intent.ACTION_SEND);
-        File fileWithinMyDir = new File(pdfFile.getAbsolutePath());
-        if(fileWithinMyDir.exists()) {
-            Uri screenshotUri = FileProvider.getUriForFile(invoiceSend.this, getApplicationContext().getPackageName() + ".provider", pdfFile);
-            intentShareFile.setType("application/pdf");
-            intentShareFile.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(Intent.createChooser(intentShareFile, "Open File"));
-        }
-         */
-        /*String filename = "blabla.pdf";
-        File file = new File(pdfFile.getAbsolutePath());
-        Uri internal = Uri.fromFile(file);
+        */
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/"+ "Documents" + customerDetail.strCustomerName + ".pdf");
         Intent target = new Intent(Intent.ACTION_VIEW);
-        target.setDataAndType(internal, "application/pdf");
-        target.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        target.setDataAndType(Uri.fromFile(file),"application/pdf");
+        target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
         Intent intent = Intent.createChooser(target, "Open File");
         try {
             startActivity(intent);
         } catch (ActivityNotFoundException e) {
-            Toast.makeText(this, "U hebt geen PDF viewer geïnstalleerd op dit toestel. " +
-                    "Ga naar de app store en download een PDF viewer om dit bestand te openen.", Toast.LENGTH_LONG).show();
+            // Instruct the user to install a PDF reader here, or something
         }
-        startActivity(intent);
-
-         */
     }
 }
 
