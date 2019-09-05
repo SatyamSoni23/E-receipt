@@ -51,31 +51,41 @@ public class transferMoney extends AppCompatActivity {
         });
     }
     public void startPhonePeActivity(){
-
+        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.phonepe.app");
+        if (launchIntent != null) {
+            startActivity(launchIntent);//null pointer check in case package name was not found
+        }
     }
     public void startGooglePayActivity(){
-
+        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.google.android.gms.wallet.api.enabled");
+        if (launchIntent != null) {
+            startActivity(launchIntent);//null pointer check in case package name was not found
+        }
     }
     public void startAmazonPayActivity(){
-
+        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("in.amazon.mShop.android.shopping");
+        if (launchIntent != null) {
+            startActivity(launchIntent);//null pointer check in case package name was not found
+        }
     }
     public void startBhimActivity(){
-        /*
-        Uri uri = Uri.parse("upi://pay?pa=8866616231@upi&pn=Aayushi%20Shah&tn=Test%20for%20Deeplinking&am=1&cu=INR&url=https://mystar.co"); // missing 'http://' will cause crashed
-        Log.d(TAG, "onClick: uri: "+uri);
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        startActivityForResult(intent,1);
-
-         */
+        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("upi://pay?pa=8866616231@upi&pn=Aayushi%20Shah&tn=Test%20for%20Deeplinking&am=1&cu=INR&url=https://mystar.co");
+        if (launchIntent != null) {
+            startActivity(launchIntent);//null pointer check in case package name was not found
+        }
     }
     public void startPaytmActivity(){
+        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("net.one97.paytm");
+        if (launchIntent != null) {
+            startActivity(launchIntent);//null pointer check in case package name was not found
+        }
         /*
         Uri uri = Uri.parse("net.one97.paytm"); // missing 'http://' will cause crashed
         //String appPackageName = "net.one97.paytm";
         Log.d(TAG, "onClick: uri: "+uri);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivityForResult(intent,1);
-        
+
          */
     }
 }
