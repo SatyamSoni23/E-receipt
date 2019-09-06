@@ -26,7 +26,7 @@ public class customerDetail extends AppCompatActivity {
         customerEmail = findViewById(R.id.customerEmail);
         otherDetail = findViewById(R.id.otherDetail);
         next = findViewById(R.id.next);
-
+        /*
         customerName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -100,6 +100,8 @@ public class customerDetail extends AppCompatActivity {
             }
         });
 
+         */
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,7 +115,7 @@ public class customerDetail extends AppCompatActivity {
                     Toast.makeText(customerDetail.this, "You did not enter Shop Name",Toast.LENGTH_LONG).show();
                     return;
                 }
-                if(!strCustomerName.matches("[a-zA-Z]*")){
+                if(!strCustomerName.matches("[a-zA-Z\\s]*")){
                     Toast.makeText(customerDetail.this, "Enter valid Name",Toast.LENGTH_LONG).show();
                     return;
                 }

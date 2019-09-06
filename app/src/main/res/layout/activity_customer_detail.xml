@@ -110,6 +110,7 @@
             android:textColorHint="@color/colorPrimary"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
+            android:inputType="text"
             />
         <EditText
             android:id="@+id/otherDetail"
@@ -125,6 +126,7 @@
             android:textColorHint="@color/colorPrimary"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
+            android:inputType="text"
             />
         <LinearLayout
             android:layout_width="match_parent"

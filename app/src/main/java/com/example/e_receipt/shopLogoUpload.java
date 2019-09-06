@@ -33,6 +33,7 @@ public class shopLogoUpload extends AppCompatActivity {
     private StorageReference mStorageRef;
     private StorageTask mUploadTask;
     private ProgressBar mProgressBar;
+    String imageCheck = "notUploaded";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,17 +53,21 @@ public class shopLogoUpload extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(imageCheck == "notUploaded"){
+                    Toast.makeText(shopLogoUpload.this, "Attach logo of your shop",Toast.LENGTH_LONG).show();
+                    return;
+                }
                 mStorageRef = FirebaseStorage.getInstance().getReference("shopLogo/").child(registerPage.username);
                 if (mUploadTask != null && mUploadTask.isInProgress()) {
                     Toast.makeText(shopLogoUpload.this, "Upload in Progress", Toast.LENGTH_SHORT).show();
                 } else {
-                    if(upload.getDrawable() == null){
+                    if(imageCheck == "notUploaded"){
                         Toast.makeText(shopLogoUpload.this, "Attach logo of your shop",Toast.LENGTH_LONG).show();
                         return;
                     }
+
                     uploadFile();
                 }
-
             }
         });
     }
@@ -81,6 +86,10 @@ public class shopLogoUpload extends AppCompatActivity {
             mImageUri = data.getData();
 
             Picasso.with(this).load(mImageUri).into(upload);
+            imageCheck = "uploaded";
+        }
+        else{
+            imageCheck = "notUploaded";
         }
     }
 

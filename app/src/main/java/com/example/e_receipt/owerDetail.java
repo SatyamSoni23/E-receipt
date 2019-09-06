@@ -31,7 +31,7 @@ public class owerDetail extends AppCompatActivity {
         ownerPincode = findViewById(R.id.onwerPincode);
         ownerEmail = findViewById(R.id.ownerEmail);
         checkBox = findViewById(R.id.checkbox);
-
+        /*
         ownerName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -93,6 +93,8 @@ public class owerDetail extends AppCompatActivity {
             }
         });
 
+
+         */
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt").child(registerPage.username);
         register.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +110,7 @@ public class owerDetail extends AppCompatActivity {
                     Toast.makeText(owerDetail.this, "You did not enter Shop Name",Toast.LENGTH_LONG).show();
                     return;
                 }
-                if(!strOwnerName.matches("[a-zA-Z]*")){
+                if(!strOwnerName.matches("[a-zA-Z\\s]*")){
                     Toast.makeText(owerDetail.this, "Enter valid Name",Toast.LENGTH_LONG).show();
                     return;
                 }

@@ -141,4 +141,14 @@ public class home extends AppCompatActivity {
         Intent intent = new Intent(this, transferMoney.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        startLoginActivity();
+    }
+    public void startLoginActivity(){
+        Intent intent = new Intent(this, login.class);
+        startActivity(intent);
+    }
 }
+

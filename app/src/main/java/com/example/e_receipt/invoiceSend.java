@@ -117,5 +117,13 @@ public class invoiceSend extends AppCompatActivity {
             // Instruct the user to install a PDF reader here, or something
         }
     }
+    @Override
+    public void onBackPressed() {
+        startLoginActivity();
+    }
+    public void startLoginActivity(){
+        Intent intent = new Intent(this, home.class);
+        startActivity(intent);
+    }
 }
 

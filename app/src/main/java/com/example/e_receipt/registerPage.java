@@ -32,6 +32,7 @@ public class registerPage extends AppCompatActivity {
         pwd = findViewById(R.id.password);
         rePwd = findViewById(R.id.rePassword);
 
+        /*
         uname.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -72,7 +73,7 @@ public class registerPage extends AppCompatActivity {
                 }
             }
         });
-
+        */
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt");
         next.setOnClickListener(new View.OnClickListener() {

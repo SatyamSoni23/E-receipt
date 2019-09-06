@@ -31,6 +31,7 @@ public class shopFirstDetail extends AppCompatActivity {
         gstNumber = findViewById(R.id.gstNumber);
         slogan = findViewById(R.id.slogan);
 
+        /*
         shopName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -115,7 +116,7 @@ public class shopFirstDetail extends AppCompatActivity {
                 }
             }
         });
-
+           */
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt").child(registerPage.username);
         next.setOnClickListener(new View.OnClickListener() {

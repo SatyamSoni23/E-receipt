@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import jp.wasabeef.blurry.Blurry;
 
@@ -38,5 +39,9 @@ public class MainActivity extends AppCompatActivity {
     public void startRegisterActivity(){
         Intent intent = new Intent(this, registerPage.class);
         startActivity(intent);
+    }
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(MainActivity.this, "Login or Register your shop", Toast.LENGTH_SHORT).show();
     }
 }

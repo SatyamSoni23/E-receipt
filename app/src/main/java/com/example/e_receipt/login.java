@@ -30,6 +30,7 @@ public class login extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
 
+        /*
         username.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -42,6 +43,7 @@ public class login extends AppCompatActivity {
                 }
             }
         });
+
 
         password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -56,6 +58,8 @@ public class login extends AppCompatActivity {
                 }
             }
         });
+
+         */
 
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt");
@@ -106,6 +110,14 @@ public class login extends AppCompatActivity {
     }
     public void startErrorActivity(){
         Intent intent = new Intent(this, somethingWentWrong.class);
+        startActivity(intent);
+    }
+    @Override
+    public void onBackPressed() {
+        startLoginActivity();
+    }
+    public void startLoginActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }
