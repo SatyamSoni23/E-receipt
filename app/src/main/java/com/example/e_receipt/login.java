@@ -9,6 +9,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -68,6 +69,14 @@ public class login extends AppCompatActivity {
             public void onClick(View v) {
                 strUsername = username.getText().toString();
                 strPassword = password.getText().toString();
+                if(strUsername.isEmpty()){
+                    Toast.makeText(login.this, "Enter Username", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(strPassword.isEmpty()){
+                    Toast.makeText(login.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

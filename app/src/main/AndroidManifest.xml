@@ -9,7 +9,9 @@
         android:roundIcon="@drawable/receipt"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".transferMoney"></activity>
+        <activity android:name=".updateOwnerDetails"></activity>
+        <activity android:name=".updateShopDetails" />
+        <activity android:name=".transferMoney" />
         <activity android:name=".contactUs" />
         <activity android:name=".aboutEreceipt" />
         <activity android:name=".updatePassword" />
@@ -44,9 +46,9 @@
                 android:resource="@xml/provider_paths" />
         </provider>
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

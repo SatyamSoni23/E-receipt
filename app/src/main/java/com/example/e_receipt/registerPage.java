@@ -82,11 +82,23 @@ public class registerPage extends AppCompatActivity {
                 username = uname.getText().toString();
                 password = pwd.getText().toString();
                 rePassword = rePwd.getText().toString();
+                if(username.isEmpty()){
+                    Toast.makeText(registerPage.this, "Enter Username", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(password.isEmpty()){
+                    Toast.makeText(registerPage.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(rePassword.isEmpty()){
+                    Toast.makeText(registerPage.this, "Re-Enter Password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child(username).exists()){
-                            Toast.makeText(registerPage.this, "username already registered",Toast.LENGTH_LONG).show();
+                            Toast.makeText(registerPage.this, "Username already registered",Toast.LENGTH_LONG).show();
                         }
                         else
                         {

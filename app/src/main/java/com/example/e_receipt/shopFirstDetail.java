@@ -131,11 +131,11 @@ public class shopFirstDetail extends AppCompatActivity {
                 strSlogan = slogan.getText().toString();
 
                 if(strShopName.matches("")){
-                    Toast.makeText(shopFirstDetail.this, "You did not enter Shop Name",Toast.LENGTH_LONG).show();
+                    Toast.makeText(shopFirstDetail.this, "Enter shop name",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(strShopMobile.matches("")){
-                    Toast.makeText(shopFirstDetail.this, "You did not enter Mobile No.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(shopFirstDetail.this, "Enter mobile no.",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(strShopMobile.length() != 10){
@@ -143,11 +143,11 @@ public class shopFirstDetail extends AppCompatActivity {
                     return;
                 }
                 if(strShopAddress.matches("")){
-                    Toast.makeText(shopFirstDetail.this, "You did not enter Address",Toast.LENGTH_LONG).show();
+                    Toast.makeText(shopFirstDetail.this, "Enter address",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(strShopPincode.matches("")){
-                    Toast.makeText(shopFirstDetail.this, "You did not enter Pincode",Toast.LENGTH_LONG).show();
+                    Toast.makeText(shopFirstDetail.this, "Enter pincode",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(strShopPincode.length() != 6){
@@ -155,15 +155,15 @@ public class shopFirstDetail extends AppCompatActivity {
                     return;
                 }
                 if(strGstNumber.matches("")){
-                    Toast.makeText(shopFirstDetail.this, "You did not enter GST Number",Toast.LENGTH_LONG).show();
+                    Toast.makeText(shopFirstDetail.this, "Enter GST number",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(strGstNumber.length() != 15){
-                    Toast.makeText(shopFirstDetail.this, "Enter valid GST Number",Toast.LENGTH_LONG).show();
+                    Toast.makeText(shopFirstDetail.this, "Enter valid GST number",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(strGstNumber.matches("")){
-                    Toast.makeText(shopFirstDetail.this, "You did not enter Shop Email",Toast.LENGTH_LONG).show();
+                    Toast.makeText(shopFirstDetail.this, "Enter shop email",Toast.LENGTH_LONG).show();
                     return;
                 }
 
@@ -187,5 +187,9 @@ public class shopFirstDetail extends AppCompatActivity {
     public void startNextActivity(){
         Intent intent = new Intent(this, shopLogoUpload.class);
         startActivity(intent);
+    }
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(shopFirstDetail.this, "Please fill the remaining details", Toast.LENGTH_SHORT).show();
     }
 }

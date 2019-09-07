@@ -47,7 +47,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class transactionDetail extends AppCompatActivity {
     public final int REQUEST_CODE_ASK_PERMISSIONS = 1;
@@ -90,6 +93,10 @@ public class transactionDetail extends AppCompatActivity {
         customerName.setText(customerDetail.strCustomerName);
         customerMobile.setText(customerDetail.strCustomerMobile);
         customerAddress.setText(customerDetail.strCustomerAddress + " " + customerDetail.strCustomerPincode);
+
+        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        invoiceDate.setText(date);
+        invoiceDate.setEnabled(false);
 
         storageRef = FirebaseStorage.getInstance().getReference().child("shopLogo").child(login.strUsername);
         dataRef = storageRef.child(login.strUsername + ".jpg");

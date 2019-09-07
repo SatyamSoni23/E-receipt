@@ -11,10 +11,19 @@
         android:title="Update Password">
     </item>
     <item
+        android:id="@+id/updateShopDetails"
+        android:icon="@drawable/ic_shop_black_24dp"
+        android:title="Update Shop Details ">
+    </item>
+    <item
+        android:id="@+id/updateOwnerDetails"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="Update Owner Details ">
+    </item>
+    <item
         android:id="@+id/contactUs"
         android:icon="@drawable/ic_contacts_black_24dp"
         android:title="Contact Us">
-
     </item>
     <item
         android:id="@+id/Logout"

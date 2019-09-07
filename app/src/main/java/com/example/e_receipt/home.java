@@ -71,6 +71,14 @@ public class home extends AppCompatActivity {
                     Toast.makeText(home.this, "Update Password", Toast.LENGTH_SHORT).show();
                     startUpdatePasswordActivity();
                 }
+                else if (id == R.id.updateShopDetails){
+                    Toast.makeText(home.this, "Update Shop Details", Toast.LENGTH_SHORT).show();
+                    startUpdateShopDetailsActivity();
+                }
+                else if (id == R.id.updateOwnerDetails){
+                    Toast.makeText(home.this, "Update Owner Details", Toast.LENGTH_SHORT).show();
+                    startUpdateOwnerDetailsActivity();
+                }
                 else if(id == R.id.contactUs){
                     Toast.makeText(home.this, "Contact Us", Toast.LENGTH_SHORT).show();
                     startContactUsActivity();
@@ -120,6 +128,14 @@ public class home extends AppCompatActivity {
         Intent intent = new Intent(this, updatePassword.class);
         startActivity(intent);
     }
+    public void startUpdateShopDetailsActivity(){
+        Intent intent = new Intent(this, updateShopDetails.class);
+        startActivity(intent);
+    }
+    public void startUpdateOwnerDetailsActivity(){
+        Intent intent = new Intent(this, updateOwnerDetails.class);
+        startActivity(intent);
+    }
     public void startContactUsActivity(){
         Intent intent = new Intent(this, contactUs.class);
         startActivity(intent);
@@ -144,11 +160,7 @@ public class home extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startLoginActivity();
-    }
-    public void startLoginActivity(){
-        Intent intent = new Intent(this, login.class);
-        startActivity(intent);
+        Toast.makeText(home.this, "Access denied", Toast.LENGTH_SHORT).show();
     }
 }
 

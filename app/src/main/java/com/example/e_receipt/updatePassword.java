@@ -26,6 +26,7 @@ public class updatePassword extends AppCompatActivity {
         rePassword = findViewById(R.id.rePassword);
         update = findViewById(R.id.update);
 
+        /*
         password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -53,6 +54,8 @@ public class updatePassword extends AppCompatActivity {
                 }
             }
         });
+
+         */
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt").child(login.strUsername);
         update.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +65,7 @@ public class updatePassword extends AppCompatActivity {
                 strRePassword = rePassword.getText().toString();
                 if(strPassword.equals(strRePassword)){
                     demoRef.child("password").setValue(strPassword);
-                    Toast.makeText(updatePassword.this, "Password Successfully Updated",Toast.LENGTH_LONG).show();
+                    Toast.makeText(updatePassword.this, "Password successfully updated",Toast.LENGTH_LONG).show();
                     startActivityNext();
                 }
                 else{

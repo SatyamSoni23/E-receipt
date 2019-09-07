@@ -33,12 +33,12 @@
             android:layout_height="0dp"
             android:layout_weight="0.4"/>
         <EditText
-            android:id="@+id/shopName"
+            android:id="@+id/ownerName"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.8"
             android:layout_marginHorizontal="35dp"
-            android:hint="Shop Name"
+            android:hint="Owner Name"
             android:textSize="25dp"
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
@@ -46,10 +46,9 @@
             android:textColorHint="@color/colorAccent"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:inputType="text"
-            />
+            android:inputType="text" />
         <EditText
-            android:id="@+id/shopMobile"
+            android:id="@+id/ownerMobile"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.8"
@@ -60,12 +59,12 @@
             android:textStyle="italic"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorAccent"
-            android:inputType="number"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
+            android:inputType="number"
             />
         <EditText
-            android:id="@+id/shopAddress"
+            android:id="@+id/ownerAddress"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.8"
@@ -81,7 +80,7 @@
             android:inputType="text"
             />
         <EditText
-            android:id="@+id/shopPincode"
+            android:id="@+id/onwerPincode"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.8"
@@ -97,44 +96,12 @@
             android:inputType="number"
             />
         <EditText
-            android:id="@+id/shopEmail"
+            android:id="@+id/ownerEmail"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.8"
             android:layout_marginHorizontal="35dp"
-            android:hint="Shop Email"
-            android:textSize="25dp"
-            android:fontFamily="sans-serif-condensed"
-            android:textStyle="italic"
-            android:textColor="@color/colorPrimaryDark"
-            android:textColorHint="@color/colorAccent"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:inputType="text"
-            />
-        <EditText
-            android:id="@+id/gstNumber"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.8"
-            android:layout_marginHorizontal="35dp"
-            android:hint="GST Number"
-            android:textSize="25dp"
-            android:fontFamily="sans-serif-condensed"
-            android:textStyle="italic"
-            android:textColor="@color/colorAccent"
-            android:textColorHint="@color/colorPrimary"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:inputType="text"
-            />
-        <EditText
-            android:id="@+id/slogan"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.8"
-            android:layout_marginHorizontal="35dp"
-            android:hint="Slogan"
+            android:hint="Owner Email"
             android:textSize="25dp"
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
@@ -147,7 +114,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.4"/>
+            android:layout_weight="3.5"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -159,14 +127,14 @@
                 android:layout_height="match_parent"
                 android:layout_weight="2.25"/>
             <Button
-                android:id="@+id/next"
+                android:id="@+id/update"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="5.5"
                 android:background="@drawable/anibutton"
                 android:stateListAnimator="@animator/button_state_list_anim"
                 android:gravity="center"
-                android:text="Next"
+                android:text="Update"
                 android:fontFamily="monospace"
                 android:textColor="#FFFFFF"
                 android:autoSizeTextType="uniform"

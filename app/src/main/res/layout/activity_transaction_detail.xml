@@ -152,7 +152,8 @@
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="italic|bold"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textColorHint="@color/colorPrimary"/>
+                    android:textColorHint="@color/colorPrimary"
+                    android:inputType="number"/>
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -179,7 +180,8 @@
                     android:textStyle="italic|bold"
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorHint="@color/colorPrimary"
-                    android:layout_marginHorizontal="5dp"/>
+                    android:layout_marginHorizontal="5dp"
+                    android:inputType="text"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -389,8 +391,7 @@
                         android:textStyle="italic|bold"
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
-                        android:gravity="center"
-                        />
+                        android:gravity="center" />
                     <EditText
                         android:id="@+id/description"
                         android:layout_height="match_parent"
@@ -421,6 +422,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
+
                         />
                     <EditText
                         android:id="@+id/rate"
@@ -476,6 +478,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
+                        android:inputType="text"
                         />
                     <TextView
                         android:layout_height="match_parent"
@@ -506,6 +509,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
+                        android:inputType="number"
                         />
                 </TableRow>
                 <TableRow
@@ -529,7 +533,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        />
+                        android:inputType="text" />
                     <TextView
                         android:layout_height="match_parent"
                         android:layout_width="0dp"
@@ -559,7 +563,8 @@
                         android:gravity="center"
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
-                        android:textStyle="italic|bold" />
+                        android:textStyle="italic|bold"
+                        android:inputType="number"/>
                 </TableRow>
                 <TableRow
                     android:layout_width="match_parent"
@@ -596,6 +601,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
+                        android:inputType="number"
                         />
                 </TableRow>
             </TableLayout>

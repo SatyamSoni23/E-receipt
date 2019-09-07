@@ -107,15 +107,15 @@ public class owerDetail extends AppCompatActivity {
                 strOwnerEmail = ownerEmail.getText().toString();
 
                 if(strOwnerName.matches("")){
-                    Toast.makeText(owerDetail.this, "You did not enter Shop Name",Toast.LENGTH_LONG).show();
+                    Toast.makeText(owerDetail.this, "Enter shop name",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(!strOwnerName.matches("[a-zA-Z\\s]*")){
-                    Toast.makeText(owerDetail.this, "Enter valid Name",Toast.LENGTH_LONG).show();
+                    Toast.makeText(owerDetail.this, "Enter valid name",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(strOwnerMobile.matches("")){
-                    Toast.makeText(owerDetail.this, "You did not enter Mobile No.",Toast.LENGTH_LONG).show();
+                    Toast.makeText(owerDetail.this, "Enter mobile no.",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(strOwnerMobile.length() != 10){
@@ -123,11 +123,11 @@ public class owerDetail extends AppCompatActivity {
                     return;
                 }
                 if(strOwnerAddress.matches("")){
-                    Toast.makeText(owerDetail.this, "You did not enter Address",Toast.LENGTH_LONG).show();
+                    Toast.makeText(owerDetail.this, "Enter address",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(strOwnerPincode.matches("")){
-                    Toast.makeText(owerDetail.this, "You did not enter Pincode",Toast.LENGTH_LONG).show();
+                    Toast.makeText(owerDetail.this, "Enter pincode",Toast.LENGTH_LONG).show();
                     return;
                 }
                 if(strOwnerPincode.length() != 6){
@@ -135,12 +135,12 @@ public class owerDetail extends AppCompatActivity {
                     return;
                 }
                 if(strOwnerEmail.matches("")){
-                    Toast.makeText(owerDetail.this, "You did not enter Email",Toast.LENGTH_LONG).show();
+                    Toast.makeText(owerDetail.this, "Enter email",Toast.LENGTH_LONG).show();
                     return;
                 }
 
                 if(!strOwnerEmail.matches("[a-zA-Z0-9]+@[a-z]+\\.+[a-z]+")){
-                    Toast.makeText(owerDetail.this, "Enter valid Email",Toast.LENGTH_LONG).show();
+                    Toast.makeText(owerDetail.this, "Enter valid email",Toast.LENGTH_LONG).show();
                     return;
                 }
                 demoRef1 = demoRef.child("ownerDetail");
