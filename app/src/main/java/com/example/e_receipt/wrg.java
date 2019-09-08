@@ -37,4 +37,12 @@ public class wrg extends AppCompatActivity {
         Intent intent = new Intent(this, registerPage.class);
         startActivity(intent);
     }
+    @Override
+    public void onBackPressed() {
+        startLoginActivity();
+    }
+    public void startLoginActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 }

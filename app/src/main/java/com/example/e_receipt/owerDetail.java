@@ -1,5 +1,6 @@
 package com.example.e_receipt;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -151,6 +152,12 @@ public class owerDetail extends AppCompatActivity {
                 demoRef1.child("ownerEmail").setValue(strOwnerEmail);
 
                 if(checkBox.isChecked()){
+                    ProgressDialog nDialog;
+                    nDialog = new ProgressDialog(owerDetail.this);
+                    nDialog.setMessage("Loading..");
+                    nDialog.setIndeterminate(false);
+                    nDialog.setCancelable(true);
+                    nDialog.show();
                     startAcivityRegister();
                 }
                 else{

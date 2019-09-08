@@ -1,5 +1,6 @@
 package com.example.e_receipt;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
@@ -79,6 +80,12 @@ public class registerPage extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ProgressDialog nDialog;
+                nDialog = new ProgressDialog(registerPage.this);
+                nDialog.setMessage("Loading..");
+                nDialog.setIndeterminate(false);
+                nDialog.setCancelable(true);
+                nDialog.show();
                 username = uname.getText().toString();
                 password = pwd.getText().toString();
                 rePassword = rePwd.getText().toString();
@@ -127,6 +134,14 @@ public class registerPage extends AppCompatActivity {
     }
     public void startOfflineActivity(){
         Intent intent = new Intent(this, offline.class);
+        startActivity(intent);
+    }
+    @Override
+    public void onBackPressed() {
+        startLoginActivity();
+    }
+    public void startLoginActivity(){
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

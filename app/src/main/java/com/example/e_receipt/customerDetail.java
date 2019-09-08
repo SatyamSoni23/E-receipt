@@ -115,80 +115,79 @@ public class customerDetail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.child("shopDetail").exists()){
-                            detailsCheck = "correct";
-                        }
-                        else{
-                            Toast.makeText(customerDetail.this, "Please update your shop details",Toast.LENGTH_LONG).show();
-                            return;
-                        }
-                        detailsCheck = "Incorrect";
-                        if(dataSnapshot.child("ownerDetail").exists()){
-                            detailsCheck = "correct";
-                        }
-                        else {
-                            Toast.makeText(customerDetail.this, "Please update owner details",Toast.LENGTH_LONG).show();
-                            return;
-                        }
+            demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if(dataSnapshot.child("shopDetail").exists()){
+                        detailsCheck = "correct";
                     }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        startWrongActivity();
-                    }
-                });
-                if(detailsCheck == "correct"){
-                    strCustomerName = customerName.getText().toString();
-                    strCustomerMobile = customerMobile.getText().toString();
-                    strCustomerAddress = customerAddress.getText().toString();
-                    strCustomerPincode = customerPincode.getText().toString();
-                    strCustomerEmail = customerEmail.getText().toString();
-                    strOtherDetail = otherDetail.getText().toString();
-
-                    if(strCustomerName.matches("")){
-                        Toast.makeText(customerDetail.this, "Enter customer name",Toast.LENGTH_LONG).show();
+                    else{
+                        Toast.makeText(customerDetail.this, "Please update your shop details",Toast.LENGTH_LONG).show();
                         return;
                     }
-                    if(!strCustomerName.matches("[a-zA-Z\\s]*")){
-                        Toast.makeText(customerDetail.this, "Enter valid name",Toast.LENGTH_LONG).show();
+                    detailsCheck = "Incorrect";
+                    if(dataSnapshot.child("ownerDetail").exists()){
+                        detailsCheck = "correct";
+                    }
+                    else {
+                        Toast.makeText(customerDetail.this, "Please update owner details",Toast.LENGTH_LONG).show();
                         return;
                     }
-                    if(strCustomerMobile.matches("")){
-                        Toast.makeText(customerDetail.this, "Enter mobile number",Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    if(strCustomerMobile.length() != 10){
-                        Toast.makeText(customerDetail.this, "Enter valid mobile number",Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    if(strCustomerAddress.matches("")){
-                        Toast.makeText(customerDetail.this, "Enter address",Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    if(strCustomerPincode.matches("")){
-                        Toast.makeText(customerDetail.this, "Enter pincode",Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    if(strCustomerPincode.length() != 6){
-                        Toast.makeText(customerDetail.this, "Enter valid pincode number",Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    if(strCustomerEmail.matches("")){
-                        Toast.makeText(customerDetail.this, "Enter email",Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    if(!strCustomerEmail.matches("[a-zA-Z0-9]+@[a-z]+\\.+[a-z]+")){
-                        Toast.makeText(customerDetail.this, "Enter valid email",Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    startNextActivity();
                 }
-                else{
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                     startSomethingWentWrongActivity();
+                }
+            });
+            if(detailsCheck == "correct"){
+                strCustomerName = customerName.getText().toString();
+                strCustomerMobile = customerMobile.getText().toString();
+                strCustomerAddress = customerAddress.getText().toString();
+                strCustomerPincode = customerPincode.getText().toString();
+                strCustomerEmail = customerEmail.getText().toString();
+                strOtherDetail = otherDetail.getText().toString();
+                if(strCustomerName.matches("")){
+                    Toast.makeText(customerDetail.this, "Enter customer name",Toast.LENGTH_LONG).show();
                     return;
                 }
+                if(!strCustomerName.matches("[a-zA-Z\\s]*")){
+                    Toast.makeText(customerDetail.this, "Enter valid name",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(strCustomerMobile.matches("")){
+                    Toast.makeText(customerDetail.this, "Enter mobile number",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(strCustomerMobile.length() != 10){
+                    Toast.makeText(customerDetail.this, "Enter valid mobile number",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(strCustomerAddress.matches("")){
+                    Toast.makeText(customerDetail.this, "Enter address",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(strCustomerPincode.matches("")){
+                    Toast.makeText(customerDetail.this, "Enter pincode",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(strCustomerPincode.length() != 6){
+                    Toast.makeText(customerDetail.this, "Enter valid pincode number",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(strCustomerEmail.matches("")){
+                    Toast.makeText(customerDetail.this, "Enter email",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(!strCustomerEmail.matches("[a-zA-Z0-9]+@[a-z]+\\.+[a-z]+")){
+                    Toast.makeText(customerDetail.this, "Enter valid email",Toast.LENGTH_LONG).show();
+                    return;
+                }
+                startNextActivity();
+            }
+            else{
+                return;
+            }
             }
         });
     }
@@ -196,8 +195,8 @@ public class customerDetail extends AppCompatActivity {
         Intent intent = new Intent(this, transactionDetail.class);
         startActivity(intent);
     }
-    public void startWrongActivity(){
-        Intent intent = new Intent(this, wrg.class);
+    public void startSomethingWentWrongActivity(){
+        Intent intent = new Intent(this, somethingWentWrong.class);
         startActivity(intent);
     }
 }

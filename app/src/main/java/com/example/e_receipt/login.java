@@ -1,5 +1,6 @@
 package com.example.e_receipt;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
@@ -30,7 +31,6 @@ public class login extends AppCompatActivity {
         login = findViewById(R.id.login);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
-
         /*
         username.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -67,6 +67,12 @@ public class login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final ProgressDialog nDialog;
+                nDialog = new ProgressDialog(login.this);
+                nDialog.setMessage("Loading..");
+                nDialog.setIndeterminate(false);
+                nDialog.setCancelable(true);
+                nDialog.show();
                 strUsername = username.getText().toString();
                 strPassword = password.getText().toString();
                 if(strUsername.isEmpty()){

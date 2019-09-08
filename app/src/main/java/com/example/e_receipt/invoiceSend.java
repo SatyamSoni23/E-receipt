@@ -105,7 +105,7 @@ public class invoiceSend extends AppCompatActivity {
         intent.setDataAndType(uri, "application/*");
         startActivity(intent);
         */
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/"+ "Documents" + customerDetail.strCustomerName + ".pdf");
+        File file = new File(Environment.getDataDirectory().getAbsolutePath() +"/"+ "Documents" +"/" + customerDetail.strCustomerName + ".pdf");
         Intent target = new Intent(Intent.ACTION_VIEW);
         target.setDataAndType(Uri.fromFile(file),"application/pdf");
         target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);

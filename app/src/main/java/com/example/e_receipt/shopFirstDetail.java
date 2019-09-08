@@ -1,5 +1,6 @@
 package com.example.e_receipt;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -122,6 +123,12 @@ public class shopFirstDetail extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ProgressDialog nDialog;
+                nDialog = new ProgressDialog(shopFirstDetail.this);
+                nDialog.setMessage("Loading..");
+                nDialog.setIndeterminate(false);
+                nDialog.setCancelable(true);
+                nDialog.show();
                 strShopName = shopName.getText().toString();
                 strShopMobile = shopMobile.getText().toString();
                 strShopAddress = shopAddress.getText().toString();
@@ -180,6 +187,7 @@ public class shopFirstDetail extends AppCompatActivity {
                 else{
                     demoRef1.child("slogan").setValue(strSlogan);
                 }
+
                 startNextActivity();
             }
         });

@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import java.io.File;
+import java.net.URISyntaxException;
 import java.util.List;
 
 public class home extends AppCompatActivity {
@@ -145,13 +147,18 @@ public class home extends AppCompatActivity {
         startActivity(intent);
     }
     public void startCustomerDetailActivity() {
-        //String dirpath;
-        //dirpath = android.os.Environment.getExternalStorageDirectory().toString();
+        String dirpath;
+        dirpath = android.os.Environment.getExternalStorageDirectory().toString();
+       /* //dirpath = "/storage/sdcard1";
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        Uri uri = Uri.parse(Environment.getExternalStorageDirectory().getPath()
-                +  File.separator + "Documents" + File.separator);
+        Uri uri = Uri.parse(dirpath + "/" + "documents");
         intent.setDataAndType(uri, "resource/folder");
         startActivity(Intent.createChooser(intent, "Open folder"));
+
+         */
+        Intent myFileIntent = new Intent(Intent.ACTION_GET_CONTENT);
+        myFileIntent.setType("*/*");
+        startActivityForResult(myFileIntent,10);
     }
     public void startTransferMoneyActivity(){
         Intent intent = new Intent(this, transferMoney.class);
@@ -161,6 +168,23 @@ public class home extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Toast.makeText(home.this, "Access denied", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode){
+            case 10:
+                if(requestCode == RESULT_OK){
+                    String dirpath;
+                    dirpath = android.os.Environment.getExternalStorageDirectory().toString() + "/Documents";
+                    try {
+                        startActivity(Intent.getIntent(dirpath));
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
+        }
     }
 }
 

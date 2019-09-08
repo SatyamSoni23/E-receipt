@@ -1,5 +1,6 @@
 package com.example.e_receipt;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
@@ -53,6 +54,12 @@ public class shopLogoUpload extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ProgressDialog nDialog;
+                nDialog = new ProgressDialog(shopLogoUpload.this);
+                nDialog.setMessage("Loading..");
+                nDialog.setIndeterminate(false);
+                nDialog.setCancelable(true);
+                nDialog.show();
                 if(imageCheck == "notUploaded"){
                     Toast.makeText(shopLogoUpload.this, "Attach logo of your shop",Toast.LENGTH_LONG).show();
                     return;
@@ -65,7 +72,6 @@ public class shopLogoUpload extends AppCompatActivity {
                         Toast.makeText(shopLogoUpload.this, "Attach logo of your shop",Toast.LENGTH_LONG).show();
                         return;
                     }
-
                     uploadFile();
                 }
             }
