@@ -69,6 +69,26 @@ public class invoiceSend extends AppCompatActivity {
         startActivity(intent);
     }
     public void startViewPageActivity(){
+        File file = new File(pdfFile.getAbsolutePath());
+
+        if (file.exists()) {
+            Uri path = Uri.fromFile(file);
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(path, "application/pdf");
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            try {
+                startActivity(intent);
+            }
+            catch (ActivityNotFoundException e) {
+                Toast.makeText(invoiceSend.this,
+                        "No Application Available to View PDF",
+                        Toast.LENGTH_SHORT).show();
+            }
+        }
+        else{
+
+        }
         /*
         File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents" + "/" +customerDetail.strCustomerName + ".pdf");
         Uri path = Uri.fromFile(docsFolder);
@@ -82,21 +102,6 @@ public class invoiceSend extends AppCompatActivity {
 
         }
          */
-        //File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents" + "/" +customerDetail.strCustomerName + ".pdf");
-        //File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents");
-        //pdfFile = new File(docsFolder.getAbsolutePath(),customerDetail.strCustomerName + ".pdf");
-        /*
-        Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse(String.valueOf(docsFolder)));
-        intent.setType("application/pdf");
-        PackageManager pm = getPackageManager();
-        List<ResolveInfo> activities = pm.queryIntentActivities(intent, 0);
-        if (activities.size() > 0) {
-            startActivity(intent);
-        } else {
-            // Do something else here. Maybe pop up a Dialog or Toast
-        }
-        */
         /*
         String dirpath;
         dirpath = android.os.Environment.getExternalStorageDirectory().toString();
@@ -105,6 +110,7 @@ public class invoiceSend extends AppCompatActivity {
         intent.setDataAndType(uri, "application/*");
         startActivity(intent);
         */
+        /*
         File file = new File(Environment.getDataDirectory().getAbsolutePath() +"/"+ "Documents" +"/" + customerDetail.strCustomerName + ".pdf");
         Intent target = new Intent(Intent.ACTION_VIEW);
         target.setDataAndType(Uri.fromFile(file),"application/pdf");
@@ -116,6 +122,8 @@ public class invoiceSend extends AppCompatActivity {
         } catch (ActivityNotFoundException e) {
             // Instruct the user to install a PDF reader here, or something
         }
+
+         */
     }
     @Override
     public void onBackPressed() {
@@ -123,6 +131,7 @@ public class invoiceSend extends AppCompatActivity {
     }
     public void startLoginActivity(){
         Intent intent = new Intent(this, home.class);
+        login.videoPlay = "notPlay";
         startActivity(intent);
     }
 }

@@ -107,6 +107,7 @@ public class updatePassword extends AppCompatActivity {
     }
     public void startActivityNext(){
         Intent intent = new Intent(this, home.class);
+        login.videoPlay = "notPlay";
         startActivity(intent);
     }
     public void startSomethingWentWrongActivity(){

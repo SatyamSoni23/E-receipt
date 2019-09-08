@@ -134,6 +134,7 @@ public class updateOwnerDetails extends AppCompatActivity {
     public void startUpdateOwnerDetailsActivity(){
         Intent intent = new Intent(this, home.class);
         Toast.makeText(updateOwnerDetails.this, "Owner details successfully updated",Toast.LENGTH_LONG).show();
+        login.videoPlay = "notPlay";
         startActivity(intent);
     }
     public void startWrongActivity(){

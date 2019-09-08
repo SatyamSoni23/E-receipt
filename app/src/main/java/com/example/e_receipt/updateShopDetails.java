@@ -149,6 +149,7 @@ public class updateShopDetails extends AppCompatActivity {
     public void startUpdateShopDetailsActivity(){
         Intent intent = new Intent(this, home.class);
         Toast.makeText(updateShopDetails.this, "Shop details successfully updated",Toast.LENGTH_LONG).show();
+        login.videoPlay = "notPlay";
         startActivity(intent);
     }
     public void startWrongActivity(){

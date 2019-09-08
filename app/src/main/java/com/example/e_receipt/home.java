@@ -48,8 +48,9 @@ public class home extends AppCompatActivity {
         videoView.setMediaController(mediaController);
         videoView.setVideoURI(uri);
         videoView.requestFocus();
-        videoView.start();
-
+        if(login.videoPlay == "play"){
+            videoView.start();
+        }
         dl = (DrawerLayout) findViewById(R.id.dl);
         abdt = new ActionBarDrawerToggle(this,dl,R.string.Open,R.string.Close);
         abdt.setDrawerIndicatorEnabled(true);

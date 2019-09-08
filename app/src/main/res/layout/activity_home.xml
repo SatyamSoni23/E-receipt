@@ -43,7 +43,9 @@
                 android:id="@+id/video"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="16"/>
+                android:layout_weight="16"
+                android:max="80"
+                />
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

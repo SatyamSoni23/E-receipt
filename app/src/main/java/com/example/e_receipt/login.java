@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class login extends AppCompatActivity {
     DatabaseReference rootRef, demoRef,demoRef1;
-    public static String firePassword, strUsername, strPassword;
+    public static String firePassword, strUsername, strPassword, videoPlay;
     Button login;
     EditText username, password;
     @Override
@@ -117,6 +117,7 @@ public class login extends AppCompatActivity {
     }
     public void startActivityLogin(){
         Intent intent = new Intent(this, home.class);
+        videoPlay = "play";
         startActivity(intent);
     }
     public void startWrongActivity(){

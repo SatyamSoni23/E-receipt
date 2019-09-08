@@ -56,6 +56,7 @@ public class contactUs extends AppCompatActivity {
     }
     public void startHomeActivity(){
         Intent intent = new Intent(this, home.class);
+        login.videoPlay = "notPlay";
         startActivity(intent);
     }
     public void startFacebookActivity(){
