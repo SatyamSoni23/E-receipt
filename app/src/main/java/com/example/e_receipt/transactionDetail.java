@@ -255,7 +255,7 @@ public class transactionDetail extends AppCompatActivity {
         try {
             Document document = new Document();
             dirpath = android.os.Environment.getExternalStorageDirectory().toString();
-            PdfWriter.getInstance(document, new FileOutputStream(dirpath +"/Documents" + "/" + customerDetail.strCustomerName + ".pdf")); //  Change pdf's name.
+            PdfWriter.getInstance(document, new FileOutputStream(dirpath +"/E-Receipt" + "/" + customerDetail.strCustomerName + ".pdf")); //  Change pdf's name.
             document.open();
             Image img = Image.getInstance(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
             float scaler = ((document.getPageSize().getWidth() - document.leftMargin()

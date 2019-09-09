@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
+
 public class login extends AppCompatActivity {
     DatabaseReference rootRef, demoRef,demoRef1;
     public static String firePassword, strUsername, strPassword, videoPlay;
@@ -118,7 +120,14 @@ public class login extends AppCompatActivity {
     public void startActivityLogin(){
         Intent intent = new Intent(this, home.class);
         videoPlay = "play";
-        startActivity(intent);
+        File myDir = new File(android.os.Environment.getExternalStorageDirectory().toString(), "E-Receipt");
+        if(myDir.exists()){
+            startActivity(intent);
+        }
+        else{
+            myDir.mkdir();
+            startActivity(intent);
+        }
     }
     public void startWrongActivity(){
         Intent intent = new Intent(this, wrg.class);

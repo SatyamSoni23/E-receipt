@@ -2,10 +2,12 @@ package com.example.e_receipt;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -49,7 +51,7 @@ public class invoiceSend extends AppCompatActivity {
         });
     }
     public void shareFile(){
-        File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents");
+        File docsFolder = new File(Environment.getExternalStorageDirectory() + "/E-Receipt");
         pdfFile = new File(docsFolder.getAbsolutePath(),customerDetail.strCustomerName + ".pdf");
         Intent intentShareFile = new Intent(Intent.ACTION_SEND);
         File fileWithinMyDir = new File(pdfFile.getAbsolutePath());
@@ -69,26 +71,15 @@ public class invoiceSend extends AppCompatActivity {
         startActivity(intent);
     }
     public void startViewPageActivity(){
-        File file = new File(pdfFile.getAbsolutePath());
+        String dirpath;
+        dirpath = android.os.Environment.getExternalStorageDirectory().toString() + "/E-Receipt" + "/sat.pdf";
 
-        if (file.exists()) {
-            Uri path = Uri.fromFile(file);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(path, "application/pdf");
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-            try {
-                startActivity(intent);
-            }
-            catch (ActivityNotFoundException e) {
-                Toast.makeText(invoiceSend.this,
-                        "No Application Available to View PDF",
-                        Toast.LENGTH_SHORT).show();
-            }
-        }
-        else{
-
-        }
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String pa = sharedPreferences.getString(dirpath, "");
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Uri uri = Uri.parse(pa);
+        intent.setDataAndType(uri, "application/pdf");
+        startActivity(Intent.createChooser(intent, "Open folder"));
         /*
         File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents" + "/" +customerDetail.strCustomerName + ".pdf");
         Uri path = Uri.fromFile(docsFolder);
@@ -110,20 +101,7 @@ public class invoiceSend extends AppCompatActivity {
         intent.setDataAndType(uri, "application/*");
         startActivity(intent);
         */
-        /*
-        File file = new File(Environment.getDataDirectory().getAbsolutePath() +"/"+ "Documents" +"/" + customerDetail.strCustomerName + ".pdf");
-        Intent target = new Intent(Intent.ACTION_VIEW);
-        target.setDataAndType(Uri.fromFile(file),"application/pdf");
-        target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 
-        Intent intent = Intent.createChooser(target, "Open File");
-        try {
-            startActivity(intent);
-        } catch (ActivityNotFoundException e) {
-            // Instruct the user to install a PDF reader here, or something
-        }
-
-         */
     }
     @Override
     public void onBackPressed() {
