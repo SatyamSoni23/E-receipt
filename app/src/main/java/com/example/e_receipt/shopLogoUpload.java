@@ -62,6 +62,7 @@ public class shopLogoUpload extends AppCompatActivity {
                 nDialog.show();
                 if(imageCheck == "notUploaded"){
                     Toast.makeText(shopLogoUpload.this, "Attach logo of your shop",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 mStorageRef = FirebaseStorage.getInstance().getReference("shopLogo/").child(registerPage.username);
@@ -70,6 +71,7 @@ public class shopLogoUpload extends AppCompatActivity {
                 } else {
                     if(imageCheck == "notUploaded"){
                         Toast.makeText(shopLogoUpload.this, "Attach logo of your shop",Toast.LENGTH_LONG).show();
+                        nDialog.dismiss();
                         return;
                     }
                     uploadFile();

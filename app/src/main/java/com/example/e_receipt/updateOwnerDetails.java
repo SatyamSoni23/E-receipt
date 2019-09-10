@@ -84,39 +84,48 @@ public class updateOwnerDetails extends AppCompatActivity {
 
                 if(strOwnerName.matches("")){
                     Toast.makeText(updateOwnerDetails.this, "Enter Shop Name",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(!strOwnerName.matches("[a-zA-Z\\s]*")){
                     Toast.makeText(updateOwnerDetails.this, "Enter valid Name",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strOwnerMobile.matches("")){
                     Toast.makeText(updateOwnerDetails.this, "Enter Mobile No.",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strOwnerMobile.length() != 10){
                     Toast.makeText(updateOwnerDetails.this, "Enter valid mobile number",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strOwnerAddress.matches("")){
                     Toast.makeText(updateOwnerDetails.this, "Enter enter Address",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strOwnerPincode.matches("")){
                     Toast.makeText(updateOwnerDetails.this, "Enter Pincode",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strOwnerPincode.length() != 6){
                     Toast.makeText(updateOwnerDetails.this, "Enter valid pincode number",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strOwnerEmail.matches("")){
                     Toast.makeText(updateOwnerDetails.this, "Enter Email",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
 
                 if(!strOwnerEmail.matches("[a-zA-Z0-9]+@[a-z]+\\.+[a-z]+")){
                     Toast.makeText(updateOwnerDetails.this, "Enter valid Email",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 demoRef1 = demoRef.child("ownerDetail");

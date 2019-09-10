@@ -33,54 +33,12 @@ public class registerPage extends AppCompatActivity {
         pwd = findViewById(R.id.password);
         rePwd = findViewById(R.id.rePassword);
 
-        /*
-        uname.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    uname.setHint("");
-                    uname.setTypeface(Typeface.create("serif-monospace", Typeface.BOLD_ITALIC));
-                }
-                else {
-                    uname.setHint("Username");
-                }
-            }
-        });
-
-        pwd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    pwd.setHint("");
-                    pwd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    pwd.setTypeface(Typeface.create("serif-monospace", Typeface.BOLD_ITALIC));
-                }
-                else{
-                    pwd.setHint("Password");
-                }
-            }
-        });
-
-        rePwd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    rePwd.setHint("");
-                    rePwd.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    rePwd.setTypeface(Typeface.create("serif-monospace", Typeface.BOLD_ITALIC));
-                }
-                else{
-                    rePwd.setHint("Re-password");
-                }
-            }
-        });
-        */
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt");
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgressDialog nDialog;
+                final ProgressDialog nDialog;
                 nDialog = new ProgressDialog(registerPage.this);
                 nDialog.setMessage("Loading..");
                 nDialog.setIndeterminate(false);
@@ -91,14 +49,17 @@ public class registerPage extends AppCompatActivity {
                 rePassword = rePwd.getText().toString();
                 if(username.isEmpty()){
                     Toast.makeText(registerPage.this, "Enter Username", Toast.LENGTH_SHORT).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(password.isEmpty()){
                     Toast.makeText(registerPage.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(rePassword.isEmpty()){
                     Toast.makeText(registerPage.this, "Re-Enter Password", Toast.LENGTH_SHORT).show();
+                    nDialog.dismiss();
                     return;
                 }
                 demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -117,6 +78,7 @@ public class registerPage extends AppCompatActivity {
                             }
                             else{
                                 Toast.makeText(registerPage.this, "Password does not match",Toast.LENGTH_LONG).show();
+                                nDialog.dismiss();
                             }
                         }
                     }

@@ -33,36 +33,6 @@ public class login extends AppCompatActivity {
         login = findViewById(R.id.login);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
-        /*
-        username.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    username.setHint("");
-                    username.setTypeface(Typeface.create("serif-monospace", Typeface.BOLD_ITALIC));
-                }
-                else {
-                    username.setHint("Username");
-                }
-            }
-        });
-
-
-        password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    password.setHint("");
-                    password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    password.setTypeface(Typeface.create("serif-monospace", Typeface.BOLD_ITALIC));
-                }
-                else{
-                    password.setHint("Password");
-                }
-            }
-        });
-
-         */
 
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt");
@@ -79,10 +49,12 @@ public class login extends AppCompatActivity {
                 strPassword = password.getText().toString();
                 if(strUsername.isEmpty()){
                     Toast.makeText(login.this, "Enter Username", Toast.LENGTH_SHORT).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strPassword.isEmpty()){
                     Toast.makeText(login.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                    nDialog.dismiss();
                     return;
                 }
                 demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -100,11 +72,13 @@ public class login extends AppCompatActivity {
                                     }
                                     else {
                                         startWrongActivity();
+
                                     }
                                 }
                                 @Override
                                 public void onCancelled(@NonNull DatabaseError databaseError) {
                                     startErrorActivity();
+
                                 }
                             });
                         }

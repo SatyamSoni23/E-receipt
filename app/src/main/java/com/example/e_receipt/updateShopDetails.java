@@ -93,38 +93,53 @@ public class updateShopDetails extends AppCompatActivity {
 
                 if(strShopName.matches("")){
                     Toast.makeText(updateShopDetails.this, "Enter Shop Name",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strShopMobile.matches("")){
                     Toast.makeText(updateShopDetails.this, "Enter Mobile No.",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strShopMobile.length() != 10){
                     Toast.makeText(updateShopDetails.this, "Enter valid mobile number",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strShopAddress.matches("")){
                     Toast.makeText(updateShopDetails.this, "Enter Address",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strShopPincode.matches("")){
                     Toast.makeText(updateShopDetails.this, "Enter Pincode",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strShopPincode.length() != 6){
                     Toast.makeText(updateShopDetails.this, "Enter valid pincode number",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strGstNumber.matches("")){
                     Toast.makeText(updateShopDetails.this, "Enter GST number",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strGstNumber.length() != 15){
                     Toast.makeText(updateShopDetails.this, "Enter valid GST number",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
-                if(strGstNumber.matches("")){
-                    Toast.makeText(updateShopDetails.this, "Enter shop email",Toast.LENGTH_LONG).show();
+                if(strShopEmail.matches("")){
+                    Toast.makeText(updateShopDetails.this, "Enter email",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
+                    return;
+                }
+
+                if(!strShopEmail.matches("[a-zA-Z0-9]+@[a-z]+\\.+[a-z]+")){
+                    Toast.makeText(updateShopDetails.this, "Enter valid email",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
 

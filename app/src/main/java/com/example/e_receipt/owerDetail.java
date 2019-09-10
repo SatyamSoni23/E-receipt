@@ -19,6 +19,7 @@ public class owerDetail extends AppCompatActivity {
     EditText ownerName, ownerMobile, ownerAddress, ownerPincode, ownerEmail;
     Button register;
     CheckBox checkBox;
+    ProgressDialog nDialog;
     public static String strOwnerName, strOwnerMobile, strOwnerAddress, strOwnerPincode, strOwnerEmail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,75 +33,13 @@ public class owerDetail extends AppCompatActivity {
         ownerPincode = findViewById(R.id.onwerPincode);
         ownerEmail = findViewById(R.id.ownerEmail);
         checkBox = findViewById(R.id.checkbox);
-        /*
-        ownerName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    ownerName.setHint("");
-                    ownerName.setTypeface(Typeface.create("sans-serif-condensed", Typeface.ITALIC));
-                }
-                else {
-                    ownerName.setHint("Owner Name");
-                }
-            }
-        });
-        ownerMobile.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    ownerMobile.setHint("");
-                    ownerMobile.setTypeface(Typeface.create("sans-serif-condensed", Typeface.ITALIC));
-                }
-                else {
-                    ownerMobile.setHint("Mobile No.");
-                }
-            }
-        });
-        ownerAddress.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    ownerAddress.setHint("");
-                    ownerAddress.setTypeface(Typeface.create("sans-serif-condensed", Typeface.ITALIC));
-                }
-                else {
-                    ownerAddress.setHint("Address");
-                }
-            }
-        });
-        ownerPincode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    ownerPincode.setHint("");
-                    ownerPincode.setTypeface(Typeface.create("sans-serif-condensed", Typeface.ITALIC));
-                }
-                else {
-                    ownerPincode.setHint("Pincode");
-                }
-            }
-        });
-        ownerEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    ownerEmail.setHint("");
-                    ownerEmail.setTypeface(Typeface.create("sans-serif-condensed", Typeface.ITALIC));
-                }
-                else {
-                    ownerEmail.setHint("Owner Email");
-                }
-            }
-        });
 
-
-         */
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt").child(registerPage.username);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 strOwnerName = ownerName.getText().toString();
                 strOwnerMobile = ownerMobile.getText().toString();
                 strOwnerAddress = ownerAddress.getText().toString();
@@ -152,7 +91,6 @@ public class owerDetail extends AppCompatActivity {
                 demoRef1.child("ownerEmail").setValue(strOwnerEmail);
 
                 if(checkBox.isChecked()){
-                    ProgressDialog nDialog;
                     nDialog = new ProgressDialog(owerDetail.this);
                     nDialog.setMessage("Loading..");
                     nDialog.setIndeterminate(false);
@@ -162,6 +100,7 @@ public class owerDetail extends AppCompatActivity {
                 }
                 else{
                     Toast.makeText(owerDetail.this, "Checked the terms and conditions",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                 }
             }
         });

@@ -32,92 +32,6 @@ public class shopFirstDetail extends AppCompatActivity {
         gstNumber = findViewById(R.id.gstNumber);
         slogan = findViewById(R.id.slogan);
 
-        /*
-        shopName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    shopName.setHint("");
-                    shopName.setTypeface(Typeface.create("sans-serif-condensed", Typeface.ITALIC));
-                }
-                else {
-                    shopName.setHint("Shop Name");
-                }
-            }
-        });
-        shopMobile.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    shopMobile.setHint("");
-                    shopMobile.setTypeface(Typeface.create("sans-serif-condensed", Typeface.ITALIC));
-                }
-                else {
-                    shopMobile.setHint("Mobile No.");
-                }
-            }
-        });
-        shopAddress.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    shopAddress.setHint("");
-                    shopAddress.setTypeface(Typeface.create("sans-serif-condensed", Typeface.ITALIC));
-                }
-                else {
-                    shopAddress.setHint("Address");
-                }
-            }
-        });
-        shopPincode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    shopPincode.setHint("");
-                    shopPincode.setTypeface(Typeface.create("sans-serif-condensed", Typeface.ITALIC));
-                }
-                else {
-                    shopPincode.setHint("Pincode");
-                }
-            }
-        });
-        shopEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    shopEmail.setHint("");
-                    shopEmail.setTypeface(Typeface.create("sans-serif-condensed", Typeface.ITALIC));
-                }
-                else {
-                    shopEmail.setHint("Shop Email");
-                }
-            }
-        });
-        gstNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    gstNumber.setHint("");
-                    gstNumber.setTypeface(Typeface.create("sans-serif-condensed", Typeface.ITALIC));
-                }
-                else {
-                    gstNumber.setHint("GST Number");
-                }
-            }
-        });
-        slogan.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    slogan.setHint("");
-                    slogan.setTypeface(Typeface.create("sans-serif-condensed", Typeface.ITALIC));
-                }
-                else {
-                    slogan.setHint("Slogan");
-                }
-            }
-        });
-           */
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt").child(registerPage.username);
         next.setOnClickListener(new View.OnClickListener() {
@@ -139,38 +53,53 @@ public class shopFirstDetail extends AppCompatActivity {
 
                 if(strShopName.matches("")){
                     Toast.makeText(shopFirstDetail.this, "Enter shop name",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strShopMobile.matches("")){
                     Toast.makeText(shopFirstDetail.this, "Enter mobile no.",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strShopMobile.length() != 10){
                     Toast.makeText(shopFirstDetail.this, "Enter valid mobile number",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strShopAddress.matches("")){
                     Toast.makeText(shopFirstDetail.this, "Enter address",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strShopPincode.matches("")){
                     Toast.makeText(shopFirstDetail.this, "Enter pincode",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strShopPincode.length() != 6){
                     Toast.makeText(shopFirstDetail.this, "Enter valid pincode number",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strGstNumber.matches("")){
                     Toast.makeText(shopFirstDetail.this, "Enter GST number",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
                 if(strGstNumber.length() != 15){
                     Toast.makeText(shopFirstDetail.this, "Enter valid GST number",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
-                if(strGstNumber.matches("")){
-                    Toast.makeText(shopFirstDetail.this, "Enter shop email",Toast.LENGTH_LONG).show();
+                if(strShopEmail.matches("")){
+                    Toast.makeText(shopFirstDetail.this, "Enter email",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
+                    return;
+                }
+
+                if(!strShopEmail.matches("[a-zA-Z0-9]+@[a-z]+\\.+[a-z]+")){
+                    Toast.makeText(shopFirstDetail.this, "Enter valid email",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
                     return;
                 }
 

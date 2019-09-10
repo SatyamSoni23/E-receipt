@@ -80,27 +80,6 @@ public class invoiceSend extends AppCompatActivity {
         Uri uri = Uri.parse(pa);
         intent.setDataAndType(uri, "application/pdf");
         startActivity(Intent.createChooser(intent, "Open folder"));
-        /*
-        File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents" + "/" +customerDetail.strCustomerName + ".pdf");
-        Uri path = Uri.fromFile(docsFolder);
-        Intent pdfOpenintent = new Intent(Intent.ACTION_VIEW);
-        pdfOpenintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        pdfOpenintent.setDataAndType(path, "application/pdf");
-        try {
-            startActivity(pdfOpenintent);
-        }
-        catch (ActivityNotFoundException e) {
-
-        }
-         */
-        /*
-        String dirpath;
-        dirpath = android.os.Environment.getExternalStorageDirectory().toString();
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        Uri uri = Uri.parse(dirpath + "/Documents/" + customerDetail.strCustomerName + ".pdf");
-        intent.setDataAndType(uri, "application/*");
-        startActivity(intent);
-        */
 
     }
     @Override

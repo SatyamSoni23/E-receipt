@@ -32,36 +32,6 @@ public class updatePassword extends AppCompatActivity {
         oldPassword = findViewById(R.id.oldPassword);
         update = findViewById(R.id.update);
 
-        /*
-        password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    password.setHint("");
-                    password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    password.setTypeface(Typeface.create("serif-monospace", Typeface.BOLD_ITALIC));
-                }
-                else{
-                    password.setHint("Password");
-                }
-            }
-        });
-
-        rePassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if(hasFocus) {
-                    rePassword.setHint("");
-                    rePassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    rePassword.setTypeface(Typeface.create("serif-monospace", Typeface.BOLD_ITALIC));
-                }
-                else{
-                    rePassword.setHint("Re-password");
-                }
-            }
-        });
-
-         */
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt").child(login.strUsername);
         update.setOnClickListener(new View.OnClickListener() {
