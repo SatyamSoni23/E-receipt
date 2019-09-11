@@ -194,7 +194,7 @@ public class transactionDetail extends AppCompatActivity {
                     description.requestFocus();
                     return;
                 }
-
+                save.setVisibility(View.GONE);
                 layoutToImage();
                 imageToPDF();
             }
@@ -273,9 +273,11 @@ public class transactionDetail extends AppCompatActivity {
     public void startSaveActivity(){
         Intent intent = new Intent(this, invoiceSend.class);
         startActivity(intent);
+        save.setVisibility(View.VISIBLE);
     }
     public void startErrorActivity(){
         Intent intent = new Intent(this, offline.class);
         startActivity(intent);
+        save.setVisibility(View.VISIBLE);
     }
 }

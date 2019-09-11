@@ -71,16 +71,8 @@ public class invoiceSend extends AppCompatActivity {
         startActivity(intent);
     }
     public void startViewPageActivity(){
-        String dirpath;
-        dirpath = android.os.Environment.getExternalStorageDirectory().toString() + "/E-Receipt" + "/sat.pdf";
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        String pa = sharedPreferences.getString(dirpath, "");
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        Uri uri = Uri.parse(pa);
-        intent.setDataAndType(uri, "application/pdf");
-        startActivity(Intent.createChooser(intent, "Open folder"));
-
+        Intent intent = new Intent(this, view.class);
+        startActivity(intent);
     }
     @Override
     public void onBackPressed() {

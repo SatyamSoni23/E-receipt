@@ -72,6 +72,7 @@ public class login extends AppCompatActivity {
                                     }
                                     else {
                                         startWrongActivity();
+                                        nDialog.dismiss();
 
                                     }
                                 }
@@ -81,6 +82,10 @@ public class login extends AppCompatActivity {
 
                                 }
                             });
+                        }
+                        else{
+                            startWrongActivity();
+                            nDialog.dismiss();
                         }
                     }
                     @Override
