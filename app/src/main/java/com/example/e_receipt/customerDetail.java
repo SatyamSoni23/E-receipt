@@ -6,8 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -16,11 +19,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class customerDetail extends AppCompatActivity {
     DatabaseReference rootRef, demoRef, demoRef1;
     Button next;
     EditText customerName, customerMobile, customerAddress, customerPincode, customerEmail, otherDetail;
-    public static String strCustomerName, strCustomerMobile, strCustomerAddress, strCustomerPincode, strCustomerEmail, strOtherDetail;
+    Spinner rBackground;
+    public static String strRBackground, strCustomerName, strCustomerMobile, strCustomerAddress, strCustomerPincode, strCustomerEmail, strOtherDetail;
     String detailsCheck = "Incorrect";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +40,26 @@ public class customerDetail extends AppCompatActivity {
         customerPincode = findViewById(R.id.customerPincode);
         customerEmail = findViewById(R.id.customerEmail);
         otherDetail = findViewById(R.id.otherDetail);
+        rBackground = findViewById(R.id.rBackground);
         next = findViewById(R.id.next);
 
+        final List<String> list = new ArrayList<>();
+        list.add("Select Receipt Design");
+        list.add("Flower");
+        list.add("Jewel");
+        list.add("God");
+        list.add("Leaf");
+        list.add("Square");
+        list.add("Yellow");
+        list.add("Green Brush");
+        list.add("Gray Flower");
+        list.add("Crystal");
+        list.add("Old paper");
+        list.add("Ancient Paper");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        rBackground.setAdapter(arrayAdapter);
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt").child(login.strUsername);
         next.setOnClickListener(new View.OnClickListener() {
@@ -101,6 +126,18 @@ public class customerDetail extends AppCompatActivity {
                                 Toast.makeText(customerDetail.this, "Enter valid email",Toast.LENGTH_LONG).show();
                                 return;
                             }
+
+                            rBackground.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                @Override
+                                public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
+                                    rBackground.setSelection(i);
+                                    strRBackground = list.get(i);
+                                }
+                                @Override
+                                public void onNothingSelected(AdapterView<?> parent) {
+
+                                }
+                            });
                             startNextActivity();
                         }
                         else{

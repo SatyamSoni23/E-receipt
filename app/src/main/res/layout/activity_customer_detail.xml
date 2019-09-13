@@ -131,7 +131,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.8"/>
+            android:layout_weight="1.8"
+            android:layout_marginHorizontal="35dp">
+            <Spinner
+                android:id="@+id/rBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/backgroud"
+                android:spinnerMode="dropdown" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"

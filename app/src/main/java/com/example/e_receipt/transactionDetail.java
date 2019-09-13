@@ -61,7 +61,7 @@ public class transactionDetail extends AppCompatActivity {
     TextView shopName,customerName, customerMobile, customerAddress, shopAddress, shopMobile, shopEmail, gstNumber;
     ImageView shopLogo;
     private Button save;
-    String dirpath;
+    String dirpath, strBackground;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +93,47 @@ public class transactionDetail extends AppCompatActivity {
         customerName.setText(customerDetail.strCustomerName);
         customerMobile.setText(customerDetail.strCustomerMobile);
         customerAddress.setText(customerDetail.strCustomerAddress + " " + customerDetail.strCustomerPincode);
+
+        strBackground = customerDetail.strRBackground;
+        if(strBackground == "Select Receipt Design"){
+            invoicePage.setBackgroundResource(R.drawable.invoice);
+        }
+        else if(strBackground == "Flower"){
+            invoicePage.setBackgroundResource(R.drawable.b5);
+        }
+        else if(strBackground == "Jewel"){
+            invoicePage.setBackgroundResource(R.drawable.jewel);
+        }
+        else if(strBackground == "God"){
+            invoicePage.setBackgroundResource(R.drawable.garesh);
+        }
+        else if(strBackground == "Leaf"){
+            invoicePage.setBackgroundResource(R.drawable.leaf);
+        }
+        else if(strBackground == "Square"){
+            invoicePage.setBackgroundResource(R.drawable.b6);
+        }
+        else if(strBackground == "Yellow"){
+            invoicePage.setBackgroundResource(R.drawable.yellow);
+        }
+        else if(strBackground == "Green Brush"){
+            invoicePage.setBackgroundResource(R.drawable.b7);
+        }
+        else if(strBackground == "Gray Flower"){
+            invoicePage.setBackgroundResource(R.drawable.b3);
+        }
+        else if(strBackground == "Crystal"){
+            invoicePage.setBackgroundResource(R.drawable.b1);
+        }
+        else if(strBackground == "Old paper"){
+            invoicePage.setBackgroundResource(R.drawable.b2);
+        }
+        else if(strBackground == "Ancient Paper"){
+            invoicePage.setBackgroundResource(R.drawable.old);
+        }
+        else{
+            invoicePage.setBackgroundResource(R.drawable.invoice);
+        }
 
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         invoiceDate.setText(date);
