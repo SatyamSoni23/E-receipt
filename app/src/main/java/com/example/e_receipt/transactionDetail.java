@@ -56,7 +56,7 @@ public class transactionDetail extends AppCompatActivity {
     public final int REQUEST_CODE_ASK_PERMISSIONS = 1;
     DatabaseReference rootRef, demoRef;
     private StorageReference storageRef, dataRef;
-    private RelativeLayout invoicePage;
+    RelativeLayout invoicePage;
     EditText invoiceNo, invoiceDate, sNo, description, qty, rate, amount, total, discount, amountCustomer;
     TextView shopName,customerName, customerMobile, customerAddress, shopAddress, shopMobile, shopEmail, gstNumber;
     ImageView shopLogo;
@@ -89,10 +89,6 @@ public class transactionDetail extends AppCompatActivity {
         gstNumber = (TextView)findViewById(R.id.gstNumber);
         shopLogo = (ImageView)findViewById(R.id.shopLogo);
         save = (Button) findViewById(R.id.save);
-
-        customerName.setText(customerDetail.strCustomerName);
-        customerMobile.setText(customerDetail.strCustomerMobile);
-        customerAddress.setText(customerDetail.strCustomerAddress + " " + customerDetail.strCustomerPincode);
 
         strBackground = customerDetail.strRBackground;
         if(strBackground == "Select Receipt Design"){
@@ -134,6 +130,10 @@ public class transactionDetail extends AppCompatActivity {
         else{
             invoicePage.setBackgroundResource(R.drawable.invoice);
         }
+
+        customerName.setText(customerDetail.strCustomerName);
+        customerMobile.setText(customerDetail.strCustomerMobile);
+        customerAddress.setText(customerDetail.strCustomerAddress + " " + customerDetail.strCustomerPincode);
 
         String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         invoiceDate.setText(date);

@@ -29,6 +29,7 @@ public class customerDetail extends AppCompatActivity {
     Spinner rBackground;
     public static String strRBackground, strCustomerName, strCustomerMobile, strCustomerAddress, strCustomerPincode, strCustomerEmail, strOtherDetail;
     String detailsCheck = "Incorrect";
+    public static List<String> list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,7 @@ public class customerDetail extends AppCompatActivity {
         rBackground = findViewById(R.id.rBackground);
         next = findViewById(R.id.next);
 
-        final List<String> list = new ArrayList<>();
+
         list.add("Select Receipt Design");
         list.add("Flower");
         list.add("Jewel");
@@ -58,6 +59,18 @@ public class customerDetail extends AppCompatActivity {
         list.add("Ancient Paper");
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        rBackground.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
+                rBackground.setSelection(i);
+                strRBackground = list.get(i);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                strRBackground = "Select Receipt Design";
+
+            }
+        });
 
         rBackground.setAdapter(arrayAdapter);
         rootRef = FirebaseDatabase.getInstance().getReference();
@@ -127,17 +140,6 @@ public class customerDetail extends AppCompatActivity {
                                 return;
                             }
 
-                            rBackground.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                @Override
-                                public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
-                                    rBackground.setSelection(i);
-                                    strRBackground = list.get(i);
-                                }
-                                @Override
-                                public void onNothingSelected(AdapterView<?> parent) {
-
-                                }
-                            });
                             startNextActivity();
                         }
                         else{
