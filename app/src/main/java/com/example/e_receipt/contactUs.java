@@ -60,19 +60,19 @@ public class contactUs extends AppCompatActivity {
         startActivity(intent);
     }
     public void startFacebookActivity(){
-        Intent facebook = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com"));
+        Intent facebook = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/e.receipt.5"));
         startActivity(facebook);
     }
     public void startLinkedInActivity(){
-        Intent linkedIn = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/feed/"));
+        Intent linkedIn = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.linkedin.com/in/satyam-soni-332522172/"));
         startActivity(linkedIn);
     }
     public void startInstagramActivity(){
-        Intent instagram = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com"));
+        Intent instagram = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/receipt.e/"));
         startActivity(instagram);
     }
     public void startYouTubeActivity(){
-        Intent youTube = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com"));
+        Intent youTube = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/channel/UC7bYDBd9XNo9MNQPC25pwMg?view_as=subscriber"));
         startActivity(youTube);
     }
 }

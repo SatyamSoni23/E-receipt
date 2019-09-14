@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -17,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class owerDetail extends AppCompatActivity {
     DatabaseReference rootRef, demoRef, demoRef1;
     EditText ownerName, ownerMobile, ownerAddress, ownerPincode, ownerEmail;
+    TextView tNC;
     Button register;
     CheckBox checkBox;
     ProgressDialog nDialog;
@@ -33,6 +35,7 @@ public class owerDetail extends AppCompatActivity {
         ownerPincode = findViewById(R.id.onwerPincode);
         ownerEmail = findViewById(R.id.ownerEmail);
         checkBox = findViewById(R.id.checkbox);
+        tNC = findViewById(R.id.tNC);
 
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt").child(registerPage.username);
@@ -104,10 +107,20 @@ public class owerDetail extends AppCompatActivity {
                 }
             }
         });
+        tNC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startTNCActivity();
+            }
+        });
     }
 
     public void startAcivityRegister(){
         Intent intent = new Intent(this, successRegister.class);
+        startActivity(intent);
+    }
+    public void startTNCActivity(){
+        Intent intent = new Intent(this, termsAndConditions.class);
         startActivity(intent);
     }
 }

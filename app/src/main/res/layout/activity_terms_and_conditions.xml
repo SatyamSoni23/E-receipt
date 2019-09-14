@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".shopFirstDetail"
+    android:background="@drawable/paper">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:weightSum="20">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3.8"
+            android:text="E-Receipt"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="italic|bold"
+            android:fontFamily="cursive"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="50sp"
+            android:autoSizeMinTextSize="20sp"
+            android:gravity="center|bottom"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.6"
+            android:layout_marginHorizontal="35dp"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Terms &amp; Conditions"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="25sp"
+            android:autoSizeMinTextSize="15sp"
+            android:textStyle="italic"
+            android:textColor="#2962ff"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="12.50"
+            android:text="         Subject to your agreements to and compliance with the terms of this Agreemen, we grant to you a non-exclusive, non-transferable, non-sharable, revocable, limited license to use the Services (including the App in connection with the Services) solely for your personal use to the Services in accordance with this Agreement.
+\n\n      If you are in breach of any of these Terms, we reserve the right, in our sole discretion, to terminate your access or use of the App We are not responsible for any loss, damage or harm related to your inability to access or use the App based on such termination.
+\n\n      We reserve the right at our discretion, to change the Terms on going forward basis at any time Please check the Terms periodically for changes. Your continued use of the Services after the changes become effective constitutes your binding acceptance of such changes. In the event that a change to Terms materially modifies your rights or obligations."
+            android:lineSpacingMultiplier="1.1"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="30sp"
+            android:autoSizeMinTextSize="10sp"
+            android:fontFamily="sans-serif-condensed"
+            android:layout_marginHorizontal="30dp"
+            android:textStyle="italic"
+            android:textColor="@color/colorPrimaryDark"
+            android:textColorHint="@color/colorPrimary"
+            android:gravity="left"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.35"
+            android:orientation="horizontal"
+            android:weightSum="10">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.25"/>
+            <Button
+                android:id="@+id/back"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5.5"
+                android:background="@drawable/anibutton"
+                android:stateListAnimator="@animator/button_state_list_anim"
+                android:gravity="center"
+                android:text="Back"
+                android:fontFamily="monospace"
+                android:textColor="#FFFFFF"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMaxTextSize="22sp"
+                android:autoSizeMinTextSize="10sp"
+                android:textStyle="italic" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2.25"/>
+        </LinearLayout>
+        <ProgressBar
+            android:id="@+id/progress_loader"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+    </LinearLayout>
+</RelativeLayout>
