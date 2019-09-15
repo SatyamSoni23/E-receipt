@@ -12,8 +12,13 @@
     </item>
     <item
         android:id="@+id/updateShopDetails"
-        android:icon="@drawable/ic_shop_black_24dp"
+        android:icon="@drawable/ic_file_upload_black_24dp"
         android:title="Update Shop Details ">
+    </item>
+    <item
+        android:id="@+id/updateShopLogo"
+        android:icon="@drawable/ic_shop_black_24dp"
+        android:title="Update Shop Logo ">
     </item>
     <item
         android:id="@+id/updateOwnerDetails"

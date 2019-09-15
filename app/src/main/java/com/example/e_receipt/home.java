@@ -80,6 +80,10 @@ public class home extends AppCompatActivity {
                     Toast.makeText(home.this, "Update Shop Details", Toast.LENGTH_SHORT).show();
                     startUpdateShopDetailsActivity();
                 }
+                else if (id == R.id.updateShopLogo){
+                    Toast.makeText(home.this, "Update Shop Logo", Toast.LENGTH_SHORT).show();
+                    startUpdateShopLogoActivity();
+                }
                 else if (id == R.id.updateOwnerDetails){
                     Toast.makeText(home.this, "Update Owner Details", Toast.LENGTH_SHORT).show();
                     startUpdateOwnerDetailsActivity();
@@ -135,6 +139,10 @@ public class home extends AppCompatActivity {
     }
     public void startUpdateShopDetailsActivity(){
         Intent intent = new Intent(this, updateShopDetails.class);
+        startActivity(intent);
+    }
+    public void startUpdateShopLogoActivity(){
+        Intent intent = new Intent(this, updateLogo.class);
         startActivity(intent);
     }
     public void startUpdateOwnerDetailsActivity(){

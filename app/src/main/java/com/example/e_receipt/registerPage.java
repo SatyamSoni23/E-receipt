@@ -67,6 +67,7 @@ public class registerPage extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child(username).exists()){
                             Toast.makeText(registerPage.this, "Username already registered",Toast.LENGTH_LONG).show();
+                            nDialog.dismiss();
                         }
                         else
                         {
