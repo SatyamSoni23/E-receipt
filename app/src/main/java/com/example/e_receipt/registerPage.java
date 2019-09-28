@@ -22,6 +22,7 @@ public class registerPage extends AppCompatActivity {
     DatabaseReference rootRef, demoRef, demoRef1;
     EditText uname, pwd, rePwd;
     public static String username, password, rePassword;
+    public static int count = 100000;
     Button next;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,7 @@ public class registerPage extends AppCompatActivity {
                                 demoRef1 = demoRef.child(username);
                                 demoRef1.child("username").setValue(username);
                                 demoRef1.child("password").setValue(password);
+                                demoRef.child("count").setValue(count);
                                 startActivityNext();
                             }
                             else{

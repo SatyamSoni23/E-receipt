@@ -52,7 +52,7 @@ public class invoiceSend extends AppCompatActivity {
     }
     public void shareFile(){
         File docsFolder = new File(Environment.getExternalStorageDirectory() + "/E-Receipt");
-        pdfFile = new File(docsFolder.getAbsolutePath(),customerDetail.strCustomerName + ".pdf");
+        pdfFile = new File(docsFolder.getAbsolutePath(), transactionDetail.count + " - " + customerDetail.strCustomerName + ".pdf");
         Intent intentShareFile = new Intent(Intent.ACTION_SEND);
         File fileWithinMyDir = new File(pdfFile.getAbsolutePath());
         if(fileWithinMyDir.exists()) {

@@ -54,7 +54,7 @@ import java.util.Locale;
 
 public class transactionDetail extends AppCompatActivity {
     public final int REQUEST_CODE_ASK_PERMISSIONS = 1;
-    DatabaseReference rootRef, demoRef;
+    DatabaseReference rootRef, demoRef, demoRefCount;
     private StorageReference storageRef, dataRef;
     RelativeLayout invoicePage;
     EditText invoiceNo, invoiceDate, sNo, description, qty, rate, amount, total, discount, amountCustomer;
@@ -62,7 +62,7 @@ public class transactionDetail extends AppCompatActivity {
     ImageView shopLogo;
     private Button save;
     String dirpath, strBackground;
-
+    public static int count;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -148,6 +148,17 @@ public class transactionDetail extends AppCompatActivity {
             }
         });
         rootRef = FirebaseDatabase.getInstance().getReference();
+        demoRefCount = rootRef.child("E-Receipt").child(login.strUsername);
+        demoRefCount.child("count").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                count = Integer.valueOf(dataSnapshot.getValue().toString()) + 1;
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                startErrorActivity();
+            }
+        });
         demoRef = rootRef.child("E-Receipt").child(login.strUsername).child("shopDetail");
         demoRef.child("shopName").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -235,6 +246,7 @@ public class transactionDetail extends AppCompatActivity {
                     description.requestFocus();
                     return;
                 }
+
                 save.setVisibility(View.GONE);
                 layoutToImage();
                 imageToPDF();
@@ -296,7 +308,7 @@ public class transactionDetail extends AppCompatActivity {
         try {
             Document document = new Document();
             dirpath = android.os.Environment.getExternalStorageDirectory().toString();
-            PdfWriter.getInstance(document, new FileOutputStream(dirpath +"/E-Receipt" + "/" + customerDetail.strCustomerName + ".pdf")); //  Change pdf's name.
+            PdfWriter.getInstance(document, new FileOutputStream(dirpath +"/E-Receipt" + "/" + count + " - " + customerDetail.strCustomerName + ".pdf")); //  Change pdf's name.
             document.open();
             Image img = Image.getInstance(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
             float scaler = ((document.getPageSize().getWidth() - document.leftMargin()
