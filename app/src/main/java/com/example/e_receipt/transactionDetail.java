@@ -148,8 +148,8 @@ public class transactionDetail extends AppCompatActivity {
             }
         });
         rootRef = FirebaseDatabase.getInstance().getReference();
-        demoRefCount = rootRef.child("E-Receipt").child(login.strUsername);
-        demoRefCount.child("count").addListenerForSingleValueEvent(new ValueEventListener() {
+        demoRefCount = rootRef.child("E-Receipt").child(login.strUsername).child("count");
+        demoRefCount.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 count = Integer.valueOf(dataSnapshot.getValue().toString()) + 1;
@@ -246,7 +246,7 @@ public class transactionDetail extends AppCompatActivity {
                     description.requestFocus();
                     return;
                 }
-
+                demoRefCount.setValue(count);
                 save.setVisibility(View.GONE);
                 layoutToImage();
                 imageToPDF();
