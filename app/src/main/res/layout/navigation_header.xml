@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:gravity="center"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/headerbackground"
     android:orientation="vertical"
     android:weightSum="10">
     <LinearLayout
@@ -15,7 +15,8 @@
         android:layout_width="180dp"
         android:layout_height="0dp"
         android:layout_weight="8"
-        android:src="@drawable/logo" />
+        android:src="@drawable/logo"
+        android:alpha="0.9"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

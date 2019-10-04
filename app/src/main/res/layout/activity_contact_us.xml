@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="5"
-            android:text="Developed by :- Team Abstract Connoisseurs\nAddress :- Varanasi, Uttar Pradesh, India \nEmail us :- e_receipt@gmail.com\nPhone No :- 9170451811 \nFollow us :- Facebook, LinkedIn, Instagram"
+            android:text="Developed by :- Team Abstract Connoisseurs\nAddress :- Varanasi, Uttar Pradesh, India \nEmail us :- r.receipt1000@gmail.com\nPhone No :- 9170451811 \nFollow us :- Facebook, LinkedIn, Instagram"
             android:lineSpacingMultiplier="1.2"
             android:autoSizeTextType="uniform"
             android:autoSizeMaxTextSize="22sp"
