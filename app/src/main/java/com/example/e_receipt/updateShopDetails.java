@@ -10,6 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,7 +23,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class updateShopDetails extends AppCompatActivity {
     DatabaseReference rootRef, demoRef, demoRef1;
+    private FirebaseAuth mAuth;
+    ProgressDialog nDialog;
     Button update;
+    public static int check;
     EditText shopName, shopMobile, shopAddress, shopPincode, shopEmail, gstNumber, slogan;
     public static String strShopName, strShopMobile, strShopAddress, strShopPincode, strShopEmail, strGstNumber, strSlogan;
     @Override
@@ -42,6 +50,7 @@ public class updateShopDetails extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.child("shopDetail").exists()){
                     if(dataSnapshot.child("shopDetail").child("shopName").exists()){
+                        check = 1;
                         shopName.setText(dataSnapshot.child("shopDetail").child("shopName").getValue().toString());
                     }
                     if(dataSnapshot.child("shopDetail").child("shopMobile").exists()){
@@ -54,6 +63,7 @@ public class updateShopDetails extends AppCompatActivity {
                         shopPincode.setText(dataSnapshot.child("shopDetail").child("shopPincode").getValue().toString());
                     }
                     if(dataSnapshot.child("shopDetail").child("shopEmail").exists()){
+
                         shopEmail.setText(dataSnapshot.child("shopDetail").child("shopEmail").getValue().toString());
                     }
                     if(dataSnapshot.child("shopDetail").child("gstNumber").exists()){
@@ -71,13 +81,12 @@ public class updateShopDetails extends AppCompatActivity {
             }
         });
 
-
+        mAuth = FirebaseAuth.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt").child(login.strUsername);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProgressDialog nDialog;
                 nDialog = new ProgressDialog(updateShopDetails.this);
                 nDialog.setMessage("Loading..");
                 nDialog.setIndeterminate(false);
@@ -143,6 +152,7 @@ public class updateShopDetails extends AppCompatActivity {
                     return;
                 }
 
+
                 demoRef1 = demoRef.child("shopDetail");
                 demoRef1.child("shopName").setValue(strShopName);
                 demoRef1.child("shopMobile").setValue(strShopMobile);
@@ -156,8 +166,23 @@ public class updateShopDetails extends AppCompatActivity {
                 else{
                     demoRef1.child("slogan").setValue(strSlogan);
                 }
-                startUpdateShopDetailsActivity();
 
+                if(check != 1){
+                    mAuth.createUserWithEmailAndPassword(strShopEmail, login.strPassword)
+                            .addOnCompleteListener(updateShopDetails.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        sendVerificationEmail();
+                                    } else {
+                                        startOfflineActivity();
+                                    }
+                                }
+                            });
+                }
+                else{
+                    startUpdateShopDetailsActivity();
+                }
             }
         });
     }
@@ -166,9 +191,34 @@ public class updateShopDetails extends AppCompatActivity {
         Toast.makeText(updateShopDetails.this, "Shop details successfully updated",Toast.LENGTH_LONG).show();
         login.videoPlay = "notPlay";
         startActivity(intent);
+        nDialog.dismiss();
     }
     public void startWrongActivity(){
         Intent intent = new Intent(this, wrg.class);
         startActivity(intent);
+        nDialog.dismiss();
+    }
+    public void startOfflineActivity(){
+        Intent intent = new Intent(this, offline.class);
+        startActivity(intent);
+    }
+    private void sendVerificationEmail(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    FirebaseAuth.getInstance().signOut();
+                    startActivity(new Intent(updateShopDetails.this, home.class));
+                    login.videoPlay = "notPlay";
+                    nDialog.dismiss();
+                    finish();
+                }
+                else{
+                    Toast.makeText(updateShopDetails.this, "signup Failed",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

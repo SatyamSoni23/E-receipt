@@ -26,12 +26,25 @@ import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.File;
 import java.net.URISyntaxException;
 import java.util.List;
 
 public class home extends AppCompatActivity {
     public final int REQUEST_CODE_ASK_PERMISSIONS = 1;
+    DatabaseReference rootRef, demoRef;
+    private FirebaseAuth mAuth;
     private DrawerLayout dl;
     private ActionBarDrawerToggle abdt;
     VideoView videoView;
@@ -40,13 +53,54 @@ public class home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        mAuth = FirebaseAuth.getInstance();
+        rootRef = FirebaseDatabase.getInstance().getReference();
+        demoRef = rootRef.child("E-Receipt").child(login.strUsername).child("shopDetail");
+        demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.child("shopEmail").exists()){
+                    String preShopEmail = dataSnapshot.child("shopEmail").getValue().toString();
+                    mAuth.signInWithEmailAndPassword(preShopEmail, login.strPassword).addOnCompleteListener(home.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                if (user != null) {
+                                    boolean emailVerified = user.isEmailVerified();
+                                    if(emailVerified == false){
+                                        new AlertDialog.Builder(home.this)
+                                                .setTitle("Email Verification")
+                                                .setMessage("Please verify your email id")
+                                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+
+                                                    }
+                                                }).show();
+                                    }
+                                }
+                            }
+                            else{
+                                Toast.makeText(home.this, "Authentication failed.",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         videoView = findViewById(R.id.video);
-        //Set MediaController  to enable play, pause, forward, etc options.
         MediaController mediaController= new MediaController(this);
         mediaController.setAnchorView(videoView);
-        //Location of Media File
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.video1);
-        //Starting VideView By Setting MediaController and URI
         videoView.setMediaController(mediaController);
         videoView.setVideoURI(uri);
         videoView.requestFocus();
