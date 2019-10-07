@@ -76,7 +76,7 @@ public class registerPage extends AppCompatActivity {
                                 demoRef1 = demoRef.child(username);
                                 demoRef1.child("username").setValue(username);
                                 demoRef1.child("password").setValue(password);
-                                demoRef.child("count").setValue(count);
+                                demoRef1.child("count").setValue(count);
                                 startActivityNext();
                             }
                             else{

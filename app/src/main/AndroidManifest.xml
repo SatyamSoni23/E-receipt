@@ -22,10 +22,10 @@
         <activity android:name=".offline" />
         <activity android:name=".somethingWentWrong" />
         <activity android:name=".wrg" />
-        <activity android:name=".invoiceSend" />
+        <activity android:name=".invoiceSend"/>
         <activity android:name=".shopLogoUpload" />
         <activity android:name=".transactionDetail" />
-        <activity android:name=".customerDetail" />
+        <activity android:name=".customerDetail"/>
         <activity android:name=".login" />
         <activity android:name=".successRegister" />
         <activity android:name=".owerDetail" />

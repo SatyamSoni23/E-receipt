@@ -1,5 +1,6 @@
 package com.example.e_receipt;
 import android.Manifest;
+import android.app.ActionBar;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
