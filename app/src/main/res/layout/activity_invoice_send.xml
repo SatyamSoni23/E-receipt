@@ -27,7 +27,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.3"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -37,10 +37,7 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/invoicecreated"/>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.5"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -58,7 +55,35 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.2"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.8"
+            android:orientation="horizontal"
+            android:weightSum="10">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"/>
+            <ImageView
+                android:id="@+id/home"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:layout_margin="0.5sp"
+                android:src="@drawable/homeicon"
+                android:stateListAnimator="@animator/button_state_list_anim"
+                android:layout_gravity="center"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -92,7 +117,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.4"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -126,7 +151,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.5"/>
+            android:layout_weight="0.4"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"

@@ -76,6 +76,7 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/phonepe"
                 android:layout_weight="6"
+                android:layout_margin="0.5sp"
                 android:stateListAnimator="@animator/button_state_list_anim"/>
             <LinearLayout
                 android:layout_width="0dp"
@@ -87,6 +88,7 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/googlepay"
                 android:layout_weight="6"
+                android:layout_margin="0.5sp"
                 android:stateListAnimator="@animator/button_state_list_anim"/>
             <LinearLayout
                 android:layout_width="0dp"
@@ -98,6 +100,7 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/amazonpay"
                 android:layout_weight="6"
+                android:layout_margin="0.5sp"
                 android:stateListAnimator="@animator/button_state_list_anim"/>
             <LinearLayout
                 android:layout_width="0dp"
@@ -125,6 +128,7 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/bhim"
                 android:layout_weight="6"
+                android:layout_margin="0.5sp"
                 android:stateListAnimator="@animator/button_state_list_anim"/>
             <LinearLayout
                 android:layout_width="0dp"
@@ -136,6 +140,7 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/paytm"
                 android:layout_weight="6"
+                android:layout_margin="0.5sp"
                 android:stateListAnimator="@animator/button_state_list_anim"/>
 
             <LinearLayout

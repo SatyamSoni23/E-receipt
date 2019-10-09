@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -22,6 +23,7 @@ public class invoiceSend extends AppCompatActivity {
 
     private File pdfFile;
     Button viewPage,  send, makeAnotherInvoice;
+    ImageView home;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,14 @@ public class invoiceSend extends AppCompatActivity {
         viewPage = findViewById(R.id.view);
         send = findViewById(R.id.send);
         makeAnotherInvoice = findViewById(R.id.makeAnotherInvoice);
+        home = findViewById(R.id.home);
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startHomeActivity();
+            }
+        });
 
         send.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +75,11 @@ public class invoiceSend extends AppCompatActivity {
 
             startActivity(Intent.createChooser(intentShareFile, "Share File"));
         }
+    }
+    public void startHomeActivity(){
+        Intent intent = new Intent(this, home.class);
+        login.videoPlay = "notPlay";
+        startActivity(intent);
     }
     public void startMakeInvoiceActivity(){
         Intent intent = new Intent(this, customerDetail.class);
