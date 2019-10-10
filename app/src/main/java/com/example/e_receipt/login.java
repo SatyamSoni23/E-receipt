@@ -11,6 +11,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,9 +31,10 @@ public class login extends AppCompatActivity {
     DatabaseReference rootRef, demoRef,demoRef1;
     private FirebaseAuth mAuth;
 
-    public static String firePassword, strUsername,strNewUsername, strPassword, videoPlay;
+    public static String strUsername,strNewUsername, strPassword, videoPlay;
     Button login;
     EditText username, password;
+    TextView forgotPassword;
     ProgressDialog nDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class login extends AppCompatActivity {
         login = findViewById(R.id.login);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
+        forgotPassword = findViewById(R.id.forgotPassword);
 
         mAuth = FirebaseAuth.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
@@ -91,27 +94,6 @@ public class login extends AppCompatActivity {
                                     }
                                 }
                             });
-                            /*
-                            demoRef1 = demoRef.child(strUsername).child("password");
-                            demoRef1.addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    firePassword =dataSnapshot.getValue().toString();
-                                    if(firePassword.equals(strPassword)){
-                                        startActivityLogin();
-                                    }
-                                    else {
-                                        startWrongActivity();
-                                        nDialog.dismiss();
-
-                                    }
-                                }
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-                                    startErrorActivity();
-
-                                }
-                            });*/
                         }
                         else{
                             startWrongActivity();
@@ -122,6 +104,12 @@ public class login extends AppCompatActivity {
                         startErrorActivity();;
                     }
                 });
+            }
+        });
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startForgotPasswordActivity();
             }
         });
     }
@@ -146,6 +134,10 @@ public class login extends AppCompatActivity {
         Intent intent = new Intent(this, somethingWentWrong.class);
         startActivity(intent);
         nDialog.dismiss();
+    }
+    public void startForgotPasswordActivity(){
+        Intent intent = new Intent(this, forgotPassword.class);
+        startActivity(intent);
     }
     @Override
     public void onBackPressed() {

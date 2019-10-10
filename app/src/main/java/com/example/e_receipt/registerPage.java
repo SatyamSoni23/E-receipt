@@ -68,7 +68,7 @@ public class registerPage extends AppCompatActivity {
                     return;
                 }
                 if(rePassword.isEmpty()){
-                    Toast.makeText(registerPage.this, "Re-Enter Password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(registerPage.this, "Enter Confirm Password", Toast.LENGTH_SHORT).show();
                     nDialog.dismiss();
                     return;
                 }
@@ -97,7 +97,7 @@ public class registerPage extends AppCompatActivity {
                                                     sendVerificationEmail();
                                                     demoRef1 = demoRef.child(username);
                                                     demoRef1.child("username").setValue(username);
-                                                    demoRef1.child("password").setValue(password);
+                                                    //demoRef1.child("password").setValue(password);
                                                     demoRef1.child("count").setValue(count);
 
                                                 } else {
@@ -127,6 +127,7 @@ public class registerPage extends AppCompatActivity {
     public void startOfflineActivity(){
         Intent intent = new Intent(this, offline.class);
         startActivity(intent);
+        nDialog.dismiss();
     }
     @Override
     public void onBackPressed() {

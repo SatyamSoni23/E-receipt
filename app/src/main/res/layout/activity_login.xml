@@ -51,7 +51,7 @@
             android:layout_height="0dp"
             android:layout_weight="1.8"
             android:layout_marginHorizontal="35dp"
-            android:hint="Username"
+            android:hint="Email"
             android:background="@drawable/recttrans"
             android:textSize="25dp"
             android:fontFamily="serif-monospace"
@@ -90,10 +90,25 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.3"/>
+        <TextView
+            android:id="@+id/forgotPassword"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:text="Forgot Password"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="22sp"
+            android:autoSizeMinTextSize="10sp"
+            android:fontFamily="sans-serif-condensed-light"
+            android:stateListAnimator="@animator/button_state_list_anim"
+            android:textStyle="italic|bold"
+            android:textColor="#005ecb"
+            android:textColorHint="@color/colorPrimary"
+            android:gravity="center"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.2"/>
+            android:layout_weight="0.3"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"

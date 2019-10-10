@@ -99,7 +99,7 @@
             android:background="@drawable/recttrans"
             android:fontFamily="serif-monospace"
             android:gravity="center"
-            android:hint="Confirm-Password"
+            android:hint="Confirm Password"
             android:inputType="textPassword"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"

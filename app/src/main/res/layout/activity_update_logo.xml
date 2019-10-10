@@ -125,7 +125,7 @@
                 android:background="@drawable/anibutton"
                 android:stateListAnimator="@animator/button_state_list_anim"
                 android:gravity="center"
-                android:text="Next"
+                android:text="Update"
                 android:fontFamily="monospace"
                 android:textColor="#FFFFFF"
                 android:autoSizeTextType="uniform"
