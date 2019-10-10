@@ -3,6 +3,7 @@ package com.example.e_receipt;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,9 +28,12 @@ import java.io.File;
 
 public class login extends AppCompatActivity {
     DatabaseReference rootRef, demoRef,demoRef1;
-    public static String firePassword, strUsername, strPassword, videoPlay;
+    private FirebaseAuth mAuth;
+
+    public static String firePassword, strUsername,strNewUsername, strPassword, videoPlay;
     Button login;
     EditText username, password;
+    ProgressDialog nDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,20 +43,21 @@ public class login extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
 
+        mAuth = FirebaseAuth.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt");
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ProgressDialog nDialog;
                 nDialog = new ProgressDialog(login.this);
                 nDialog.setMessage("Loading..");
                 nDialog.setIndeterminate(false);
                 nDialog.setCancelable(true);
                 nDialog.show();
-                strUsername = username.getText().toString();
+                strNewUsername = username.getText().toString();
                 strPassword = password.getText().toString();
-                if(strUsername.isEmpty()){
+                strUsername = strNewUsername.replaceAll("[@.]","");
+                if(strNewUsername.isEmpty()){
                     Toast.makeText(login.this, "Enter Username", Toast.LENGTH_SHORT).show();
                     nDialog.dismiss();
                     return;
@@ -57,11 +67,31 @@ public class login extends AppCompatActivity {
                     nDialog.dismiss();
                     return;
                 }
+                if(!strNewUsername.matches("[a-zA-Z0-9]+@[a-z]+\\.+[a-z]+")){
+                    Toast.makeText(login.this, "Enter valid email",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
+                    return;
+                }
                 demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child(strUsername).exists())
                         {
+                            mAuth.signInWithEmailAndPassword(strNewUsername, strPassword).addOnCompleteListener(login.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if(task.isSuccessful()){
+                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                        if (user != null) {
+                                            startActivityLogin();
+                                        }
+                                    }
+                                    else{
+                                        startWrongActivity();
+                                    }
+                                }
+                            });
+                            /*
                             demoRef1 = demoRef.child(strUsername).child("password");
                             demoRef1.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
@@ -81,11 +111,10 @@ public class login extends AppCompatActivity {
                                     startErrorActivity();
 
                                 }
-                            });
+                            });*/
                         }
                         else{
                             startWrongActivity();
-                            nDialog.dismiss();
                         }
                     }
                     @Override
@@ -111,10 +140,12 @@ public class login extends AppCompatActivity {
     public void startWrongActivity(){
         Intent intent = new Intent(this, wrg.class);
         startActivity(intent);
+        nDialog.dismiss();
     }
     public void startErrorActivity(){
         Intent intent = new Intent(this, somethingWentWrong.class);
         startActivity(intent);
+        nDialog.dismiss();
     }
     @Override
     public void onBackPressed() {

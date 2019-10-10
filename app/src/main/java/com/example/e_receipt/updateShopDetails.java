@@ -43,6 +43,9 @@ public class updateShopDetails extends AppCompatActivity {
         gstNumber = findViewById(R.id.gstNumber);
         slogan = findViewById(R.id.slogan);
 
+        shopEmail.setText(login.strNewUsername);
+        shopEmail.setEnabled(false);
+
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt").child(login.strUsername);
         demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -63,7 +66,6 @@ public class updateShopDetails extends AppCompatActivity {
                         shopPincode.setText(dataSnapshot.child("shopDetail").child("shopPincode").getValue().toString());
                     }
                     if(dataSnapshot.child("shopDetail").child("shopEmail").exists()){
-
                         shopEmail.setText(dataSnapshot.child("shopDetail").child("shopEmail").getValue().toString());
                     }
                     if(dataSnapshot.child("shopDetail").child("gstNumber").exists()){
@@ -140,18 +142,6 @@ public class updateShopDetails extends AppCompatActivity {
                     nDialog.dismiss();
                     return;
                 }
-                if(strShopEmail.matches("")){
-                    Toast.makeText(updateShopDetails.this, "Enter email",Toast.LENGTH_LONG).show();
-                    nDialog.dismiss();
-                    return;
-                }
-
-                if(!strShopEmail.matches("[a-zA-Z0-9]+@[a-z]+\\.+[a-z]+")){
-                    Toast.makeText(updateShopDetails.this, "Enter valid email",Toast.LENGTH_LONG).show();
-                    nDialog.dismiss();
-                    return;
-                }
-
 
                 demoRef1 = demoRef.child("shopDetail");
                 demoRef1.child("shopName").setValue(strShopName);

@@ -21,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class shopFirstDetail extends AppCompatActivity {
     DatabaseReference rootRef, demoRef, demoRef1;
-    private FirebaseAuth mAuth;
     Button next;
     EditText shopName, shopMobile, shopAddress, shopPincode, shopEmail, gstNumber, slogan;
     public static String strShopName, strShopMobile, strShopAddress, strShopPincode, strShopEmail, strGstNumber, strSlogan;
@@ -40,7 +39,9 @@ public class shopFirstDetail extends AppCompatActivity {
         gstNumber = findViewById(R.id.gstNumber);
         slogan = findViewById(R.id.slogan);
 
-        mAuth = FirebaseAuth.getInstance();
+        shopEmail.setText(registerPage.strUsername);
+        shopEmail.setEnabled(false);
+
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt").child(registerPage.username);
         next.setOnClickListener(new View.OnClickListener() {
@@ -125,19 +126,15 @@ public class shopFirstDetail extends AppCompatActivity {
                 else{
                     demoRef1.child("slogan").setValue(strSlogan);
                 }
-                mAuth.createUserWithEmailAndPassword(strShopEmail, registerPage.password)
-                        .addOnCompleteListener(shopFirstDetail.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    sendVerificationEmail();
-                                } else {
-                                    startOfflineActivity();
-                                }
-                            }
-                        });
+                startShopLogoActivity();
+
             }
         });
+    }
+    public void startShopLogoActivity(){
+        Intent intent = new Intent(this, shopLogoUpload.class);
+        startActivity(intent);
+        nDialog.dismiss();
     }
     public void startOfflineActivity(){
         Intent intent = new Intent(this, offline.class);
@@ -146,23 +143,5 @@ public class shopFirstDetail extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Toast.makeText(shopFirstDetail.this, "Please fill the remaining details", Toast.LENGTH_SHORT).show();
-    }
-    private void sendVerificationEmail(){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    FirebaseAuth.getInstance().signOut();
-                    startActivity(new Intent(shopFirstDetail.this, shopLogoUpload.class));
-                    nDialog.dismiss();
-                    finish();
-                }
-                else{
-                    Toast.makeText(shopFirstDetail.this, "signup Failed",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 }
