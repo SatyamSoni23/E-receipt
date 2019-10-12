@@ -47,6 +47,16 @@ public class forgotPassword extends AppCompatActivity {
                 nDialog.show();
                 strShopEmail = shopEmail.getText().toString();
                 strNewShopEmail = strShopEmail.replaceAll("[@.]","");
+                if(strShopEmail.isEmpty()){
+                    Toast.makeText(forgotPassword.this, "Enter Email", Toast.LENGTH_SHORT).show();
+                    nDialog.dismiss();
+                    return;
+                }
+                if(!(strShopEmail.matches("[a-zA-Z0-9.]+@[a-z]+\\.+[a-z]+") || strShopEmail.matches("[a-zA-Z0-9.]+@[a-z]+\\.+[a-z]+\\.+[a-z]+"))){
+                    Toast.makeText(forgotPassword.this, "Enter valid email",Toast.LENGTH_LONG).show();
+                    nDialog.dismiss();
+                    return;
+                }
                 demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

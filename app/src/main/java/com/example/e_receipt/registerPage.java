@@ -58,7 +58,7 @@ public class registerPage extends AppCompatActivity {
                 username =strUsername.replaceAll("[@.]","");
 
                 if(strUsername.isEmpty()){
-                    Toast.makeText(registerPage.this, "Enter Username", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(registerPage.this, "Enter Email", Toast.LENGTH_SHORT).show();
                     nDialog.dismiss();
                     return;
                 }
@@ -72,7 +72,7 @@ public class registerPage extends AppCompatActivity {
                     nDialog.dismiss();
                     return;
                 }
-                if(!strUsername.matches("[a-zA-Z0-9]+@[a-z]+\\.+[a-z]+")){
+                if(!(strUsername.matches("[a-zA-Z0-9.]+@[a-z]+\\.+[a-z]+") || strUsername.matches("[a-zA-Z0-9.]+@[a-z]+\\.+[a-z]+\\.+[a-z]+"))){
                     Toast.makeText(registerPage.this, "Enter valid email",Toast.LENGTH_LONG).show();
                     nDialog.dismiss();
                     return;
@@ -97,7 +97,6 @@ public class registerPage extends AppCompatActivity {
                                                     sendVerificationEmail();
                                                     demoRef1 = demoRef.child(username);
                                                     demoRef1.child("username").setValue(username);
-                                                    //demoRef1.child("password").setValue(password);
                                                     demoRef1.child("count").setValue(count);
 
                                                 } else {

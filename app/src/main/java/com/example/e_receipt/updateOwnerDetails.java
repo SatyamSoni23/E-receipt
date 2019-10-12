@@ -83,7 +83,7 @@ public class updateOwnerDetails extends AppCompatActivity {
                 strOwnerEmail = ownerEmail.getText().toString();
 
                 if(strOwnerName.matches("")){
-                    Toast.makeText(updateOwnerDetails.this, "Enter Shop Name",Toast.LENGTH_LONG).show();
+                    Toast.makeText(updateOwnerDetails.this, "Enter Owner Name",Toast.LENGTH_LONG).show();
                     nDialog.dismiss();
                     return;
                 }

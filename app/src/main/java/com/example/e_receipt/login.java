@@ -61,7 +61,7 @@ public class login extends AppCompatActivity {
                 strPassword = password.getText().toString();
                 strUsername = strNewUsername.replaceAll("[@.]","");
                 if(strNewUsername.isEmpty()){
-                    Toast.makeText(login.this, "Enter Username", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(login.this, "Enter Email", Toast.LENGTH_SHORT).show();
                     nDialog.dismiss();
                     return;
                 }
@@ -70,7 +70,7 @@ public class login extends AppCompatActivity {
                     nDialog.dismiss();
                     return;
                 }
-                if(!strNewUsername.matches("[a-zA-Z0-9]+@[a-z]+\\.+[a-z]+")){
+                if(!(strNewUsername.matches("[a-zA-Z0-9.]+@[a-z]+\\.+[a-z]+") || strNewUsername.matches("[a-zA-Z0-9.]+@[a-z]+\\.+[a-z]+\\.+[a-z]+"))){
                     Toast.makeText(login.this, "Enter valid email",Toast.LENGTH_LONG).show();
                     nDialog.dismiss();
                     return;

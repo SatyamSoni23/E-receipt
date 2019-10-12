@@ -48,13 +48,18 @@ public class updatePassword extends AppCompatActivity {
                 nDialog.setCancelable(true);
                 nDialog.show();
                 strShopEmail = shopEmail.getText().toString();
+                if(strShopEmail.isEmpty()){
+                    Toast.makeText(updatePassword.this, "Enter Email", Toast.LENGTH_SHORT).show();
+                    nDialog.dismiss();
+                    return;
+                }
                 if(login.strNewUsername.equals(strShopEmail)){
                     FirebaseAuth.getInstance().sendPasswordResetEmail(login.strNewUsername)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Toast.makeText(updatePassword.this, "Password Reset link send to your email",
+                                        Toast.makeText(updatePassword.this, "Password reset link send to your email",
                                                 Toast.LENGTH_SHORT).show();
                                         startActivityUpdate();
                                     }
@@ -67,36 +72,8 @@ public class updatePassword extends AppCompatActivity {
                 else{
                     Toast.makeText(updatePassword.this, "Enter correct shop email",
                             Toast.LENGTH_SHORT).show();
+                    nDialog.dismiss();
                 }
-                /*
-                demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        firePassword =dataSnapshot.child("password").getValue().toString();
-                        if(firePassword.equals(strOldPassword)){
-                            if(strPassword.equals(strRePassword)){
-                                demoRef.child("password").setValue(strPassword);
-                                Toast.makeText(updatePassword.this, "Password successfully updated",Toast.LENGTH_LONG).show();
-                                startActivityNext();
-                            }
-                            else{
-                                Toast.makeText(updatePassword.this, "Password not match",Toast.LENGTH_LONG).show();
-                                nDialog.dismiss();
-                            }
-                        }
-                        else{
-                            Toast.makeText(updatePassword.this, "Enter correct current password",Toast.LENGTH_LONG).show();
-                            nDialog.dismiss();
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        startSomethingWentWrongActivity();
-                    }
-                });
-
-                 */
             }
         });
     }
