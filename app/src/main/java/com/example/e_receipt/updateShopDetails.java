@@ -133,14 +133,18 @@ public class updateShopDetails extends AppCompatActivity {
                     return;
                 }
                 if(strGstNumber.matches("")){
-                    Toast.makeText(updateShopDetails.this, "Enter GST number",Toast.LENGTH_LONG).show();
-                    nDialog.dismiss();
-                    return;
+                    //Toast.makeText(updateShopDetails.this, "Enter GST number",Toast.LENGTH_LONG).show();
+                    strGstNumber = "None";
+                    //nDialog.dismiss();
+                    //return;
                 }
                 if(strGstNumber.length() != 15){
-                    Toast.makeText(updateShopDetails.this, "Enter valid GST number",Toast.LENGTH_LONG).show();
-                    nDialog.dismiss();
-                    return;
+                    //Toast.makeText(updateShopDetails.this, "Enter valid GST number",Toast.LENGTH_LONG).show();
+                    if(strGstNumber != "None") {
+                        Toast.makeText(updateShopDetails.this, "Enter valid GST number",Toast.LENGTH_LONG).show();
+                        nDialog.dismiss();
+                        return;
+                    }
                 }
 
                 demoRef1 = demoRef.child("shopDetail");
