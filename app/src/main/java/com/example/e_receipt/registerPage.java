@@ -62,8 +62,8 @@ public class registerPage extends AppCompatActivity {
                     nDialog.dismiss();
                     return;
                 }
-                if(password.isEmpty()){
-                    Toast.makeText(registerPage.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                if(password.isEmpty() || password.length() < 6){
+                    Toast.makeText(registerPage.this, "Password length should be greater then 6", Toast.LENGTH_SHORT).show();
                     nDialog.dismiss();
                     return;
                 }

@@ -103,6 +103,7 @@ public class home extends AppCompatActivity {
         Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.video1);
         videoView.setMediaController(mediaController);
         videoView.setVideoURI(uri);
+        videoView.isInTouchMode();
         videoView.requestFocus();
         if(login.videoPlay == "play"){
             videoView.start();
