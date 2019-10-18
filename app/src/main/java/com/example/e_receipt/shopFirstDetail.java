@@ -92,13 +92,9 @@ public class shopFirstDetail extends AppCompatActivity {
                     return;
                 }
                 if(strGstNumber.matches("")){
-                    //Toast.makeText(shopFirstDetail.this, "Enter GST number",Toast.LENGTH_LONG).show();
                     strGstNumber = "None";
-                    //nDialog.dismiss();
-                    //return;
                 }
                 if(strGstNumber.length() != 15){
-                    //Toast.makeText(shopFirstDetail.this, "Enter valid GST number",Toast.LENGTH_LONG).show();
                     if(strGstNumber != "None"){
                         Toast.makeText(shopFirstDetail.this, "Enter valid GST number",Toast.LENGTH_LONG).show();
                         nDialog.dismiss();
