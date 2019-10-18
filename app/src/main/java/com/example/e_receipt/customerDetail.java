@@ -44,7 +44,7 @@ public class customerDetail extends AppCompatActivity {
         rBackground = findViewById(R.id.rBackground);
         next = findViewById(R.id.next);
 
-
+        rBackground.setSelection(0);
         list.add("Select Receipt Design");
         list.add("Flower");
         list.add("Jewel");
@@ -71,7 +71,6 @@ public class customerDetail extends AppCompatActivity {
 
             }
         });
-
         rBackground.setAdapter(arrayAdapter);
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt").child(login.strUsername);
@@ -157,10 +156,22 @@ public class customerDetail extends AppCompatActivity {
     }
     public void startNextActivity(){
         Intent intent = new Intent(this, transactionDetail.class);
+        list.clear();
         startActivity(intent);
     }
     public void startSomethingWentWrongActivity(){
         Intent intent = new Intent(this, somethingWentWrong.class);
+        list.clear();
         startActivity(intent);
+    }
+    public void startHomeActivity(){
+        Intent intent = new Intent(this, home.class);
+        list.clear();
+        startActivity(intent);
+    }
+    @Override
+    public void onBackPressed() {
+        startHomeActivity();
+        login.videoPlay = "notPlay";
     }
 }
