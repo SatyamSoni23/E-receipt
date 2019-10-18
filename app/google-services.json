@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "89237027478",
+    "firebase_url": "https://e-receipt-e812a.firebaseio.com",
+    "project_id": "e-receipt-e812a",
+    "storage_bucket": "e-receipt-e812a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89237027478:android:5dc6c32b7701f1c2",
+        "android_client_info": {
+          "package_name": "com.example.e_receipt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89237027478-icquj3lpe5dco58v076rbiosdf5jhb8i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.e_receipt",
+            "certificate_hash": "87232138418886e73f91b9f6cfb0c87b0f7de1f7"
+          }
+        },
+        {
+          "client_id": "89237027478-ufa2ui3fjs4b1hi6ci80nj73irgf4ugp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAorwt-tYzZENdR-0Xco-aNb1-CtmOlStE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89237027478-ufa2ui3fjs4b1hi6ci80nj73irgf4ugp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
