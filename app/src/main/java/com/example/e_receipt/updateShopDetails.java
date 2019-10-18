@@ -69,10 +69,16 @@ public class updateShopDetails extends AppCompatActivity {
                         shopEmail.setText(dataSnapshot.child("shopDetail").child("shopEmail").getValue().toString());
                     }
                     if(dataSnapshot.child("shopDetail").child("gstNumber").exists()){
-                        gstNumber.setText(dataSnapshot.child("shopDetail").child("gstNumber").getValue().toString());
+                        strGstNumber = dataSnapshot.child("shopDetail").child("gstNumber").getValue().toString();
+                        if(strGstNumber == "None"){
+                            gstNumber.setText("");
+                        }
                     }
                     if(dataSnapshot.child("shopDetail").child("slogan").exists()){
-                        slogan.setText(dataSnapshot.child("shopDetail").child("slogan").getValue().toString());
+                        strSlogan = dataSnapshot.child("shopDetail").child("slogan").getValue().toString();
+                        if(strSlogan == "None"){
+                            slogan.setText("");
+                        }
                     }
                 }
             }
@@ -82,6 +88,7 @@ public class updateShopDetails extends AppCompatActivity {
                 startWrongActivity();
             }
         });
+
 
         mAuth = FirebaseAuth.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
@@ -133,13 +140,9 @@ public class updateShopDetails extends AppCompatActivity {
                     return;
                 }
                 if(strGstNumber.matches("")){
-                    //Toast.makeText(updateShopDetails.this, "Enter GST number",Toast.LENGTH_LONG).show();
                     strGstNumber = "None";
-                    //nDialog.dismiss();
-                    //return;
                 }
                 if(strGstNumber.length() != 15){
-                    //Toast.makeText(updateShopDetails.this, "Enter valid GST number",Toast.LENGTH_LONG).show();
                     if(strGstNumber != "None") {
                         Toast.makeText(updateShopDetails.this, "Enter valid GST number",Toast.LENGTH_LONG).show();
                         nDialog.dismiss();
