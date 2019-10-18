@@ -161,15 +161,12 @@ public class home extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 if(id == R.id.invoice){
-                    Toast.makeText(home.this, "Make Invoice", Toast.LENGTH_SHORT).show();
                     startInvoiceActivity();
                 }
                 else if(id == R.id.transferMoney){
-                    Toast.makeText(home.this, "Transfer Money", Toast.LENGTH_SHORT).show();
                     startTransferMoneyActivity();
                 }
                 else if(id == R.id.customerDetails){
-                    Toast.makeText(home.this, "Customer Details", Toast.LENGTH_SHORT).show();
                     startCustomerDetailActivity();
                 }
                 return false;
@@ -222,6 +219,7 @@ public class home extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         Uri uri = Uri.parse(pa);
         intent.setDataAndType(uri, "*/*");
+        Toast.makeText(home.this, "Select File Manager", Toast.LENGTH_SHORT).show();
         startActivity(Intent.createChooser(intent, "Open folder"));
     }
     public void startTransferMoneyActivity(){
