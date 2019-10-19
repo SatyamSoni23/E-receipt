@@ -89,14 +89,5 @@ public class invoiceSend extends AppCompatActivity {
         Intent intent = new Intent(this, view.class);
         startActivity(intent);
     }
-    @Override
-    public void onBackPressed() {
-        startLoginActivity();
-    }
-    public void startLoginActivity(){
-        Intent intent = new Intent(this, home.class);
-        login.videoPlay = "notPlay";
-        startActivity(intent);
-    }
 }
 
