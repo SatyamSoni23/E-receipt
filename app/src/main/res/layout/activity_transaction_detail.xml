@@ -1139,7 +1139,7 @@
                     <TextView
                         android:layout_height="match_parent"
                         android:layout_width="0dp"
-                        android:text="Tax"
+                        android:text="GST"
                         android:layout_weight="3"
                         android:background="@drawable/tableborder"
                         android:autoSizeTextType="uniform"
@@ -1156,18 +1156,31 @@
                         android:id="@+id/tax"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="2"
+                        android:layout_weight="1.6"
                         android:autoSizeMaxTextSize="22sp"
                         android:autoSizeMinTextSize="10sp"
                         android:autoSizeTextType="uniform"
                         android:background="@drawable/tableborder"
                         android:fontFamily="sans-serif-condensed"
-                        android:hint="(in %)"
                         android:gravity="center"
                         android:inputType="number"
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:textStyle="italic|bold" />
+                    <TextView
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:text="%"
+                        android:layout_weight="0.4"
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeMaxTextSize="22sp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:fontFamily="sans-serif-condensed-light"
+                        android:textStyle="italic|bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimary"
+                        android:gravity="center"
+                        />
                 </TableRow>
                 <TableRow
                     android:layout_width="match_parent"

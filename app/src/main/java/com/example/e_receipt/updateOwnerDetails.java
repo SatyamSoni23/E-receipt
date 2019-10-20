@@ -123,7 +123,7 @@ public class updateOwnerDetails extends AppCompatActivity {
                     return;
                 }
 
-                if(!strOwnerEmail.matches("[a-zA-Z0-9]+@[a-z]+\\.+[a-z]+")){
+                if(!strOwnerEmail.matches("[a-zA-Z0-9.]+@[a-z]+\\.+[a-z]+")){
                     Toast.makeText(updateOwnerDetails.this, "Enter valid Email",Toast.LENGTH_LONG).show();
                     nDialog.dismiss();
                     return;

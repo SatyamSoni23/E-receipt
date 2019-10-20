@@ -387,6 +387,7 @@ public class transactionDetail extends AppCompatActivity {
                     description1.requestFocus();
                     return;
                 }
+
                 /*
                 if(rate1.getText().toString().isEmpty()){ r1 = 0;}
                 else{r1 = Integer.parseInt(rate1.getText().toString());}
@@ -424,7 +425,7 @@ public class transactionDetail extends AppCompatActivity {
                 */
                 if(tax.getText().toString().isEmpty()){ tax1 = 0; }
                 else{ tax1 = Integer.parseInt(tax.getText().toString());
-                        tax.setText(String.valueOf(tax1) + " % ");}
+                        tax.setText(String.valueOf(tax1));}
 
                 if(otherCharges.getText().toString().isEmpty()){ ext1 = 0;}
                 else{ ext1 = Integer.parseInt(otherCharges.getText().toString()); }

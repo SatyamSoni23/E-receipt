@@ -107,7 +107,7 @@ public class shopFirstDetail extends AppCompatActivity {
                     return;
                 }
 
-                if(!strShopEmail.matches("[a-zA-Z0-9]+@[a-z]+\\.+[a-z]+")){
+                if(!strShopEmail.matches("[a-zA-Z0-9.]+@[a-z]+\\.+[a-z]+")){
                     Toast.makeText(shopFirstDetail.this, "Enter valid email",Toast.LENGTH_LONG).show();
                     nDialog.dismiss();
                     return;
