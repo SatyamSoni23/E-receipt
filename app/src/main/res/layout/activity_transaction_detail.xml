@@ -1099,6 +1099,62 @@
                         android:inputType="number"
                         />
                 </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:weightSum="10"
+                    android:background="@drawable/tableborder">
+                    <EditText
+                        android:id="@+id/otherInfo1"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:hint="Other Information"
+                        android:background="@drawable/tableborder"
+                        android:layout_weight="5"
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeMaxTextSize="22sp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="italic"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimary"
+                        android:gravity="center"
+                        android:inputType="text"
+                        />
+                    <TextView
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:text="Total"
+                        android:layout_weight="3"
+                        android:background="@drawable/tableborder"
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeMaxTextSize="22sp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:fontFamily="sans-serif-condensed-light"
+                        android:textStyle="italic|bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimary"
+                        android:gravity="center"
+                        />
+                    <EditText
+                        android:id="@+id/total"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:background="@drawable/tableborder"
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeMaxTextSize="22sp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="italic|bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimary"
+                        android:gravity="center"
+                        android:inputType="number"
+                        />
+                </TableRow>
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -1180,61 +1236,6 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        />
-                </TableRow>
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:weightSum="10"
-                    android:background="@drawable/tableborder">
-                    <EditText
-                        android:id="@+id/otherInfo1"
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:hint="Other Information"
-                        android:background="@drawable/tableborder"
-                        android:layout_weight="5"
-                        android:autoSizeTextType="uniform"
-                        android:autoSizeMaxTextSize="22sp"
-                        android:autoSizeMinTextSize="10sp"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textStyle="italic"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimary"
-                        android:gravity="center"
-                        android:inputType="text"
-                        />
-                    <TextView
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:text="Total"
-                        android:layout_weight="3"
-                        android:background="@drawable/tableborder"
-                        android:autoSizeTextType="uniform"
-                        android:autoSizeMaxTextSize="22sp"
-                        android:autoSizeMinTextSize="10sp"
-                        android:fontFamily="sans-serif-condensed-light"
-                        android:textStyle="italic|bold"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimary"
-                        android:gravity="center"
-                        />
-                    <EditText
-                        android:id="@+id/total"
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:layout_weight="2"
-                        android:background="@drawable/tableborder"
-                        android:autoSizeTextType="uniform"
-                        android:autoSizeMaxTextSize="22sp"
-                        android:autoSizeMinTextSize="10sp"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textStyle="italic|bold"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimary"
-                        android:gravity="center"
-                        android:inputType="number"
                         />
                 </TableRow>
                 <TableRow

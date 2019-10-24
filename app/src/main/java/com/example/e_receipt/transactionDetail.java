@@ -69,7 +69,7 @@ public class transactionDetail extends AppCompatActivity {
         r1, r2, r3, r4, r5, r6, r7, r8,
         t1, t2, t3, t4, t5, t6, t7, t8,
         a1, a2, a3, a4, a5, a6, a7, a8,
-        tax1, ext1, grandTotal, disc, totFinal;
+        tax1, ext1, grandTotal, disc, totFinal = 0;
     TextView shopName,customerName, customerMobile, customerAddress, shopAddress, shopMobile, shopEmail, gstNumber;
     ImageView shopLogo;
     private Button save;
@@ -289,6 +289,8 @@ public class transactionDetail extends AppCompatActivity {
                 else{q1 = Integer.parseInt(qty1.getText().toString());}
                 t1 = r1 * q1;
                 amount1.setText(String.valueOf(t1));
+                totFinal = totFinal + t1;
+                total.setText(String.valueOf(totFinal));
             }
         });
         rate2.setOnClickListener(new View.OnClickListener() {
@@ -300,6 +302,8 @@ public class transactionDetail extends AppCompatActivity {
                 else{q2 = Integer.parseInt(qty2.getText().toString());}
                 t2 = r2 * q2;
                 amount2.setText(String.valueOf(t2));
+                totFinal = totFinal + t2;
+                total.setText(String.valueOf(totFinal));
             }
         });
         rate3.setOnClickListener(new View.OnClickListener() {
@@ -311,6 +315,8 @@ public class transactionDetail extends AppCompatActivity {
                 else{q3 = Integer.parseInt(qty3.getText().toString());}
                 t3 = r3 * q3;
                 amount3.setText(String.valueOf(t3));
+                totFinal = totFinal + t3;
+                total.setText(String.valueOf(totFinal));
             }
         });
         rate4.setOnClickListener(new View.OnClickListener() {
@@ -322,6 +328,8 @@ public class transactionDetail extends AppCompatActivity {
                 else{q4 = Integer.parseInt(qty4.getText().toString());}
                 t4 = r4 * q4;
                 amount4.setText(String.valueOf(t4));
+                totFinal = totFinal + t4;
+                total.setText(String.valueOf(totFinal));
             }
         });
         rate5.setOnClickListener(new View.OnClickListener() {
@@ -333,6 +341,8 @@ public class transactionDetail extends AppCompatActivity {
                 else{q5 = Integer.parseInt(qty5.getText().toString());}
                 t5 = r5 * q5;
                 amount5.setText(String.valueOf(t5));
+                totFinal = totFinal + t5;
+                total.setText(String.valueOf(totFinal));
             }
         });
         rate6.setOnClickListener(new View.OnClickListener() {
@@ -344,6 +354,8 @@ public class transactionDetail extends AppCompatActivity {
                 else{q6 = Integer.parseInt(qty6.getText().toString());}
                 t6 = r6 * q6;
                 amount6.setText(String.valueOf(t6));
+                totFinal = totFinal + t6;
+                total.setText(String.valueOf(totFinal));
             }
         });
         rate7.setOnClickListener(new View.OnClickListener() {
@@ -355,6 +367,8 @@ public class transactionDetail extends AppCompatActivity {
                 else{q7 = Integer.parseInt(qty7.getText().toString());}
                 t7 = r7 * q7;
                 amount7.setText(String.valueOf(t7));
+                totFinal = totFinal + t7;
+                total.setText(String.valueOf(totFinal));
             }
         });rate8.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -365,6 +379,27 @@ public class transactionDetail extends AppCompatActivity {
                 else{q8 = Integer.parseInt(qty8.getText().toString());}
                 t8 = r8 * q8;
                 amount8.setText(String.valueOf(t8));
+                totFinal = totFinal + t8;
+                total.setText(String.valueOf(totFinal));
+            }
+        });
+
+        if(discount.getText().toString().isEmpty()){disc = 0;}
+        else{disc = Integer.parseInt(discount.getText().toString());}
+
+        if(otherCharges.getText().toString().isEmpty()){ext1 = 0;}
+        else{ext1 = Integer.parseInt(otherCharges.getText().toString());}
+
+        if(tax.getText().toString().isEmpty()){ tax1 = 0; }
+        else{ tax1 = Integer.parseInt(tax.getText().toString());}
+
+        discount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!discount.getText().toString().isEmpty()) {
+                    grandTotal = totFinal + ext1 + (totFinal*tax1)/100 - disc;
+                    amountCustomer.setText(String.valueOf(grandTotal));
+                }
             }
         });
         save.setOnClickListener(new View.OnClickListener() {
@@ -388,41 +423,6 @@ public class transactionDetail extends AppCompatActivity {
                     return;
                 }
 
-                /*
-                if(rate1.getText().toString().isEmpty()){ r1 = 0;}
-                else{r1 = Integer.parseInt(rate1.getText().toString());}
-                if(rate2.getText().toString().isEmpty()){ r2 = 0;}
-                else{r2 = Integer.parseInt(rate2.getText().toString());}
-                if(rate3.getText().toString().isEmpty()){ r3 = 0;}
-                else{r3 = Integer.parseInt(rate3.getText().toString());}
-                if(rate4.getText().toString().isEmpty()){ r4 = 0;}
-                else{r4 = Integer.parseInt(rate4.getText().toString());}
-                if(rate5.getText().toString().isEmpty()){ r5 = 0;}
-                else{r5 = Integer.parseInt(rate5.getText().toString());}
-                if(rate6.getText().toString().isEmpty()){ r6 = 0;}
-                else{r6 = Integer.parseInt(rate6.getText().toString());}
-                if(rate7.getText().toString().isEmpty()){ r7 = 0;}
-                else{r7 = Integer.parseInt(rate7.getText().toString());}
-                if(rate8.getText().toString().isEmpty()){ r8 = 0;}
-                else{r8 = Integer.parseInt(rate8.getText().toString());}
-
-                if(qty1.getText().toString().isEmpty()){ q1 = 0;}
-                else{q1 = Integer.parseInt(qty1.getText().toString());}
-                if(qty2.getText().toString().isEmpty()){ q2 = 0;}
-                else{q2 = Integer.parseInt(qty2.getText().toString());}
-                if(qty3.getText().toString().isEmpty()){ q3 = 0;}
-                else{q3 = Integer.parseInt(qty3.getText().toString());}
-                if(qty4.getText().toString().isEmpty()){ q4 = 0;}
-                else{q4 = Integer.parseInt(qty4.getText().toString());}
-                if(qty5.getText().toString().isEmpty()){ q5 = 0;}
-                else{q5 = Integer.parseInt(qty5.getText().toString());}
-                if(qty6.getText().toString().isEmpty()){ q6 = 0;}
-                else{q6 = Integer.parseInt(qty6.getText().toString());}
-                if(qty7.getText().toString().isEmpty()){ q7 = 0;}
-                else{q7 = Integer.parseInt(qty7.getText().toString());}
-                if(qty8.getText().toString().isEmpty()){ q8 = 0;}
-                else{q8 = Integer.parseInt(qty8.getText().toString());}
-                */
                 if(tax.getText().toString().isEmpty()){ tax1 = 0; }
                 else{ tax1 = Integer.parseInt(tax.getText().toString());
                         tax.setText(String.valueOf(tax1));}
@@ -466,9 +466,9 @@ public class transactionDetail extends AppCompatActivity {
 
 
 
-                totFinal = (t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8) + ext1 + ((t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8)*tax1)/100;;
+                totFinal = (t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8);
                 total.setText(String.valueOf(totFinal));
-                grandTotal = totFinal - disc;
+                grandTotal = totFinal + ext1 + ((t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8)*tax1)/100 - disc;
                 amountCustomer.setText(String.valueOf(grandTotal));
                 demoRefCount.setValue(count);
                 save.setVisibility(View.GONE);
@@ -560,5 +560,10 @@ public class transactionDetail extends AppCompatActivity {
         Intent intent = new Intent(this, offline.class);
         startActivity(intent);
         save.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this, "Access denied", Toast.LENGTH_SHORT).show();
     }
 }
