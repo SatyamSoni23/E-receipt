@@ -15,6 +15,8 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -65,10 +67,7 @@ public class transactionDetail extends AppCompatActivity {
             rate1, rate2, rate3, rate4, rate5, rate6, rate7, rate8,
             amount1, amount2, amount3, amount4, amount5, amount6, amount7, amount8,
             tax, otherCharges, total, discount, amountCustomer;
-    float q1, q2, q3, q4, q5, q6, q7, q8,
-        r1, r2, r3, r4, r5, r6, r7, r8,
-        t1, t2, t3, t4, t5, t6, t7, t8,
-        a1, a2, a3, a4, a5, a6, a7, a8,
+    float t1 = 0, t2 = 0, t3 = 0, t4 = 0, t5 = 0, t6 = 0, t7 = 0, t8 = 0,
         tax1, ext1, grandTotal, disc, totFinal = 0;
     TextView shopName,customerName, customerMobile, customerAddress, shopAddress, shopMobile, shopEmail, gstNumber;
     ImageView shopLogo;
@@ -280,196 +279,379 @@ public class transactionDetail extends AppCompatActivity {
             }
         });
 
-        rate1.setOnClickListener(new View.OnClickListener() {
+        qty1.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                if(rate1.getText().toString().isEmpty()){ r1 = 0;}
-                else{r1 = Integer.parseInt(rate1.getText().toString());}
-                if(qty1.getText().toString().isEmpty()){ q1 = 0;}
-                else{q1 = Integer.parseInt(qty1.getText().toString());}
-                t1 = r1 * q1;
-                amount1.setText(String.valueOf(t1));
-                totFinal = totFinal + t1;
-                total.setText(String.valueOf(totFinal));
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amount1.setText(calc1());
+                t1 = Float.valueOf(amount1.getText().toString());
+                totFinal = t1+t2+t3+t4+t5+t6+t7+t8;
+                total.setText(Float.toString(totFinal));
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
-        rate2.setOnClickListener(new View.OnClickListener() {
+        rate1.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                if(rate2.getText().toString().isEmpty()){ r2 = 0;}
-                else{r2 = Integer.parseInt(rate2.getText().toString());}
-                if(qty2.getText().toString().isEmpty()){ q2 = 0;}
-                else{q2 = Integer.parseInt(qty2.getText().toString());}
-                t2 = r2 * q2;
-                amount2.setText(String.valueOf(t2));
-                totFinal = totFinal + t2;
-                total.setText(String.valueOf(totFinal));
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amount1.setText(calc1());
+                t1 = Float.valueOf(amount1.getText().toString());
+                totFinal = t1+t2+t3+t4+t5+t6+t7+t8;
+                total.setText(Float.toString(totFinal));
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
-        rate3.setOnClickListener(new View.OnClickListener() {
+        qty2.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                if(rate3.getText().toString().isEmpty()){ r3 = 0;}
-                else{r3 = Integer.parseInt(rate3.getText().toString());}
-                if(qty3.getText().toString().isEmpty()){ q3 = 0;}
-                else{q3 = Integer.parseInt(qty3.getText().toString());}
-                t3 = r3 * q3;
-                amount3.setText(String.valueOf(t3));
-                totFinal = totFinal + t3;
-                total.setText(String.valueOf(totFinal));
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amount2.setText(calc2());
+                t2 = Float.valueOf(amount2.getText().toString());
+                totFinal = t1+t2+t3+t4+t5+t6+t7+t8;
+                total.setText(Float.toString(totFinal));
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
-        rate4.setOnClickListener(new View.OnClickListener() {
+        rate2.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                if(rate4.getText().toString().isEmpty()){ r4 = 0;}
-                else{r4 = Integer.parseInt(rate4.getText().toString());}
-                if(qty4.getText().toString().isEmpty()){ q4 = 0;}
-                else{q4 = Integer.parseInt(qty4.getText().toString());}
-                t4 = r4 * q4;
-                amount4.setText(String.valueOf(t4));
-                totFinal = totFinal + t4;
-                total.setText(String.valueOf(totFinal));
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amount2.setText(calc2());
+                t2 = Float.valueOf(amount2.getText().toString());
+                totFinal = t1+t2+t3+t4+t5+t6+t7+t8;
+                total.setText(Float.toString(totFinal));
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
-        rate5.setOnClickListener(new View.OnClickListener() {
+        qty3.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                if(rate5.getText().toString().isEmpty()){ r5 = 0;}
-                else{r5 = Integer.parseInt(rate5.getText().toString());}
-                if(qty5.getText().toString().isEmpty()){ q5 = 0;}
-                else{q5 = Integer.parseInt(qty5.getText().toString());}
-                t5 = r5 * q5;
-                amount5.setText(String.valueOf(t5));
-                totFinal = totFinal + t5;
-                total.setText(String.valueOf(totFinal));
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amount3.setText(calc3());
+                t3 = Float.valueOf(amount3.getText().toString());
+                totFinal = t1+t2+t3+t4+t5+t6+t7+t8;
+                total.setText(Float.toString(totFinal));
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
-        rate6.setOnClickListener(new View.OnClickListener() {
+        rate3.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                if(rate6.getText().toString().isEmpty()){ r6 = 0;}
-                else{r6 = Integer.parseInt(rate6.getText().toString());}
-                if(qty6.getText().toString().isEmpty()){ q6 = 0;}
-                else{q6 = Integer.parseInt(qty6.getText().toString());}
-                t6 = r6 * q6;
-                amount6.setText(String.valueOf(t6));
-                totFinal = totFinal + t6;
-                total.setText(String.valueOf(totFinal));
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amount3.setText(calc3());
+                t3 = Float.valueOf(amount3.getText().toString());
+                totFinal = t1+t2+t3+t4+t5+t6+t7+t8;
+                total.setText(Float.toString(totFinal));
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
-        rate7.setOnClickListener(new View.OnClickListener() {
+        qty4.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                if(rate7.getText().toString().isEmpty()){ r7 = 0;}
-                else{r7 = Integer.parseInt(rate7.getText().toString());}
-                if(qty7.getText().toString().isEmpty()){ q7 = 0;}
-                else{q7 = Integer.parseInt(qty7.getText().toString());}
-                t7 = r7 * q7;
-                amount7.setText(String.valueOf(t7));
-                totFinal = totFinal + t7;
-                total.setText(String.valueOf(totFinal));
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
-        });rate8.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View v) {
-                if(rate8.getText().toString().isEmpty()){ r8 = 0;}
-                else{r8 = Integer.parseInt(rate8.getText().toString());}
-                if(qty8.getText().toString().isEmpty()){ q8 = 0;}
-                else{q8 = Integer.parseInt(qty8.getText().toString());}
-                t8 = r8 * q8;
-                amount8.setText(String.valueOf(t8));
-                totFinal = totFinal + t8;
-                total.setText(String.valueOf(totFinal));
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amount4.setText(calc4());
+                t4 = Float.valueOf(amount4.getText().toString());
+                totFinal = t1+t2+t3+t4+t5+t6+t7+t8;
+                total.setText(Float.toString(totFinal));
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        rate4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amount4.setText(calc4());
+                t4 = Float.valueOf(amount4.getText().toString());
+                totFinal = t1+t2+t3+t4+t5+t6+t7+t8;
+                total.setText(Float.toString(totFinal));
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        qty5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amount5.setText(calc5());
+                t5 = Float.valueOf(amount5.getText().toString());
+                totFinal = t1+t2+t3+t4+t5+t6+t7+t8;
+                total.setText(Float.toString(totFinal));
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        rate5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amount5.setText(calc5());
+                t5 = Float.valueOf(amount5.getText().toString());
+                totFinal = t1+t2+t3+t4+t5+t6+t7+t8;
+                total.setText(Float.toString(totFinal));
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        qty6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amount6.setText(calc6());
+                t6 = Float.valueOf(amount6.getText().toString());
+                totFinal = t1+t2+t3+t4+t5+t6+t7+t8;
+                total.setText(Float.toString(totFinal));
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        rate6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amount6.setText(calc6());
+                t6 = Float.valueOf(amount6.getText().toString());
+                totFinal = t1+t2+t3+t4+t5+t6+t7+t8;
+                total.setText(Float.toString(totFinal));
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        qty7.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amount7.setText(calc7());
+                t7 = Float.valueOf(amount7.getText().toString());
+                totFinal = t1+t2+t3+t4+t5+t6+t7+t8;
+                total.setText(Float.toString(totFinal));
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        rate7.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amount7.setText(calc7());
+                t7 = Float.valueOf(amount7.getText().toString());
+                totFinal = t1+t2+t3+t4+t5+t6+t7+t8;
+                total.setText(Float.toString(totFinal));
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        qty8.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amount8.setText(calc8());
+                t8 = Float.valueOf(amount8.getText().toString());
+                totFinal = t1+t2+t3+t4+t5+t6+t7+t8;
+                total.setText(Float.toString(totFinal));
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        rate8.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amount8.setText(calc8());
+                t8 = Float.valueOf(amount8.getText().toString());
+                totFinal = t1+t2+t3+t4+t5+t6+t7+t8;
+                total.setText(Float.toString(totFinal));
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
-        if(discount.getText().toString().isEmpty()){disc = 0;}
-        else{disc = Integer.parseInt(discount.getText().toString());}
-
-        if(otherCharges.getText().toString().isEmpty()){ext1 = 0;}
-        else{ext1 = Integer.parseInt(otherCharges.getText().toString());}
-
-        if(tax.getText().toString().isEmpty()){ tax1 = 0; }
-        else{ tax1 = Integer.parseInt(tax.getText().toString());}
-
-        discount.setOnClickListener(new View.OnClickListener() {
+        otherCharges.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                if(!discount.getText().toString().isEmpty()) {
-                    grandTotal = totFinal + ext1 + (totFinal*tax1)/100 - disc;
-                    amountCustomer.setText(String.valueOf(grandTotal));
-                }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
+        tax.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        discount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                amountCustomer.setText(calcFinal());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(qty1.getText().toString().isEmpty() && qty2.getText().toString().isEmpty()
-                        && qty3.getText().toString().isEmpty() && qty4.getText().toString().isEmpty()
-                        && qty5.getText().toString().isEmpty() && qty6.getText().toString().isEmpty()
-                        && qty7.getText().toString().isEmpty() && qty8.getText().toString().isEmpty()){
-                    description1.setError("qty is empty");
-                    description1.requestFocus();
-                    return;
-                }
-
-                if(rate1.getText().toString().isEmpty() && rate2.getText().toString().isEmpty()
-                        && rate3.getText().toString().isEmpty() && rate4.getText().toString().isEmpty()
-                        && rate5.getText().toString().isEmpty() && rate6.getText().toString().isEmpty()
-                        && rate7.getText().toString().isEmpty() && rate8.getText().toString().isEmpty()){
-                    description1.setError("rate is empty");
-                    description1.requestFocus();
-                    return;
-                }
-
-                if(tax.getText().toString().isEmpty()){ tax1 = 0; }
-                else{ tax1 = Integer.parseInt(tax.getText().toString());
-                        tax.setText(String.valueOf(tax1));}
-
-                if(otherCharges.getText().toString().isEmpty()){ ext1 = 0;}
-                else{ ext1 = Integer.parseInt(otherCharges.getText().toString()); }
-
-                if(discount.getText().toString().isEmpty()){disc = 0;}
-                else{disc = Integer.parseInt(discount.getText().toString());}
-
-                if(description1.getText().toString().isEmpty() && description2.getText().toString().isEmpty()
-                   && description3.getText().toString().isEmpty() && description4.getText().toString().isEmpty()
-                   && description5.getText().toString().isEmpty() && description6.getText().toString().isEmpty()
-                   && description7.getText().toString().isEmpty() && description8.getText().toString().isEmpty()){
-                    description1.setError("description is empty");
-                    description1.requestFocus();
-                    return;
-                }
-
-                if(discount.getText().toString().isEmpty()){
-                    disc = 0;
-                }
-
-                t1 = calc(q1, r1);
-                t2 = calc(q2, r2);
-                t3 = calc(q3, r3);
-                t4 = calc(q4, r4);
-                t5 = calc(q5, r5);
-                t6 = calc(q6, r6);
-                t7 = calc(q7, r7);
-                t8 = calc(q8, r8);
-
-                if(t1!=0){amount1.setText(String.valueOf(t1));}
-                if(t2!=0){amount2.setText(String.valueOf(t2));}
-                if(t3!=0){amount3.setText(String.valueOf(t3));}
-                if(t4!=0){amount4.setText(String.valueOf(t4));}
-                if(t5!=0){amount5.setText(String.valueOf(t5));}
-                if(t6!=0){amount6.setText(String.valueOf(t6));}
-                if(t7!=0){amount7.setText(String.valueOf(t7));}
-                if(t8!=0){amount8.setText(String.valueOf(t8));}
-
-
-
-                totFinal = (t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8);
-                total.setText(String.valueOf(totFinal));
-                grandTotal = totFinal + ext1 + ((t1 + t2 + t3 + t4 + t5 + t6 + t7 + t8)*tax1)/100 - disc;
-                amountCustomer.setText(String.valueOf(grandTotal));
                 demoRefCount.setValue(count);
                 save.setVisibility(View.GONE);
                 layoutToImage();
@@ -565,5 +747,156 @@ public class transactionDetail extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Toast.makeText(this, "Access denied", Toast.LENGTH_SHORT).show();
+    }
+
+    private String calc1() {
+        float number1;
+        float number2;
+        if(qty1.getText().toString() != "" && qty1.getText().length() > 0) {
+            number1 = Float.valueOf(qty1.getText().toString());
+        } else {
+            number1 = 0;
+        }
+        if(rate1.getText().toString() != "" && rate1.getText().length() > 0) {
+            number2 = Float.valueOf(rate1.getText().toString());
+        } else {
+            number2 = 0;
+        }
+
+        return Float.toString(number1 * number2);
+    }
+    private String calc2() {
+        float number1;
+        float number2;
+        if(qty2.getText().toString() != "" && qty2.getText().length() > 0) {
+            number1 = Float.valueOf(qty2.getText().toString());
+        } else {
+            number1 = 0;
+        }
+        if(rate2.getText().toString() != "" && rate2.getText().length() > 0) {
+            number2 = Float.valueOf(rate2.getText().toString());
+        } else {
+            number2 = 0;
+        }
+
+        return Float.toString(number1 * number2);
+    }
+    private String calc3() {
+        float number1;
+        float number2;
+        if(qty3.getText().toString() != "" && qty3.getText().length() > 0) {
+            number1 = Float.valueOf(qty3.getText().toString());
+        } else {
+            number1 = 0;
+        }
+        if(rate3.getText().toString() != "" && rate3.getText().length() > 0) {
+            number2 = Float.valueOf(rate3.getText().toString());
+        } else {
+            number2 = 0;
+        }
+
+        return Float.toString(number1 * number2);
+    }
+    private String calc4() {
+        float number1;
+        float number2;
+        if(qty4.getText().toString() != "" && qty4.getText().length() > 0) {
+            number1 = Float.valueOf(qty4.getText().toString());
+        } else {
+            number1 = 0;
+        }
+        if(rate4.getText().toString() != "" && rate4.getText().length() > 0) {
+            number2 = Float.valueOf(rate4.getText().toString());
+        } else {
+            number2 = 0;
+        }
+
+        return Float.toString(number1 * number2);
+    }
+    private String calc5() {
+        float number1;
+        float number2;
+        if(qty5.getText().toString() != "" && qty5.getText().length() > 0) {
+            number1 = Float.valueOf(qty5.getText().toString());
+        } else {
+            number1 = 0;
+        }
+        if(rate5.getText().toString() != "" && rate5.getText().length() > 0) {
+            number2 = Float.valueOf(rate5.getText().toString());
+        } else {
+            number2 = 0;
+        }
+
+        return Float.toString(number1 * number2);
+    }
+    private String calc6() {
+        float number1;
+        float number2;
+        if(qty6.getText().toString() != "" && qty6.getText().length() > 0) {
+            number1 = Float.valueOf(qty6.getText().toString());
+        } else {
+            number1 = 0;
+        }
+        if(rate6.getText().toString() != "" && rate6.getText().length() > 0) {
+            number2 = Float.valueOf(rate6.getText().toString());
+        } else {
+            number2 = 0;
+        }
+
+        return Float.toString(number1 * number2);
+    }
+    private String calc7() {
+        float number1;
+        float number2;
+        if(qty7.getText().toString() != "" && qty7.getText().length() > 0) {
+            number1 = Float.valueOf(qty7.getText().toString());
+        } else {
+            number1 = 0;
+        }
+        if(rate7.getText().toString() != "" && rate7.getText().length() > 0) {
+            number2 = Float.valueOf(rate7.getText().toString());
+        } else {
+            number2 = 0;
+        }
+        return Float.toString(number1 * number2);
+    }
+    private String calc8() {
+        float number1;
+        float number2;
+        if(qty8.getText().toString() != "" && qty8.getText().length() > 0) {
+            number1 = Float.valueOf(qty8.getText().toString());
+        } else {
+            number1 = 0;
+        }
+        if(rate8.getText().toString() != "" && rate8.getText().length() > 0) {
+            number2 = Float.valueOf(rate8.getText().toString());
+        } else {
+            number2 = 0;
+        }
+        //totFinal = Float.valueOf(total.getText().toString());
+        return Float.toString(number1 * number2);
+    }
+    private String calcFinal() {
+        if(total.getText().toString() != "" && total.getText().length() > 0) {
+            totFinal = Float.valueOf(total.getText().toString());
+        } else {
+            totFinal = 0;
+        }
+        if(otherCharges.getText().toString() != "" && otherCharges.getText().length() > 0) {
+            ext1 = Float.valueOf(otherCharges.getText().toString());
+        } else {
+            ext1 = 0;
+        }
+        if(tax.getText().toString() != "" && tax.getText().length() > 0) {
+            tax1 = Float.valueOf(tax.getText().toString());
+        } else {
+            tax1 = 0;
+        }
+        if(discount.getText().toString() != "" && discount.getText().length() > 0) {
+            disc = Float.valueOf(discount.getText().toString());
+        } else {
+            disc = 0;
+        }
+        return Float.toString(totFinal + ext1 + (totFinal * tax1) / 100 - disc);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.e_receipt;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
@@ -29,6 +30,7 @@ public class customerDetail extends AppCompatActivity {
     Spinner rBackground;
     public static String strRBackground, strCustomerName, strCustomerMobile, strCustomerAddress, strCustomerPincode, strCustomerEmail, strOtherDetail;
     String detailsCheck = "Incorrect";
+    ProgressDialog nDialog;
     public static List<String> list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,11 @@ public class customerDetail extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                nDialog = new ProgressDialog(customerDetail.this);
+                nDialog.setMessage("Loading..");
+                nDialog.setIndeterminate(false);
+                nDialog.setCancelable(true);
+                nDialog.show();
                 demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -85,6 +92,7 @@ public class customerDetail extends AppCompatActivity {
                         }
                         else{
                             Toast.makeText(customerDetail.this, "Please update your shop details",Toast.LENGTH_LONG).show();
+                            nDialog.dismiss();
                             return;
                         }
                         detailsCheck = "Incorrect";
@@ -93,6 +101,7 @@ public class customerDetail extends AppCompatActivity {
                         }
                         else {
                             Toast.makeText(customerDetail.this, "Please update owner details",Toast.LENGTH_LONG).show();
+                            nDialog.dismiss();
                             return;
                         }
                         if(detailsCheck == "correct"){
@@ -104,22 +113,27 @@ public class customerDetail extends AppCompatActivity {
                             strOtherDetail = otherDetail.getText().toString();
                             if(strCustomerName.matches("")){
                                 Toast.makeText(customerDetail.this, "Enter customer name",Toast.LENGTH_LONG).show();
+                                nDialog.dismiss();
                                 return;
                             }
                             if(!strCustomerName.matches("[a-zA-Z\\s]*")){
                                 Toast.makeText(customerDetail.this, "Enter valid name",Toast.LENGTH_LONG).show();
+                                nDialog.dismiss();
                                 return;
                             }
                             if(strCustomerMobile.matches("")){
                                 Toast.makeText(customerDetail.this, "Enter mobile number",Toast.LENGTH_LONG).show();
+                                nDialog.dismiss();
                                 return;
                             }
                             if(strCustomerMobile.length() != 10){
                                 Toast.makeText(customerDetail.this, "Enter valid mobile number",Toast.LENGTH_LONG).show();
+                                nDialog.dismiss();
                                 return;
                             }
                             if(strCustomerAddress.matches("")){
                                 Toast.makeText(customerDetail.this, "Enter address",Toast.LENGTH_LONG).show();
+                                nDialog.dismiss();
                                 return;
                             }
                             if(strCustomerPincode.matches("")){
@@ -128,6 +142,7 @@ public class customerDetail extends AppCompatActivity {
                             }
                             if(strCustomerPincode.length() != 6){
                                 Toast.makeText(customerDetail.this, "Enter valid pincode number",Toast.LENGTH_LONG).show();
+                                nDialog.dismiss();
                                 return;
                             }
                             if(strCustomerEmail.matches("")){
@@ -136,12 +151,14 @@ public class customerDetail extends AppCompatActivity {
                             }
                             if(!(strCustomerEmail.matches("[a-zA-Z0-9.]+@[a-z]+\\.+[a-z]+") || strCustomerEmail.matches("[a-zA-Z0-9.]+@[a-z]+\\.+[a-z]+\\.+[a-z]+"))){
                                 Toast.makeText(customerDetail.this, "Enter valid email",Toast.LENGTH_LONG).show();
+                                nDialog.dismiss();
                                 return;
                             }
 
                             startNextActivity();
                         }
                         else{
+                            nDialog.dismiss();
                             return;
                         }
                     }
@@ -158,16 +175,19 @@ public class customerDetail extends AppCompatActivity {
         Intent intent = new Intent(this, transactionDetail.class);
         list.clear();
         startActivity(intent);
+        nDialog.dismiss();
     }
     public void startSomethingWentWrongActivity(){
         Intent intent = new Intent(this, somethingWentWrong.class);
         list.clear();
         startActivity(intent);
+        nDialog.dismiss();
     }
     public void startHomeActivity(){
         Intent intent = new Intent(this, home.class);
         list.clear();
         startActivity(intent);
+        nDialog.dismiss();
     }
     @Override
     public void onBackPressed() {
