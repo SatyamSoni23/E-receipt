@@ -187,7 +187,6 @@ public class customerDetail extends AppCompatActivity {
         Intent intent = new Intent(this, home.class);
         list.clear();
         startActivity(intent);
-        nDialog.dismiss();
     }
     @Override
     public void onBackPressed() {
