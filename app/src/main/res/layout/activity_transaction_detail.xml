@@ -287,14 +287,14 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="10dp"
                 android:background="@drawable/tableborder"
-                android:weightSum="20"
+                android:weightSum="20.2"
                 android:orientation="vertical"
                 android:stretchColumns="*"
                 android:divider="@drawable/rect">
                 <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1.8"
+                    android:layout_weight="2"
                     android:weightSum="10"
                     android:background="@drawable/tableborder">
                     <TextView
@@ -425,7 +425,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
 
                         />
                     <EditText
@@ -443,7 +443,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                     <EditText
                         android:id="@+id/amount1"
@@ -460,7 +460,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                 </TableRow>
                 <TableRow
@@ -516,26 +516,26 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
 
                         />
+
                     <EditText
                         android:id="@+id/rate2"
-                        android:layout_height="match_parent"
                         android:layout_width="0dp"
-                        android:text=""
+                        android:layout_height="match_parent"
                         android:layout_weight="1.5"
-                        android:background="@drawable/tableborder"
-                        android:autoSizeTextType="uniform"
                         android:autoSizeMaxTextSize="22sp"
                         android:autoSizeMinTextSize="10sp"
+                        android:autoSizeTextType="uniform"
+                        android:background="@drawable/tableborder"
                         android:fontFamily="sans-serif-condensed"
-                        android:textStyle="italic|bold"
+                        android:gravity="center"
+                        android:inputType="numberDecimal"
+                        android:text=""
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
-                        android:gravity="center"
-                        android:inputType="number"
-                        />
+                        android:textStyle="italic|bold" />
                     <EditText
                         android:id="@+id/amount2"
                         android:layout_height="match_parent"
@@ -551,7 +551,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                 </TableRow>
                 <TableRow
@@ -607,26 +607,26 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
 
                         />
+
                     <EditText
                         android:id="@+id/rate3"
-                        android:layout_height="match_parent"
                         android:layout_width="0dp"
-                        android:text=""
+                        android:layout_height="match_parent"
                         android:layout_weight="1.5"
-                        android:background="@drawable/tableborder"
-                        android:autoSizeTextType="uniform"
                         android:autoSizeMaxTextSize="22sp"
                         android:autoSizeMinTextSize="10sp"
+                        android:autoSizeTextType="uniform"
+                        android:background="@drawable/tableborder"
                         android:fontFamily="sans-serif-condensed"
-                        android:textStyle="italic|bold"
+                        android:gravity="center"
+                        android:inputType="numberDecimal"
+                        android:text=""
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
-                        android:gravity="center"
-                        android:inputType="number"
-                        />
+                        android:textStyle="italic|bold" />
                     <EditText
                         android:id="@+id/amount3"
                         android:layout_height="match_parent"
@@ -642,7 +642,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                 </TableRow>
                 <TableRow
@@ -699,7 +699,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:textStyle="italic|bold"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
 
                         />
                     <EditText
@@ -717,7 +717,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                     <EditText
                         android:id="@+id/amount4"
@@ -734,7 +734,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                 </TableRow>
                 <TableRow
@@ -792,7 +792,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                     <EditText
                         android:id="@+id/rate5"
@@ -809,7 +809,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                     <EditText
                         android:id="@+id/amount5"
@@ -826,7 +826,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                 </TableRow>
                 <TableRow
@@ -882,7 +882,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                     <EditText
                         android:id="@+id/rate6"
@@ -899,7 +899,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                     <EditText
                         android:id="@+id/amount6"
@@ -916,7 +916,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                 </TableRow>
                 <TableRow
@@ -972,7 +972,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                     <EditText
                         android:id="@+id/rate7"
@@ -989,7 +989,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                     <EditText
                         android:id="@+id/amount7"
@@ -1006,7 +1006,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                 </TableRow>
                 <TableRow
@@ -1047,23 +1047,23 @@
                         android:gravity="center"
                         android:inputType="text"
                         />
+
                     <EditText
                         android:id="@+id/qty8"
-                        android:layout_height="match_parent"
                         android:layout_width="0dp"
-                        android:text=""
+                        android:layout_height="match_parent"
                         android:layout_weight="1.5"
-                        android:background="@drawable/tableborder"
-                        android:autoSizeTextType="uniform"
                         android:autoSizeMaxTextSize="22sp"
                         android:autoSizeMinTextSize="10sp"
+                        android:autoSizeTextType="uniform"
+                        android:background="@drawable/tableborder"
                         android:fontFamily="sans-serif-condensed"
-                        android:textStyle="italic|bold"
+                        android:gravity="center"
+                        android:inputType="numberDecimal"
+                        android:text=""
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
-                        android:gravity="center"
-                        android:inputType="number"
-                        />
+                        android:textStyle="italic|bold" />
                     <EditText
                         android:id="@+id/rate8"
                         android:layout_height="match_parent"
@@ -1079,7 +1079,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                     <EditText
                         android:id="@+id/amount8"
@@ -1096,7 +1096,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                 </TableRow>
 
@@ -1106,13 +1106,28 @@
                     android:layout_weight="1"
                     android:weightSum="10"
                     android:background="@drawable/tableborder">
+                    <TextView
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:text="Qty in"
+                        android:layout_weight="2"
+                        android:background="@drawable/tableborder"
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeMaxTextSize="22sp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:fontFamily="sans-serif-condensed-light"
+                        android:textStyle="italic|bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimary"
+                        android:gravity="center"
+                        />
                     <EditText
                         android:id="@+id/otherInfo1"
                         android:layout_height="match_parent"
                         android:layout_width="0dp"
-                        android:hint="Other Information"
+                        android:hint="(eg:- in gram)"
                         android:background="@drawable/tableborder"
-                        android:layout_weight="5"
+                        android:layout_weight="3"
                         android:autoSizeTextType="uniform"
                         android:autoSizeMaxTextSize="22sp"
                         android:autoSizeMinTextSize="10sp"
@@ -1152,7 +1167,77 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
+                        />
+                </TableRow>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:weightSum="10"
+                    android:background="@drawable/tableborder">
+                    <EditText
+                        android:id="@+id/otherInfo2"
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:hint="Other Information"
+                        android:background="@drawable/tableborder"
+                        android:layout_weight="5"
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeMaxTextSize="22sp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="italic"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimary"
+                        android:gravity="center"
+                        android:inputType="text"
+                        />
+
+                    <TextView
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:text="GST"
+                        android:layout_weight="3"
+                        android:background="@drawable/tableborder"
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeMaxTextSize="22sp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:fontFamily="sans-serif-condensed-light"
+                        android:textStyle="italic|bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimary"
+                        android:gravity="center"
+                        />
+
+                    <EditText
+                        android:id="@+id/tax"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.6"
+                        android:autoSizeMaxTextSize="22sp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:autoSizeTextType="uniform"
+                        android:background="@drawable/tableborder"
+                        android:fontFamily="sans-serif-condensed"
+                        android:gravity="center"
+                        android:inputType="numberDecimal"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimary"
+                        android:textStyle="italic|bold" />
+                    <TextView
+                        android:layout_height="match_parent"
+                        android:layout_width="0dp"
+                        android:text="%"
+                        android:layout_weight="0.4"
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeMaxTextSize="22sp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:fontFamily="sans-serif-condensed-light"
+                        android:textStyle="italic|bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimary"
+                        android:gravity="center"
                         />
                 </TableRow>
                 <TableRow
@@ -1190,76 +1275,8 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
-                    <TextView
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:text="GST"
-                        android:layout_weight="3"
-                        android:background="@drawable/tableborder"
-                        android:autoSizeTextType="uniform"
-                        android:autoSizeMaxTextSize="22sp"
-                        android:autoSizeMinTextSize="10sp"
-                        android:fontFamily="sans-serif-condensed-light"
-                        android:textStyle="italic|bold"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimary"
-                        android:gravity="center"
-                        />
-
-                    <EditText
-                        android:id="@+id/tax"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1.6"
-                        android:autoSizeMaxTextSize="22sp"
-                        android:autoSizeMinTextSize="10sp"
-                        android:autoSizeTextType="uniform"
-                        android:background="@drawable/tableborder"
-                        android:fontFamily="sans-serif-condensed"
-                        android:gravity="center"
-                        android:inputType="number"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimary"
-                        android:textStyle="italic|bold" />
-                    <TextView
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:text="%"
-                        android:layout_weight="0.4"
-                        android:autoSizeTextType="uniform"
-                        android:autoSizeMaxTextSize="22sp"
-                        android:autoSizeMinTextSize="10sp"
-                        android:fontFamily="sans-serif-condensed-light"
-                        android:textStyle="italic|bold"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimary"
-                        android:gravity="center"
-                        />
-                </TableRow>
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:weightSum="10"
-                    android:background="@drawable/tableborder">
-                    <EditText
-                        android:id="@+id/otherInfo2"
-                        android:layout_height="match_parent"
-                        android:layout_width="0dp"
-                        android:hint="Other Information"
-                        android:background="@drawable/tableborder"
-                        android:layout_weight="5"
-                        android:autoSizeTextType="uniform"
-                        android:autoSizeMaxTextSize="22sp"
-                        android:autoSizeMinTextSize="10sp"
-                        android:fontFamily="sans-serif-condensed"
-                        android:textStyle="italic"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimary"
-                        android:gravity="center"
-                        android:inputType="text" />
                     <TextView
                         android:layout_height="match_parent"
                         android:layout_width="0dp"
@@ -1287,7 +1304,7 @@
                         android:background="@drawable/tableborder"
                         android:fontFamily="sans-serif-condensed"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:textStyle="italic|bold" />
@@ -1327,7 +1344,7 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
-                        android:inputType="number"
+                        android:inputType="numberDecimal"
                         />
                 </TableRow>
             </TableLayout>
