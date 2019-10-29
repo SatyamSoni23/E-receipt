@@ -81,7 +81,7 @@ public class owerDetail extends AppCompatActivity {
                     return;
                 }
 
-                if(!strOwnerEmail.matches("[a-zA-Z0-9.]+@[a-z]+\\.+[a-z]+")){
+                if(!(strOwnerEmail.matches("[a-zA-Z0-9.]+@[a-z]+\\.+[a-z]+") || strOwnerEmail.matches("[a-zA-Z0-9.]+@[a-z]+\\.+[a-z]+\\.+[a-z]+"))){
                     Toast.makeText(owerDetail.this, "Enter valid email",Toast.LENGTH_LONG).show();
                     return;
                 }
