@@ -86,7 +86,7 @@ public class owerDetail extends AppCompatActivity {
                     return;
                 }
                 demoRef1 = demoRef.child("ownerDetail");
-                demoRef1.child("ownerName").setValue(strOwnerAddress);
+                demoRef1.child("ownerName").setValue(strOwnerName);
                 demoRef1.child("ownerMobile").setValue(strOwnerMobile);
                 demoRef1.child("ownerAddress").setValue(strOwnerAddress);
                 demoRef1.child("ownerPincode").setValue(strOwnerPincode);
