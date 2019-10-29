@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.e_receipt">
+    package="com.easybusiness.e_receipt">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -13,30 +13,30 @@
         android:roundIcon="@drawable/receipt"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".forgotPassword"></activity>
-        <activity android:name=".updateLogo" />
-        <activity android:name=".termsAndConditions" />
-        <activity android:name=".view" />
-        <activity android:name=".updateOwnerDetails" />
-        <activity android:name=".updateShopDetails" />
-        <activity android:name=".transferMoney" />
-        <activity android:name=".contactUs" />
-        <activity android:name=".aboutEreceipt" />
-        <activity android:name=".updatePassword" />
-        <activity android:name=".home" />
-        <activity android:name=".offline" />
-        <activity android:name=".somethingWentWrong" />
-        <activity android:name=".wrg" />
-        <activity android:name=".invoiceSend" />
-        <activity android:name=".shopLogoUpload" />
-        <activity android:name=".transactionDetail" />
-        <activity android:name=".customerDetail" />
-        <activity android:name=".login" />
-        <activity android:name=".successRegister" />
-        <activity android:name=".owerDetail" />
-        <activity android:name=".shopFirstDetail" />
-        <activity android:name=".registerPage" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.easybusiness.e_receipt.forgotPassword"></activity>
+        <activity android:name="com.easybusiness.e_receipt.updateLogo" />
+        <activity android:name="com.easybusiness.e_receipt.termsAndConditions" />
+        <activity android:name="com.easybusiness.e_receipt.view" />
+        <activity android:name="com.easybusiness.e_receipt.updateOwnerDetails" />
+        <activity android:name="com.easybusiness.e_receipt.updateShopDetails" />
+        <activity android:name="com.easybusiness.e_receipt.transferMoney" />
+        <activity android:name="com.easybusiness.e_receipt.contactUs" />
+        <activity android:name="com.easybusiness.e_receipt.aboutEreceipt" />
+        <activity android:name="com.easybusiness.e_receipt.updatePassword" />
+        <activity android:name="com.easybusiness.e_receipt.home" />
+        <activity android:name="com.easybusiness.e_receipt.offline" />
+        <activity android:name="com.easybusiness.e_receipt.somethingWentWrong" />
+        <activity android:name="com.easybusiness.e_receipt.wrg" />
+        <activity android:name="com.easybusiness.e_receipt.invoiceSend" />
+        <activity android:name="com.easybusiness.e_receipt.shopLogoUpload" />
+        <activity android:name="com.easybusiness.e_receipt.transactionDetail" />
+        <activity android:name="com.easybusiness.e_receipt.customerDetail" />
+        <activity android:name="com.easybusiness.e_receipt.login" />
+        <activity android:name="com.easybusiness.e_receipt.successRegister" />
+        <activity android:name="com.easybusiness.e_receipt.owerDetail" />
+        <activity android:name="com.easybusiness.e_receipt.shopFirstDetail" />
+        <activity android:name="com.easybusiness.e_receipt.registerPage" />
+        <activity android:name="com.easybusiness.e_receipt.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,7 +45,7 @@
         </activity>
 
         <provider
-            android:name=".GenericFileProvider"
+            android:name="com.easybusiness.e_receipt.GenericFileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">

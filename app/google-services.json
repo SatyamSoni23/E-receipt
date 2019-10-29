@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:89237027478:android:5dc6c32b7701f1c2",
         "android_client_info": {
-          "package_name": "com.example.e_receipt"
+          "package_name": "com.easybusiness.e_receipt"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "89237027478-icquj3lpe5dco58v076rbiosdf5jhb8i.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.e_receipt",
+            "package_name": "com.easybusiness.e_receipt",
             "certificate_hash": "87232138418886e73f91b9f6cfb0c87b0f7de1f7"
           }
         },

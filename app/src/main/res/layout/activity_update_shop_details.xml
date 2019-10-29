@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".shopFirstDetail"
+    tools:context="com.easybusiness.e_receipt.shopFirstDetail"
     android:background="@drawable/paper">
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
             android:layout_height="0dp"
             android:layout_weight="1.8"
             android:layout_marginHorizontal="35dp"
-            android:hint="Shop Name"
+            android:hint="*Shop Name"
             android:textSize="25dp"
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
@@ -54,7 +54,7 @@
             android:layout_height="0dp"
             android:layout_weight="1.8"
             android:layout_marginHorizontal="35dp"
-            android:hint="Mobile No."
+            android:hint="*Mobile No."
             android:textSize="25dp"
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
@@ -64,29 +64,30 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             />
+
         <EditText
             android:id="@+id/shopAddress"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.8"
             android:layout_marginHorizontal="35dp"
-            android:hint="Address"
-            android:textSize="25dp"
+            android:layout_weight="1.8"
             android:fontFamily="sans-serif-condensed"
-            android:textStyle="italic"
+            android:hint="*Address"
+            android:inputType="text"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorAccent"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:inputType="text"
-            />
+            android:textSize="25dp"
+            android:textStyle="italic" />
+
         <EditText
             android:id="@+id/shopPincode"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.8"
             android:layout_marginHorizontal="35dp"
-            android:hint="Pincode"
+            android:hint="*Pincode"
             android:textSize="25dp"
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"
@@ -96,22 +97,23 @@
             android:paddingTop="10dp"
             android:inputType="number"
             />
+
         <EditText
             android:id="@+id/shopEmail"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.8"
             android:layout_marginHorizontal="35dp"
-            android:hint="Shop Email"
-            android:textSize="25dp"
+            android:layout_weight="1.8"
             android:fontFamily="sans-serif-condensed"
-            android:textStyle="italic"
+            android:hint="*Shop Email"
+            android:inputType="text"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorAccent"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:inputType="text"
-            />
+            android:textSize="25dp"
+            android:textStyle="italic" />
+
         <EditText
             android:id="@+id/gstNumber"
             android:layout_width="match_parent"
