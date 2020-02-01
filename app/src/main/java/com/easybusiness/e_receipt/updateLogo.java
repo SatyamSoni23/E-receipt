@@ -2,6 +2,8 @@ package com.easybusiness.e_receipt;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -23,7 +25,10 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
+
 public class updateLogo extends AppCompatActivity {
+    DatabaseHelper myDb;
     Button update;
     ImageView upload;
     private Uri mImageUri;
@@ -37,6 +42,7 @@ public class updateLogo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_logo);
 
+        myDb = new DatabaseHelper(this);
         update = findViewById(R.id.update);
         upload = findViewById(R.id.upload);
         mProgressBar = findViewById(R.id.progress_bar);
@@ -62,6 +68,8 @@ public class updateLogo extends AppCompatActivity {
                     nDialog.dismiss();
                     return;
                 }
+
+                /*
                 mStorageRef = FirebaseStorage.getInstance().getReference("shopLogo/").child(login.strUsername);
                 if (mUploadTask != null && mUploadTask.isInProgress()) {
                     Toast.makeText(updateLogo.this, "Upload in Progress", Toast.LENGTH_SHORT).show();
@@ -72,10 +80,51 @@ public class updateLogo extends AppCompatActivity {
                         return;
                     }
                     uploadFile();
+                }*/
+                int value = 0;
+                Cursor res = myDb.getImageInfo();
+                if(res != null && res.getCount() > 0){
+                    res.moveToFirst();
+                    value = res.getInt(0);
+                }
+                if(value == 1){
+                    upload.buildDrawingCache();
+                    Bitmap bitmap = upload.getDrawingCache();
+                    byte[] data = getBitmapAsByteArray(bitmap);
+                    if(myDb.updateImage(1, data)){
+                        Toast.makeText(updateLogo.this, "Image uploaded to sqlit3", Toast.LENGTH_SHORT).show();
+                        //uploadFile();
+                        startLogoUpdateActivity();
+                    }
+                    else{
+                        Toast.makeText(updateLogo.this, "sqlite3 respond error", Toast.LENGTH_SHORT).show();
+                        nDialog.dismiss();
+                    }
+                }
+                else{
+                    upload.buildDrawingCache();
+                    Bitmap bitmap = upload.getDrawingCache();
+                    byte[] data = getBitmapAsByteArray(bitmap);
+                    if(myDb.insertImage(1, data)){
+                        Toast.makeText(updateLogo.this, "Image uploaded to sqlit3", Toast.LENGTH_SHORT).show();
+                        startLogoUpdateActivity();
+                        //uploadFile();
+                    }
+                    else{
+                        Toast.makeText(updateLogo.this, "sqlite3 respond error", Toast.LENGTH_SHORT).show();
+                        nDialog.dismiss();
+                    }
                 }
             }
         });
     }
+
+    public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
+        return outputStream.toByteArray();
+    }
+
     private void openFileChooser(){
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -139,4 +188,5 @@ public class updateLogo extends AppCompatActivity {
         login.videoPlay = "notPlay";
         startActivity(intent);
     }
+
 }

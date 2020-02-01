@@ -7,15 +7,14 @@
          <corners android:radius="20dp" />
       </shape>
    </item>
-<!-- White foreground. -->
+   <!-- White foreground. -->
    <item android:bottom="3dp" android:right="3dp">
       <shape android:shape="rectangle" >
-
          <gradient
-             android:startColor="#001638"
-             android:endColor="#2f3b62"
+             android:startColor="#ba000d"
+             android:endColor="#bb220e"
              android:angle="270" />
-         <stroke android:width="2dp" android:color="#000014"/>
+         <stroke android:width="2dp" android:color="#ba000d"/>
          <corners
              android:radius="20dp" />
       </shape>

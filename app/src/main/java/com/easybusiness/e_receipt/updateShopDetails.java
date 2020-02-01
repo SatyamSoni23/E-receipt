@@ -2,6 +2,7 @@ package com.easybusiness.e_receipt;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class updateShopDetails extends AppCompatActivity {
+    DatabaseHelper myDb;
     DatabaseReference rootRef, demoRef, demoRef1;
     private FirebaseAuth mAuth;
     ProgressDialog nDialog;
@@ -34,6 +36,8 @@ public class updateShopDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_shop_details);
 
+        myDb = new DatabaseHelper(this);
+
         update = findViewById(R.id.update);
         shopName = findViewById(R.id.shopName);
         shopMobile = findViewById(R.id.shopMobile);
@@ -43,11 +47,32 @@ public class updateShopDetails extends AppCompatActivity {
         gstNumber = findViewById(R.id.gstNumber);
         slogan = findViewById(R.id.slogan);
 
-        shopEmail.setText(login.strNewUsername);
+        shopEmail.setText(home.preShopEmail);
         shopEmail.setEnabled(false);
 
         rootRef = FirebaseDatabase.getInstance().getReference();
-        demoRef = rootRef.child("E-Receipt").child(login.strUsername);
+        String strNewShopName = null, strNewShopAddress = null, strNewShopMobile = null, strNewShopEmail = null, strNewGstNumber = null, strNewPincode = null, strNewSlogan = null;
+        Cursor res = myDb.getAllData(home.preShopEmail);
+        if(res != null && res.getCount() > 0){
+            res.moveToFirst();
+            do{
+                strNewShopEmail = res.getString(0);
+                shopEmail.setText(strNewShopEmail);
+                strNewShopName = res.getString(1);
+                shopName.setText(strNewShopName);
+                strNewShopMobile = res.getString(2);
+                shopMobile.setText(strNewShopMobile);
+                strNewShopAddress = res.getString(3);
+                shopAddress.setText(strNewShopAddress);
+                strNewPincode = res.getString(4);
+                shopPincode.setText(strNewPincode);
+                strNewGstNumber = res.getString(5);
+                gstNumber.setText(strNewGstNumber);
+                strNewSlogan = res.getString(6);
+                slogan.setText(strNewSlogan);
+            }while(res.moveToNext());
+        }
+        /*demoRef = rootRef.child("E-Receipt").child(login.strUsername);
         demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -88,11 +113,11 @@ public class updateShopDetails extends AppCompatActivity {
                 startWrongActivity();
             }
         });
-
+         */
 
         mAuth = FirebaseAuth.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
-        demoRef = rootRef.child("E-Receipt").child(login.strUsername);
+        //demoRef = rootRef.child("E-Receipt").child(login.strUsername);
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,7 +174,7 @@ public class updateShopDetails extends AppCompatActivity {
                         return;
                     }
                 }
-
+                /*
                 demoRef1 = demoRef.child("shopDetail");
                 demoRef1.child("shopName").setValue(strShopName);
                 demoRef1.child("shopMobile").setValue(strShopMobile);
@@ -162,6 +187,26 @@ public class updateShopDetails extends AppCompatActivity {
                 }
                 else{
                     demoRef1.child("slogan").setValue(strSlogan);
+                }
+                 */
+                Cursor res = myDb.getInfo();
+                if(res != null){
+                    if(myDb.updateData(strShopName, strShopMobile, strShopAddress, strShopPincode, strShopEmail, strGstNumber, strSlogan)){
+                        Toast.makeText(updateShopDetails.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(updateShopDetails.this, "Error in data insertion", Toast.LENGTH_SHORT).show();
+                        startSmwActivity();
+                    }
+                }
+                else{
+                    if(myDb.insertData(strShopName, strShopMobile, strShopAddress, strShopPincode, strShopEmail, strGstNumber, strSlogan)){
+                        Toast.makeText(updateShopDetails.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(updateShopDetails.this, "Error in data insertion", Toast.LENGTH_SHORT).show();
+                        startSmwActivity();
+                    }
                 }
                 startUpdateShopDetailsActivity();
             }
@@ -181,6 +226,10 @@ public class updateShopDetails extends AppCompatActivity {
     }
     public void startOfflineActivity(){
         Intent intent = new Intent(this, offline.class);
+        startActivity(intent);
+    }
+    public void startSmwActivity(){
+        Intent intent = new Intent(this, somethingWentWrong.class);
         startActivity(intent);
     }
     private void sendVerificationEmail(){

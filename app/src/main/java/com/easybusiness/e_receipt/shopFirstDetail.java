@@ -2,6 +2,7 @@ package com.easybusiness.e_receipt;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,19 +10,34 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class shopFirstDetail extends AppCompatActivity {
+    DatabaseHelper myDb;
     DatabaseReference rootRef, demoRef, demoRef1;
+    private FirebaseAuth mAuth;
+    FirebaseAuth.AuthStateListener mAuthListner;
     Button next;
     EditText shopName, shopMobile, shopAddress, shopPincode, shopEmail, gstNumber, slogan;
     public static String strShopName, strShopMobile, strShopAddress, strShopPincode, strShopEmail, strGstNumber, strSlogan;
     ProgressDialog nDialog;
+
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Google Integration xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListner);
+    }
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_first_detail);
+
+        myDb = new DatabaseHelper(this);
 
         next = findViewById(R.id.next);
         shopName = findViewById(R.id.shopName);
@@ -31,12 +47,26 @@ public class shopFirstDetail extends AppCompatActivity {
         shopEmail = findViewById(R.id.shopEmail);
         gstNumber = findViewById(R.id.gstNumber);
         slogan = findViewById(R.id.slogan);
+        mAuth = FirebaseAuth.getInstance();
 
-        shopEmail.setText(registerPage.strUsername);
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Google Integration xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+        mAuthListner = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if(firebaseAuth.getCurrentUser() != null){
+                    shopEmail.setText(registerPage.userEmail);
+                }
+                else{
+                    shopEmail.setText(registerPage.strUsername);
+                }
+            }
+        };
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+
         shopEmail.setEnabled(false);
 
         rootRef = FirebaseDatabase.getInstance().getReference();
-        demoRef = rootRef.child("E-Receipt").child(registerPage.username);
+       // demoRef = rootRef.child("E-Receipt").child(registerPage.username);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,6 +136,19 @@ public class shopFirstDetail extends AppCompatActivity {
                     return;
                 }
 
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Database Helper xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+
+                if(myDb.insertData(strShopName, strShopMobile, strShopAddress, strShopPincode, strShopEmail, strGstNumber, strSlogan)){
+                    Toast.makeText(shopFirstDetail.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(shopFirstDetail.this, "Error in data insertion", Toast.LENGTH_SHORT).show();
+                    startSmwActivity();
+                }
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Firebase Helper xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+                /*
                 demoRef1 = demoRef.child("shopDetail");
                 demoRef1.child("shopName").setValue(strShopName);
                 demoRef1.child("shopMobile").setValue(strShopMobile);
@@ -118,7 +161,8 @@ public class shopFirstDetail extends AppCompatActivity {
                 }
                 else{
                     demoRef1.child("slogan").setValue(strSlogan);
-                }
+                }*/
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
                 startShopLogoActivity();
 
             }
@@ -129,8 +173,8 @@ public class shopFirstDetail extends AppCompatActivity {
         startActivity(intent);
         nDialog.dismiss();
     }
-    public void startOfflineActivity(){
-        Intent intent = new Intent(this, offline.class);
+    public void startSmwActivity(){
+        Intent intent = new Intent(this, somethingWentWrong.class);
         startActivity(intent);
     }
     @Override

@@ -3,6 +3,7 @@ package com.easybusiness.e_receipt;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -18,6 +19,10 @@ import android.widget.MediaController;
 import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -30,20 +35,81 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class home extends AppCompatActivity {
+    private SharedPreferences sharedPreferences;
+    DatabaseHelper myDb;
     public final int REQUEST_CODE_ASK_PERMISSIONS = 1;
     DatabaseReference rootRef, demoRef;
+    GoogleSignInClient mGoogleSignInClient;
     private FirebaseAuth mAuth;
+    FirebaseAuth.AuthStateListener mAuthListner;
     private DrawerLayout dl;
     private ActionBarDrawerToggle abdt;
     VideoView videoView;
+    public static String preShopEmail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        myDb = new DatabaseHelper(this);
         mAuth = FirebaseAuth.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
-        demoRef = rootRef.child("E-Receipt").child(login.strUsername).child("shopDetail");
+        //demoRef = rootRef.child("E-Receipt").child(login.strUsername).child("shopDetail");
+
+        /*
+        String preShopEmail = null;
+        Cursor res = myDb.getEmail();
+        if(res != null && res.getCount() > 0){
+            res.moveToFirst();
+            do{
+                preShopEmail = res.getString(0);
+            }while(res.moveToNext());
+        }
+
+         */
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Database Helper And Firebase Authentication xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+
+        sharedPreferences = getApplicationContext().getSharedPreferences("Preferences", 0);
+        String strPassword = sharedPreferences.getString("LOGIN", null);
+        preShopEmail = sharedPreferences.getString("EMAIL", null);
+
+        if(strPassword != null){
+            mAuth.signInWithEmailAndPassword(preShopEmail, strPassword).addOnCompleteListener(home.this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        if (user != null) {
+                            boolean emailVerified = user.isEmailVerified();
+                            if(emailVerified == false){
+                                new AlertDialog.Builder(home.this)
+                                        .setTitle("Email Verification")
+                                        .setMessage("Please verify your email id")
+                                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                            }
+                                        }).show();
+                            }
+                        }
+                    }
+                    else{
+                        Toast.makeText(home.this, "Authentication failed.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+        else{
+            startSmwActivity();
+        }
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Firebase Helper and Firebase Authentication xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+        /*
         demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -84,6 +150,15 @@ public class home extends AppCompatActivity {
 
             }
         });
+        */
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Google Authentication xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+        /*GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);*/
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
 
         videoView = findViewById(R.id.video);
         MediaController mediaController= new MediaController(this);
@@ -137,6 +212,15 @@ public class home extends AppCompatActivity {
                 }
                 else if(id == R.id.Logout){
                     Toast.makeText(home.this, "Logout", Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("Preferences", 0);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.remove("LOGIN");
+                    editor.commit();
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Google Integration xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+                   // mAuth.signOut();
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+
                     startLogoutActivity();
                 }
                 return false;
@@ -170,8 +254,17 @@ public class home extends AppCompatActivity {
         startActivity(intent);
     }
     public void startLogoutActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        mGoogleSignInClient.signOut()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(home.this, "Successfully Signout", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(home.this, MainActivity.class));
+                        finish();
+                    }
+                });
+        /*Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);*/
     }
     public void startUpdatePasswordActivity(){
         Intent intent = new Intent(this, updatePassword.class);
@@ -219,6 +312,9 @@ public class home extends AppCompatActivity {
     public void onBackPressed() {
         Toast.makeText(home.this, "Access denied", Toast.LENGTH_SHORT).show();
     }
-
+    public void startSmwActivity(){
+        Intent intent = new Intent(this, somethingWentWrong.class);
+        startActivity(intent);
+    }
 }
 

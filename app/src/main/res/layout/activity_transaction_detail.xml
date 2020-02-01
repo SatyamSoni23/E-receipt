@@ -33,35 +33,39 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2.55"
+            android:layout_weight="3"
             android:orientation="horizontal"
             android:weightSum="10">
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.5"/>
+                android:layout_weight="0.2"/>
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2.5">
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/shopLogo"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:stateListAnimator="@animator/button_state_list_anim"
+                    app:civ_border_width="4dp"
+                    app:civ_border_color="#EEEEEE"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="6.5"
+                android:layout_weight="7"
                 android:orientation="vertical"
-                android:layout_marginHorizontal="20dp"
-                android:weightSum="10">
+                android:layout_marginHorizontal="5dp"
+                android:weightSum="12">
 
                 <TextView
                     android:id="@+id/shopAddress"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="3.33"
+                    android:layout_weight="3"
                     android:text=""
                     android:autoSizeTextType="uniform"
                     android:autoSizeMaxTextSize="25sp"
@@ -75,7 +79,7 @@
                     android:id="@+id/shopEmail"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="3.33"
+                    android:layout_weight="3"
                     android:text=""
                     android:autoSizeTextType="uniform"
                     android:autoSizeMaxTextSize="25sp"
@@ -89,7 +93,7 @@
                     android:id="@+id/shopMobile"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="3.33"
+                    android:layout_weight="3"
                     android:text=""
                     android:autoSizeTextType="uniform"
                     android:autoSizeMaxTextSize="25sp"
@@ -99,33 +103,56 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textColorHint="@color/colorPrimary"
                     />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:orientation="horizontal"
+                    android:weightSum="12">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
+                        android:text="GST No. - "
+                        android:autoSizeTextType="uniform"
+                        android:autoSizeMaxTextSize="20sp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:fontFamily="sans-serif-condensed"
+                        android:textStyle="italic|bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimary"/>
+
+                    <TextView
+                        android:id="@+id/gstNumber"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_weight="9"
+                        android:autoSizeMaxTextSize="20sp"
+                        android:autoSizeMinTextSize="10sp"
+                        android:autoSizeTextType="uniform"
+                        android:fontFamily="sans-serif-condensed"
+
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimary"
+                        android:textStyle="italic|bold" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3.1"
+            android:layout_weight="0.1"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.55"
             android:orientation="vertical"
             android:weightSum="12">
-            <TextView
-                android:id="@+id/gstNumber"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="3"
-                android:layout_marginHorizontal="10dp"
-                android:autoSizeTextType="uniform"
-                android:autoSizeMaxTextSize="25sp"
-                android:autoSizeMinTextSize="10sp"
-                android:fontFamily="sans-serif-condensed"
-                android:textStyle="italic|bold"
-                android:textColor="@color/colorPrimaryDark"
-                android:textColorHint="@color/colorPrimary"
-                android:gravity="center"
-                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_weight="4"
                 android:layout_marginHorizontal="10dp"
                 android:orientation="horizontal"
                 android:weightSum="12">
@@ -135,7 +162,7 @@
                     android:layout_weight="3"
                     android:text="Invoice No"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeMaxTextSize="20sp"
                     android:autoSizeMinTextSize="10sp"
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="italic|bold"
@@ -148,7 +175,7 @@
                     android:layout_weight="3"
                     android:background="@null"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeMaxTextSize="20sp"
                     android:autoSizeMinTextSize="5sp"
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="italic|bold"
@@ -162,7 +189,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="Invoice Date"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeMaxTextSize="20sp"
                     android:autoSizeMinTextSize="10sp"
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="italic|bold"
@@ -175,7 +202,7 @@
                     android:layout_weight="3"
                     android:background="@null"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeMaxTextSize="20sp"
                     android:autoSizeMinTextSize="5sp"
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="italic|bold"
@@ -187,7 +214,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_weight="4"
                 android:layout_marginHorizontal="10dp"
                 android:orientation="horizontal"
                 android:weightSum="12">
@@ -197,7 +224,7 @@
                     android:layout_weight="2"
                     android:text="Name"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeMaxTextSize="20sp"
                     android:autoSizeMinTextSize="10sp"
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="italic|bold"
@@ -209,7 +236,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="4"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeMaxTextSize="20sp"
                     android:autoSizeMinTextSize="5sp"
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="italic|bold"
@@ -222,7 +249,7 @@
                     android:layout_marginLeft="10dp"
                     android:text="Mobile No."
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeMaxTextSize="20sp"
                     android:autoSizeMinTextSize="10sp"
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="italic|bold"
@@ -234,7 +261,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="3.2"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeMaxTextSize="20sp"
                     android:autoSizeMinTextSize="5sp"
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="italic|bold"
@@ -244,7 +271,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_weight="4"
                 android:layout_marginHorizontal="10dp"
                 android:orientation="horizontal"
                 android:weightSum="12">
@@ -254,7 +281,7 @@
                     android:layout_weight="2.5"
                     android:text="Address"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeMaxTextSize="20sp"
                     android:autoSizeMinTextSize="10sp"
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="italic|bold"
@@ -266,7 +293,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="9.5"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMaxTextSize="25sp"
+                    android:autoSizeMaxTextSize="20sp"
                     android:autoSizeMinTextSize="5sp"
                     android:fontFamily="sans-serif-condensed"
                     android:textStyle="italic|bold"

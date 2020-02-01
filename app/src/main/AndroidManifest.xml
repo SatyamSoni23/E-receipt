@@ -13,6 +13,7 @@
         android:roundIcon="@drawable/receipt"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name="com.easybusiness.e_receipt.forgotPassword"></activity>
         <activity android:name="com.easybusiness.e_receipt.updateLogo" />
         <activity android:name="com.easybusiness.e_receipt.termsAndConditions" />

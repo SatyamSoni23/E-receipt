@@ -2,6 +2,7 @@ package com.easybusiness.e_receipt;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -23,8 +24,10 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-public class shopLogoUpload extends AppCompatActivity {
+import java.io.ByteArrayOutputStream;
 
+public class shopLogoUpload extends AppCompatActivity {
+    DatabaseHelper myDb;
     Button next;
     ImageView upload;
     private Uri mImageUri;
@@ -38,6 +41,7 @@ public class shopLogoUpload extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_logo_upload);
 
+        myDb = new DatabaseHelper(this);
         next = findViewById(R.id.next);
         upload = findViewById(R.id.upload);
         mProgressBar = findViewById(R.id.progress_bar);
@@ -63,6 +67,19 @@ public class shopLogoUpload extends AppCompatActivity {
                     nDialog.dismiss();
                     return;
                 }
+                else{
+                    upload.buildDrawingCache();
+                    Bitmap bitmap = upload.getDrawingCache();
+                    byte[] data = getBitmapAsByteArray(bitmap);
+                    if(myDb.insertImage(1, data)){
+                        Toast.makeText(shopLogoUpload.this, "Image uploaded to sqlit3", Toast.LENGTH_SHORT).show();
+                        startSuccessActivity();
+                    }
+                    else{
+                        Toast.makeText(shopLogoUpload.this, "sqlite3 respond error", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                /*
                 mStorageRef = FirebaseStorage.getInstance().getReference("shopLogo/").child(registerPage.username);
                 if (mUploadTask != null && mUploadTask.isInProgress()) {
                     Toast.makeText(shopLogoUpload.this, "Upload in Progress", Toast.LENGTH_SHORT).show();
@@ -73,10 +90,16 @@ public class shopLogoUpload extends AppCompatActivity {
                         return;
                     }
                     uploadFile();
-                }
+                }*/
             }
         });
     }
+    public static byte[] getBitmapAsByteArray(Bitmap bitmap) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
+        return outputStream.toByteArray();
+    }
+
     private void openFileChooser(){
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -114,7 +137,7 @@ public class shopLogoUpload extends AppCompatActivity {
                     },500);
 
                     Toast.makeText(shopLogoUpload.this, "Upload Successfull",Toast.LENGTH_LONG).show();
-                    startNextActivity();
+                    //startNextActivity();
 
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -134,8 +157,8 @@ public class shopLogoUpload extends AppCompatActivity {
             Toast.makeText(this,"No file selected",Toast.LENGTH_SHORT).show();
         }
     }
-    public void startNextActivity(){
-        Intent intent = new Intent(this, owerDetail.class);
+    public void startSuccessActivity(){
+        Intent intent = new Intent(this, successRegister.class);
         startActivity(intent);
     }
 }

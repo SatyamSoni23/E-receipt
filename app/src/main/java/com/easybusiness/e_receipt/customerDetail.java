@@ -2,6 +2,7 @@ package com.easybusiness.e_receipt;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class customerDetail extends AppCompatActivity {
+    DatabaseHelper myDb;
     DatabaseReference rootRef, demoRef, demoRef1;
     Button next;
     EditText customerName, customerMobile, customerAddress, customerPincode, customerEmail, otherDetail;
@@ -36,6 +38,7 @@ public class customerDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_detail);
 
+        myDb = new DatabaseHelper(this);
         customerName = findViewById(R.id.customerName);
         customerMobile = findViewById(R.id.customerMobile);
         customerAddress = findViewById(R.id.customerAddress);
@@ -74,7 +77,7 @@ public class customerDetail extends AppCompatActivity {
         });
         rBackground.setAdapter(arrayAdapter);
         rootRef = FirebaseDatabase.getInstance().getReference();
-        demoRef = rootRef.child("E-Receipt").child(login.strUsername);
+        //demoRef = rootRef.child("E-Receipt").child(login.strUsername);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +86,16 @@ public class customerDetail extends AppCompatActivity {
                 nDialog.setIndeterminate(false);
                 nDialog.setCancelable(true);
                 nDialog.show();
-                demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                String preShopEmail = null;
+                Cursor res = myDb.getEmail();
+                if(res != null && res.getCount() > 0){
+                    res.moveToFirst();
+                    do{
+                        preShopEmail = res.getString(0);
+                        detailsCheck = "correct";
+                    }while(res.moveToNext());
+                }
+                /*demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child("shopDetail").exists()){
@@ -102,7 +114,8 @@ public class customerDetail extends AppCompatActivity {
                             Toast.makeText(customerDetail.this, "Please update owner details",Toast.LENGTH_LONG).show();
                             nDialog.dismiss();
                             return;
-                        }
+                        }*/
+                if(preShopEmail != null){
                         if(detailsCheck == "correct"){
                             strCustomerName = customerName.getText().toString();
                             strCustomerMobile = customerMobile.getText().toString();
@@ -155,16 +168,24 @@ public class customerDetail extends AppCompatActivity {
                             startNextActivity();
                         }
                         else{
+                            Toast.makeText(customerDetail.this, "Preshop Email is null",Toast.LENGTH_LONG).show();
                             nDialog.dismiss();
                             return;
                         }
                     }
-
+                else{
+                    Toast.makeText(customerDetail.this, "Please update your shop details",Toast.LENGTH_LONG).show();
+                    startUpdateShopDetailAvtivity();
+                    nDialog.dismiss();
+                    return;
+                }
+                    /*
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                         startSomethingWentWrongActivity();
                     }
-                });
+                });*/
+
             }
         });
     }
@@ -189,5 +210,9 @@ public class customerDetail extends AppCompatActivity {
     public void onBackPressed() {
         startHomeActivity();
         login.videoPlay = "notPlay";
+    }
+    public void startUpdateShopDetailAvtivity(){
+        Intent intent = new Intent(this, updateShopDetails.class);
+        startActivity(intent);
     }
 }

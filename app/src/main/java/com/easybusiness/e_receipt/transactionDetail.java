@@ -3,7 +3,9 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -46,9 +48,11 @@ import java.util.Date;
 import java.util.Locale;
 
 public class transactionDetail extends AppCompatActivity {
+    DatabaseHelper myDb;
     public final int REQUEST_CODE_ASK_PERMISSIONS = 1;
     DatabaseReference rootRef, demoRef, demoRefCount;
     private StorageReference storageRef, dataRef;
+    String date;
     RelativeLayout invoicePage;
     EditText invoiceNo, invoiceDate,
             sNo1, sNo2, sNo3, sNo4, sNo5, sNo6, sNo7, sNo8,
@@ -69,6 +73,7 @@ public class transactionDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_detail);
 
+        myDb = new DatabaseHelper(this);
         invoicePage = (RelativeLayout)findViewById(R.id.invoicePage);
         invoiceNo = (EditText) findViewById(R.id.invoiceNo);
         invoiceDate = (EditText)findViewById(R.id.invoiceDate);
@@ -192,10 +197,11 @@ public class transactionDetail extends AppCompatActivity {
         customerMobile.setText(customerDetail.strCustomerMobile);
         customerAddress.setText(customerDetail.strCustomerAddress + " " + customerDetail.strCustomerPincode);
 
-        String date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         invoiceDate.setText(date);
         invoiceDate.setEnabled(false);
 
+/*
         storageRef = FirebaseStorage.getInstance().getReference().child("shopLogo").child(login.strUsername);
         dataRef = storageRef.child(login.strUsername + ".jpg");
         dataRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -203,9 +209,19 @@ public class transactionDetail extends AppCompatActivity {
             public void onSuccess(Uri uri) {
                 Picasso.with(transactionDetail.this).load(uri).into(shopLogo);
             }
-        });
+        });*/
+        byte data[] = new byte[0];
+        Cursor res1 = myDb.getImageInfo();
+        if(res1 != null && res1.getCount() > 0){
+            res1.moveToFirst();
+            res1.moveToNext();
+            data = res1.getBlob(1);
+        }
+        Bitmap bitmap = getImage(data);
+        shopLogo.setImageBitmap(bitmap);
+
         rootRef = FirebaseDatabase.getInstance().getReference();
-        demoRefCount = rootRef.child("E-Receipt").child(login.strUsername).child("count");
+        /*demoRefCount = rootRef.child("E-Receipt").child(login.strUsername).child("count");
         demoRefCount.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -216,6 +232,27 @@ public class transactionDetail extends AppCompatActivity {
                 startErrorActivity();
             }
         });
+        */
+        String strShopName = null, strShopAddress = null, strShopMobile = null, strShopEmail = null, strGstNumber = null, strPincode = null;
+        Cursor res = myDb.getInfo();
+        if(res != null && res.getCount() > 0){
+            res.moveToFirst();
+            do{
+                strShopEmail = res.getString(0);
+                strShopName = res.getString(1);
+                strShopMobile = res.getString(2);
+                strShopAddress = res.getString(3);
+                strPincode = res.getString(4);
+                strGstNumber = res.getString(5);
+            }while(res.moveToNext());
+        }
+        shopName.setText(strShopName);
+        shopEmail.setText(strShopEmail);
+        shopAddress.setText(strShopAddress + " " + strPincode);
+        shopMobile.setText(strShopMobile);
+        gstNumber.setText(strGstNumber);
+
+        /*
         demoRef = rootRef.child("E-Receipt").child(login.strUsername).child("shopDetail");
         demoRef.child("shopName").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -268,7 +305,7 @@ public class transactionDetail extends AppCompatActivity {
                 startErrorActivity();
             }
         });
-
+        */
         qty1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -642,14 +679,20 @@ public class transactionDetail extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                demoRefCount.setValue(count);
+                //demoRefCount.setValue(count);
                 save.setVisibility(View.GONE);
-                layoutToImage();
-                imageToPDF();
+                if(layoutToImage()){
+                    imageToPDF();
+                }
             }
         });
     }
-    public void layoutToImage() {
+
+    public static Bitmap getImage(byte[] image) {
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
+    }
+
+    public boolean layoutToImage() {
         invoicePage.setDrawingCacheEnabled(true);
         invoicePage.buildDrawingCache();
         Bitmap bm = invoicePage.getDrawingCache();
@@ -674,13 +717,13 @@ public class transactionDetail extends AppCompatActivity {
                                     }
                                 }
                             });
-                    return;
+                    //return;
                 }
 
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         REQUEST_CODE_ASK_PERMISSIONS);
             }
-            return;
+            //return;
         }else {
             File f = new File(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
             try {
@@ -691,6 +734,7 @@ public class transactionDetail extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+        return true;
     }
     public float calc(float qt, float rt){
         return qt * rt;
@@ -706,6 +750,7 @@ public class transactionDetail extends AppCompatActivity {
     }
     public void imageToPDF() {
         try {
+            count = 100000;
             Document document = new Document();
             dirpath = android.os.Environment.getExternalStorageDirectory().toString();
             PdfWriter.getInstance(document, new FileOutputStream(dirpath +"/E-Receipt" + "/" + count + " - " + customerDetail.strCustomerName + ".pdf")); //  Change pdf's name.
