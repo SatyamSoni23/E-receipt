@@ -33,7 +33,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_weight="2.8"
             android:orientation="horizontal"
             android:weightSum="10">
             <LinearLayout
@@ -146,7 +146,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="2.55"
+            android:layout_weight="2.25"
             android:orientation="vertical"
             android:weightSum="12">
             <LinearLayout
@@ -309,19 +309,19 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="10">
-            <TableLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="10dp"
                 android:background="@drawable/tableborder"
-                android:weightSum="20.2"
+                android:weightSum="20.5"
                 android:orientation="vertical"
                 android:stretchColumns="*"
                 android:divider="@drawable/rect">
-                <TableRow
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="2"
+                    android:layout_weight="1.7"
                     android:weightSum="10"
                     android:background="@drawable/tableborder">
                     <TextView
@@ -337,7 +337,7 @@
                         android:textStyle="italic|bold"
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
-                        android:gravity="center_vertical"
+                        android:gravity="center"
                         />
                     <TextView
                         android:layout_height="match_parent"
@@ -347,10 +347,11 @@
                         android:layout_weight="4"
                         android:autoSizeTextType="uniform"
                         android:autoSizeMaxTextSize="22sp"
-                        android:autoSizeMinTextSize="10sp"
+                        android:autoSizeMinTextSize="8sp"
                         android:fontFamily="sans-serif-condensed"
                         android:textStyle="italic|bold"
                         android:textColor="@color/colorPrimaryDark"
+                        android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
                         />
                     <TextView
@@ -398,11 +399,11 @@
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
                         />
-                </TableRow>
-                <TableRow
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1.8"
+                    android:layout_weight="1.6"
                     android:weightSum="10"
                     android:background="@drawable/tableborder">
                     <EditText
@@ -489,11 +490,11 @@
                         android:gravity="center"
                         android:inputType="numberDecimal"
                         />
-                </TableRow>
-                <TableRow
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1.8"
+                    android:layout_weight="1.6"
                     android:weightSum="10"
                     android:background="@drawable/tableborder">
                     <EditText
@@ -580,11 +581,11 @@
                         android:gravity="center"
                         android:inputType="numberDecimal"
                         />
-                </TableRow>
-                <TableRow
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1.8"
+                    android:layout_weight="1.6"
                     android:weightSum="10"
                     android:background="@drawable/tableborder">
                     <EditText
@@ -671,11 +672,11 @@
                         android:gravity="center"
                         android:inputType="numberDecimal"
                         />
-                </TableRow>
-                <TableRow
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1.8"
+                    android:layout_weight="1.6"
                     android:weightSum="10"
                     android:background="@drawable/tableborder">
                     <EditText
@@ -763,11 +764,11 @@
                         android:gravity="center"
                         android:inputType="numberDecimal"
                         />
-                </TableRow>
-                <TableRow
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1.8"
+                    android:layout_weight="1.6"
                     android:weightSum="10"
                     android:background="@drawable/tableborder">
 
@@ -855,11 +856,11 @@
                         android:gravity="center"
                         android:inputType="numberDecimal"
                         />
-                </TableRow>
-                <TableRow
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1.8"
+                    android:layout_weight="1.6"
                     android:weightSum="10"
                     android:background="@drawable/tableborder">
                     <EditText
@@ -945,11 +946,11 @@
                         android:gravity="center"
                         android:inputType="numberDecimal"
                         />
-                </TableRow>
-                <TableRow
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1.8"
+                    android:layout_weight="1.6"
                     android:weightSum="10"
                     android:background="@drawable/tableborder">
                     <EditText
@@ -1035,11 +1036,11 @@
                         android:gravity="center"
                         android:inputType="numberDecimal"
                         />
-                </TableRow>
-                <TableRow
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1.8"
+                    android:layout_weight="1.6"
                     android:weightSum="10"
                     android:background="@drawable/tableborder">
                     <EditText
@@ -1125,12 +1126,12 @@
                         android:gravity="center"
                         android:inputType="numberDecimal"
                         />
-                </TableRow>
+                </LinearLayout>
 
-                <TableRow
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:weightSum="10"
                     android:background="@drawable/tableborder">
                     <TextView
@@ -1145,7 +1146,6 @@
                         android:fontFamily="sans-serif-condensed-light"
                         android:textStyle="italic|bold"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
                         />
                     <EditText
@@ -1196,11 +1196,11 @@
                         android:gravity="center"
                         android:inputType="numberDecimal"
                         />
-                </TableRow>
-                <TableRow
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:weightSum="10"
                     android:background="@drawable/tableborder">
                     <EditText
@@ -1266,11 +1266,11 @@
                         android:textColorHint="@color/colorPrimary"
                         android:gravity="center"
                         />
-                </TableRow>
-                <TableRow
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:weightSum="10"
                     android:background="@drawable/tableborder">
                     <TextView
@@ -1335,11 +1335,11 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textColorHint="@color/colorPrimary"
                         android:textStyle="italic|bold" />
-                </TableRow>
-                <TableRow
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_weight="1.5"
                     android:weightSum="10"
                     android:background="@drawable/tableborder">
                     <TextView
@@ -1373,8 +1373,8 @@
                         android:gravity="center"
                         android:inputType="numberDecimal"
                         />
-                </TableRow>
-            </TableLayout>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

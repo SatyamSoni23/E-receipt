@@ -16,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,6 +70,55 @@ public class transactionDetail extends AppCompatActivity {
     private Button save;
     String dirpath, strBackground;
     public static int count;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.right_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.Flower){
+            invoicePage.setBackgroundResource(R.drawable.b5);
+        }
+        else if(id == R.id.Jewel){
+            invoicePage.setBackgroundResource(R.drawable.jewel);
+        }
+        else if(id == R.id.God){
+            invoicePage.setBackgroundResource(R.drawable.garesh);
+        }
+        else if(id == R.id.Leaf){
+            invoicePage.setBackgroundResource(R.drawable.leaf);
+        }
+        else if(id == R.id.Square){
+            invoicePage.setBackgroundResource(R.drawable.b6);
+        }
+        else if(id == R.id.Yellow){
+            invoicePage.setBackgroundResource(R.drawable.yellow);
+        }
+        else if(id == R.id.Green_Brush){
+            invoicePage.setBackgroundResource(R.drawable.b7);
+        }
+        else if(id == R.id.Gray_Flower){
+            invoicePage.setBackgroundResource(R.drawable.b3);
+        }
+        else if(id == R.id.Crystal){
+            invoicePage.setBackgroundResource(R.drawable.b1);
+        }
+        else if(id == R.id.Old_paper){
+            invoicePage.setBackgroundResource(R.drawable.b2);
+        }
+        else if(id == R.id.Ancient_Paper){
+            invoicePage.setBackgroundResource(R.drawable.old);
+        }
+        else{
+            invoicePage.setBackgroundResource(R.drawable.invoice);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,7 +202,7 @@ public class transactionDetail extends AppCompatActivity {
         gstNumber = (TextView)findViewById(R.id.gstNumber);
         shopLogo = (ImageView)findViewById(R.id.shopLogo);
         save = (Button) findViewById(R.id.save);
-
+/*
         strBackground = customerDetail.strRBackground;
         if(strBackground == "Select Receipt Design"){
             invoicePage.setBackgroundResource(R.drawable.invoice);
@@ -192,7 +243,7 @@ public class transactionDetail extends AppCompatActivity {
         else{
             invoicePage.setBackgroundResource(R.drawable.invoice);
         }
-
+*/
         customerName.setText(customerDetail.strCustomerName);
         customerMobile.setText(customerDetail.strCustomerMobile);
         customerAddress.setText(customerDetail.strCustomerAddress + " " + customerDetail.strCustomerPincode);
@@ -214,8 +265,8 @@ public class transactionDetail extends AppCompatActivity {
         Cursor res1 = myDb.getImageInfo();
         if(res1 != null && res1.getCount() > 0){
             res1.moveToFirst();
-            res1.moveToNext();
             data = res1.getBlob(1);
+            res1.moveToNext();
         }
         Bitmap bitmap = getImage(data);
         shopLogo.setImageBitmap(bitmap);
@@ -675,7 +726,6 @@ public class transactionDetail extends AppCompatActivity {
 
             }
         });
-
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -778,7 +828,6 @@ public class transactionDetail extends AppCompatActivity {
     public void startSaveActivity(){
         Intent intent = new Intent(this, invoiceSend.class);
         startActivity(intent);
-        save.setVisibility(View.VISIBLE);
     }
     public void startErrorActivity(){
         Intent intent = new Intent(this, offline.class);

@@ -28,7 +28,7 @@ public class customerDetail extends AppCompatActivity {
     DatabaseReference rootRef, demoRef, demoRef1;
     Button next;
     EditText customerName, customerMobile, customerAddress, customerPincode, customerEmail, otherDetail;
-    Spinner rBackground;
+    //Spinner rBackground;
     public static String strRBackground, strCustomerName, strCustomerMobile, strCustomerAddress, strCustomerPincode, strCustomerEmail, strOtherDetail;
     String detailsCheck = "Incorrect";
     ProgressDialog nDialog;
@@ -45,9 +45,9 @@ public class customerDetail extends AppCompatActivity {
         customerPincode = findViewById(R.id.customerPincode);
         customerEmail = findViewById(R.id.customerEmail);
         otherDetail = findViewById(R.id.otherDetail);
-        rBackground = findViewById(R.id.rBackground);
+        //rBackground = findViewById(R.id.rBackground);
         next = findViewById(R.id.next);
-
+/*
         rBackground.setSelection(0);
         list.add("Select Receipt Design");
         list.add("Flower");
@@ -76,6 +76,8 @@ public class customerDetail extends AppCompatActivity {
             }
         });
         rBackground.setAdapter(arrayAdapter);
+
+ */
         rootRef = FirebaseDatabase.getInstance().getReference();
         //demoRef = rootRef.child("E-Receipt").child(login.strUsername);
         next.setOnClickListener(new View.OnClickListener() {

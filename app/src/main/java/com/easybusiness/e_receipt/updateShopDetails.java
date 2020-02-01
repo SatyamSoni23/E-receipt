@@ -29,6 +29,7 @@ public class updateShopDetails extends AppCompatActivity {
     ProgressDialog nDialog;
     Button update;
     public static int check;
+    int flag = 0;
     EditText shopName, shopMobile, shopAddress, shopPincode, shopEmail, gstNumber, slogan;
     public static String strShopName, strShopMobile, strShopAddress, strShopPincode, strShopEmail, strGstNumber, strSlogan;
     @Override
@@ -70,6 +71,7 @@ public class updateShopDetails extends AppCompatActivity {
                 gstNumber.setText(strNewGstNumber);
                 strNewSlogan = res.getString(6);
                 slogan.setText(strNewSlogan);
+                flag = 1;
             }while(res.moveToNext());
         }
         /*demoRef = rootRef.child("E-Receipt").child(login.strUsername);
@@ -189,8 +191,8 @@ public class updateShopDetails extends AppCompatActivity {
                     demoRef1.child("slogan").setValue(strSlogan);
                 }
                  */
-                Cursor res = myDb.getInfo();
-                if(res != null){
+                //Cursor res = myDb.getInfo();
+                if(flag == 1){
                     if(myDb.updateData(strShopName, strShopMobile, strShopAddress, strShopPincode, strShopEmail, strGstNumber, strSlogan)){
                         Toast.makeText(updateShopDetails.this, "Data Inserted", Toast.LENGTH_SHORT).show();
                     }
@@ -207,6 +209,7 @@ public class updateShopDetails extends AppCompatActivity {
                         Toast.makeText(updateShopDetails.this, "Error in data insertion", Toast.LENGTH_SHORT).show();
                         startSmwActivity();
                     }
+
                 }
                 startUpdateShopDetailsActivity();
             }

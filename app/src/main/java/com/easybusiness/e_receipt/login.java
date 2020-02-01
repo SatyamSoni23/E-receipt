@@ -36,10 +36,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.File;
 
 public class login extends AppCompatActivity {
-    GoogleSignInClient mGoogleSignInClient;
+
     DatabaseHelper myDb;
     Button signin;
-    int RC_SIGNIN = 0;
     DatabaseReference rootRef, demoRef,demoRef1;
     private FirebaseAuth mAuth;
 
@@ -54,30 +53,12 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         myDb = new DatabaseHelper(this);
-        
         login = findViewById(R.id.login);
         signin = findViewById(R.id.signin);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         forgotPassword = findViewById(R.id.forgotPassword);
-
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Google Integration xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
-       GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
-
-        signin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signIn();
-            }
-        });
-
+        myDb.getWritableDatabase();
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Firebase Helper xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
 
         mAuth = FirebaseAuth.getInstance();
@@ -199,42 +180,5 @@ public class login extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Google Integration xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
-
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGNIN);
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == RC_SIGNIN){
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
-        }
-        //callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask){
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            startActivity(new Intent(login.this, home.class));
-        } catch (ApiException e) {
-            Log.w("Google Sign In Error", "signInResult:failed code" + e.getStatusCode());
-            Toast.makeText(login.this, "Failed", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    @Override
-    protected void onStart() {
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        if(account != null){
-            startActivity(new Intent(login.this, home.class));
-        }
-        super.onStart();
-    }
-
-
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
 
 }

@@ -18,19 +18,11 @@ public class shopFirstDetail extends AppCompatActivity {
     DatabaseHelper myDb;
     DatabaseReference rootRef, demoRef, demoRef1;
     private FirebaseAuth mAuth;
-    FirebaseAuth.AuthStateListener mAuthListner;
     Button next;
     EditText shopName, shopMobile, shopAddress, shopPincode, shopEmail, gstNumber, slogan;
     public static String strShopName, strShopMobile, strShopAddress, strShopPincode, strShopEmail, strGstNumber, strSlogan;
     ProgressDialog nDialog;
 
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Google Integration xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListner);
-    }
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,21 +39,8 @@ public class shopFirstDetail extends AppCompatActivity {
         shopEmail = findViewById(R.id.shopEmail);
         gstNumber = findViewById(R.id.gstNumber);
         slogan = findViewById(R.id.slogan);
-        mAuth = FirebaseAuth.getInstance();
+        //mAuth = FirebaseAuth.getInstance();
 
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Google Integration xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
-        mAuthListner = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser() != null){
-                    shopEmail.setText(registerPage.userEmail);
-                }
-                else{
-                    shopEmail.setText(registerPage.strUsername);
-                }
-            }
-        };
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
 
         shopEmail.setEnabled(false);
 

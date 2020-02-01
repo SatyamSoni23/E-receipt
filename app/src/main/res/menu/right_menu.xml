@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:orderInCategory="100"
+        android:title="Select Receipt Design"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Flower"
+        android:orderInCategory="100"
+        android:title="Flower"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Jewel"
+        android:orderInCategory="100"
+        android:title="Jewel"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/God"
+        android:orderInCategory="100"
+        android:title="God"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Leaf"
+        android:orderInCategory="100"
+        android:title="Leaf"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Square"
+        android:orderInCategory="100"
+        android:title="Square"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Yellow"
+        android:orderInCategory="100"
+        android:title="Yellow"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Green_Brush"
+        android:orderInCategory="100"
+        android:title="Green Brush"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Gray_Flower"
+        android:orderInCategory="100"
+        android:title="Gray Flower"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Crystal"
+        android:orderInCategory="100"
+        android:title="Crystal"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Old_paper"
+        android:orderInCategory="100"
+        android:title="Old paper"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Ancient_Paper"
+        android:orderInCategory="100"
+        android:title="Ancient Paper"
+        app:showAsAction="never" />
+</menu>
