@@ -53,7 +53,7 @@
             android:layout_marginHorizontal="35dp"
             android:hint="Email"
             android:background="@drawable/recttrans"
-            android:textSize="25dp"
+            style="@android:style/TextAppearance.DeviceDefault.Large.Inverse"
             android:fontFamily="serif-monospace"
             android:textStyle="bold|italic"
             android:textColor="@color/colorPrimaryDark"
@@ -75,7 +75,7 @@
             android:layout_marginHorizontal="35dp"
             android:hint="Password"
             android:background="@drawable/recttrans"
-            android:textSize="25dp"
+            style="@android:style/TextAppearance.DeviceDefault.Large.Inverse"
             android:fontFamily="serif-monospace"
             android:textStyle="bold|italic"
             android:textColor="@color/colorPrimaryDark"
@@ -105,7 +105,7 @@
             android:paddingBottom="10dp"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorAccent"
-            android:textSize="25dp"
+            style="@android:style/TextAppearance.DeviceDefault.Large.Inverse"
             android:textStyle="bold|italic" />
 
         <LinearLayout

@@ -1,5 +1,6 @@
 package com.easybusiness.e_receipt;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -56,6 +57,7 @@ public class transferMoney extends AppCompatActivity {
         }
         else{
             Toast.makeText(this, "App not installed", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + "com.phonepe.app")));
         }
     }
     public void startGooglePayActivity(){
@@ -65,6 +67,7 @@ public class transferMoney extends AppCompatActivity {
         }
         else{
             Toast.makeText(this, "App not installed", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + "com.google.android.apps.nbu.paisa.user")));
         }
     }
     public void startAmazonPayActivity(){
@@ -74,6 +77,7 @@ public class transferMoney extends AppCompatActivity {
         }
         else{
             Toast.makeText(this, "App not installed", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + "in.amazon.mShop.android.shopping")));
         }
     }
     public void startBhimActivity(){
@@ -83,6 +87,7 @@ public class transferMoney extends AppCompatActivity {
         }
         else{
             Toast.makeText(this, "App not installed", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + "in.org.npci.upiapp")));
         }
     }
     public void startPaytmActivity(){
@@ -91,6 +96,7 @@ public class transferMoney extends AppCompatActivity {
             startActivity(launchIntent);
         }
         else{
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + "net.one97.paytm")));
             Toast.makeText(this, "App not installed", Toast.LENGTH_SHORT).show();
         }
     }

@@ -176,6 +176,9 @@ public class updateShopDetails extends AppCompatActivity {
                         return;
                     }
                 }
+                if(strSlogan.matches("")){
+                    strSlogan = "None";
+                }
                 /*
                 demoRef1 = demoRef.child("shopDetail");
                 demoRef1.child("shopName").setValue(strShopName);
@@ -253,5 +256,15 @@ public class updateShopDetails extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        startHomeActivity();
+    }
+    public void startHomeActivity(){
+        login.videoPlay = "notPlay";
+        Intent intent = new Intent(this, home.class);
+        startActivity(intent);
     }
 }

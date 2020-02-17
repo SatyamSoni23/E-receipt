@@ -26,6 +26,32 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     Button login, register;
     DatabaseHelper myDb;
+    private FirebaseAuth mAuth;
+    public static  int  flag = 0;
+    public static String currentEmail;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Database Helper And Firebase Helper xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+
+        sharedPreferences = getApplicationContext().getSharedPreferences("Preferences", 0);
+        String login = sharedPreferences.getString("LOGIN", null);
+        if(login != null){
+            startInternalActivity();
+            flag = 2;
+        }
+        else{
+            // Check if user is signed in (non-null) and update UI accordingly.
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            if(currentUser != null){
+                currentEmail = currentUser.getEmail();
+                flag = 1;
+                startInternalActivity();
+            }
+        }
+    }
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,15 +74,8 @@ public class MainActivity extends AppCompatActivity {
                 startRegisterActivity();
             }
         });
+        mAuth = FirebaseAuth.getInstance();
 
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Database Helper xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
-
-        sharedPreferences = getApplicationContext().getSharedPreferences("Preferences", 0);
-        String login = sharedPreferences.getString("LOGIN", null);
-        if(login != null){
-            startInternalActivity();
-        }
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
 
     }
     public void startInternalActivity(){

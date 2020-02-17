@@ -45,24 +45,26 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.3"/>
+
         <EditText
             android:id="@+id/username"
+            style="@android:style/TextAppearance.DeviceDefault.Large.Inverse"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1.8"
             android:layout_marginHorizontal="35dp"
-            android:hint="Email"
+            android:layout_weight="1.8"
             android:background="@drawable/recttrans"
-            android:textSize="25dp"
             android:fontFamily="serif-monospace"
-            android:textStyle="bold|italic"
+            android:gravity="center"
+            android:hint="Email"
+            android:inputType="text"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:stateListAnimator="@animator/button_state_list_anim"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorAccent"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:gravity="center"
-            android:inputType="text"
-            android:stateListAnimator="@animator/button_state_list_anim" />
+            android:textStyle="bold|italic" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -76,7 +78,7 @@
             android:layout_marginHorizontal="35dp"
             android:hint="Password"
             android:background="@drawable/recttrans"
-            android:textSize="25dp"
+            style="@android:style/TextAppearance.DeviceDefault.Large.Inverse"
             android:fontFamily="serif-monospace"
             android:textStyle="bold|italic"
             android:textColor="@color/colorPrimaryDark"

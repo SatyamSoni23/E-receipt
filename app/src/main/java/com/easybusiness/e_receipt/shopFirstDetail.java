@@ -41,7 +41,12 @@ public class shopFirstDetail extends AppCompatActivity {
         slogan = findViewById(R.id.slogan);
         //mAuth = FirebaseAuth.getInstance();
 
-
+        if(registerPage.flag == 1){
+            shopEmail.setText(registerPage.userEmail);
+        }
+        else{
+            shopEmail.setText(registerPage.strUsername);
+        }
         shopEmail.setEnabled(false);
 
         rootRef = FirebaseDatabase.getInstance().getReference();
@@ -115,10 +120,15 @@ public class shopFirstDetail extends AppCompatActivity {
                     return;
                 }
 
+                if(strSlogan.matches("")){
+                    strSlogan = "None";
+                }
+
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Database Helper xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
 
                 if(myDb.insertData(strShopName, strShopMobile, strShopAddress, strShopPincode, strShopEmail, strGstNumber, strSlogan)){
-                    Toast.makeText(shopFirstDetail.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(shopFirstDetail.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                    startShopLogoActivity();
                 }
                 else{
                     Toast.makeText(shopFirstDetail.this, "Error in data insertion", Toast.LENGTH_SHORT).show();
@@ -140,9 +150,10 @@ public class shopFirstDetail extends AppCompatActivity {
                 }
                 else{
                     demoRef1.child("slogan").setValue(strSlogan);
-                }*/
-//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+                }
                 startShopLogoActivity();
+                */
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/
 
             }
         });

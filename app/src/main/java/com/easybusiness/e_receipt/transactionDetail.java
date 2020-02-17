@@ -54,7 +54,7 @@ public class transactionDetail extends AppCompatActivity {
     public final int REQUEST_CODE_ASK_PERMISSIONS = 1;
     DatabaseReference rootRef, demoRef, demoRefCount;
     private StorageReference storageRef, dataRef;
-    String date;
+    public  static String date, time;
     RelativeLayout invoicePage;
     EditText invoiceNo, invoiceDate,
             sNo1, sNo2, sNo3, sNo4, sNo5, sNo6, sNo7, sNo8,
@@ -251,6 +251,7 @@ public class transactionDetail extends AppCompatActivity {
         date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         invoiceDate.setText(date);
         invoiceDate.setEnabled(false);
+        time = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
 
 /*
         storageRef = FirebaseStorage.getInstance().getReference().child("shopLogo").child(login.strUsername);
@@ -262,7 +263,7 @@ public class transactionDetail extends AppCompatActivity {
             }
         });*/
         byte data[] = new byte[0];
-        Cursor res1 = myDb.getImageInfo();
+        Cursor res1 = myDb.getImageInfo(home.preShopEmail);
         if(res1 != null && res1.getCount() > 0){
             res1.moveToFirst();
             data = res1.getBlob(1);
@@ -285,7 +286,7 @@ public class transactionDetail extends AppCompatActivity {
         });
         */
         String strShopName = null, strShopAddress = null, strShopMobile = null, strShopEmail = null, strGstNumber = null, strPincode = null;
-        Cursor res = myDb.getInfo();
+        Cursor res = myDb.getInfo(home.preShopEmail);
         if(res != null && res.getCount() > 0){
             res.moveToFirst();
             do{
@@ -732,6 +733,7 @@ public class transactionDetail extends AppCompatActivity {
                 //demoRefCount.setValue(count);
                 save.setVisibility(View.GONE);
                 if(layoutToImage()){
+                    save.setVisibility(View.VISIBLE);
                     imageToPDF();
                 }
             }
@@ -803,7 +805,7 @@ public class transactionDetail extends AppCompatActivity {
             count = 100000;
             Document document = new Document();
             dirpath = android.os.Environment.getExternalStorageDirectory().toString();
-            PdfWriter.getInstance(document, new FileOutputStream(dirpath +"/E-Receipt" + "/" + count + " - " + customerDetail.strCustomerName + ".pdf")); //  Change pdf's name.
+            PdfWriter.getInstance(document, new FileOutputStream(dirpath +"/E-Receipt" + "/" + date + "\\" + time + "\\" + customerDetail.strCustomerName + ".pdf")); //  Change pdf's name.
             document.open();
             Image img = Image.getInstance(Environment.getExternalStorageDirectory() + File.separator + "image.jpg");
             float scaler = ((document.getPageSize().getWidth() - document.leftMargin()

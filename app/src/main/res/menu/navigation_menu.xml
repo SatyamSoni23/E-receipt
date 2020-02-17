@@ -21,11 +21,6 @@
         android:title="Update Shop Logo ">
     </item>
     <item
-        android:id="@+id/updateOwnerDetails"
-        android:icon="@drawable/ic_person_black_24dp"
-        android:title="Update Owner Details ">
-    </item>
-    <item
         android:id="@+id/contactUs"
         android:icon="@drawable/ic_contacts_black_24dp"
         android:title="Contact Us">

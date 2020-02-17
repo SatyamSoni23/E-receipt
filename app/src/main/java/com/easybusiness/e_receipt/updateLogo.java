@@ -81,23 +81,23 @@ public class updateLogo extends AppCompatActivity {
                     }
                     uploadFile();
                 }*/
-                int value = 0;
-                Cursor res = myDb.getImageInfo();
+                String value = null;
+                Cursor res = myDb.getImageInfo(home.preShopEmail);
                 if(res != null && res.getCount() > 0){
                     res.moveToFirst();
-                    value = res.getInt(0);
+                    value = res.getString(0);
                 }
-                if(value == 1){
+                if(value != null){
                     upload.buildDrawingCache();
                     Bitmap bitmap = upload.getDrawingCache();
                     byte[] data = getBitmapAsByteArray(bitmap);
-                    if(myDb.updateImage(1, data)){
-                        Toast.makeText(updateLogo.this, "Image uploaded to sqlit3", Toast.LENGTH_SHORT).show();
+                    if(myDb.updateImage(home.preShopEmail, data)){
+                        Toast.makeText(updateLogo.this, "Image successfully uploaded", Toast.LENGTH_SHORT).show();
                         //uploadFile();
                         startLogoUpdateActivity();
                     }
                     else{
-                        Toast.makeText(updateLogo.this, "sqlite3 respond error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(updateLogo.this, "server respond error", Toast.LENGTH_SHORT).show();
                         nDialog.dismiss();
                     }
                 }
@@ -105,13 +105,13 @@ public class updateLogo extends AppCompatActivity {
                     upload.buildDrawingCache();
                     Bitmap bitmap = upload.getDrawingCache();
                     byte[] data = getBitmapAsByteArray(bitmap);
-                    if(myDb.insertImage(1, data)){
-                        Toast.makeText(updateLogo.this, "Image uploaded to sqlit3", Toast.LENGTH_SHORT).show();
+                    if(myDb.insertImage(home.preShopEmail, data)){
+                        Toast.makeText(updateLogo.this, "Image successfully uploaded", Toast.LENGTH_SHORT).show();
                         startLogoUpdateActivity();
                         //uploadFile();
                     }
                     else{
-                        Toast.makeText(updateLogo.this, "sqlite3 respond error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(updateLogo.this, "server respond error", Toast.LENGTH_SHORT).show();
                         nDialog.dismiss();
                     }
                 }

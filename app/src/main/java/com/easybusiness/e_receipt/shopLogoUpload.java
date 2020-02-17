@@ -2,6 +2,7 @@ package com.easybusiness.e_receipt;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Handler;
@@ -71,12 +72,14 @@ public class shopLogoUpload extends AppCompatActivity {
                     upload.buildDrawingCache();
                     Bitmap bitmap = upload.getDrawingCache();
                     byte[] data = getBitmapAsByteArray(bitmap);
-                    if(myDb.insertImage(1, data)){
-                        Toast.makeText(shopLogoUpload.this, "Image uploaded to sqlit3", Toast.LENGTH_SHORT).show();
+                    if(myDb.insertImage(registerPage.strUsername, data)){
+                        //Toast.makeText(shopLogoUpload.this, "Image uploaded to sqlit3", Toast.LENGTH_SHORT).show();
                         startSuccessActivity();
+                        //uploadFile();
                     }
                     else{
-                        Toast.makeText(shopLogoUpload.this, "sqlite3 respond error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(shopLogoUpload.this, "Error in image uploading", Toast.LENGTH_SHORT).show();
+                        nDialog.dismiss();
                     }
                 }
                 /*

@@ -18,6 +18,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.MediaController;
 import android.widget.Toast;
@@ -48,8 +49,10 @@ public class home extends AppCompatActivity {
     FirebaseAuth.AuthStateListener mAuthListner;
     private DrawerLayout dl;
     private ActionBarDrawerToggle abdt;
+    public static int flag = 0, flagLogin = 0, flagRegister = 0;
     VideoView videoView;
     public static String preShopEmail;
+    NavigationView nav_view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,8 @@ public class home extends AppCompatActivity {
         myDb = new DatabaseHelper(this);
         mAuth = FirebaseAuth.getInstance();
         rootRef = FirebaseDatabase.getInstance().getReference();
+        nav_view = (NavigationView)findViewById(R.id.nav_view);
+
         //demoRef = rootRef.child("E-Receipt").child(login.strUsername).child("shopDetail");
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Access Permission xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -99,43 +104,57 @@ public class home extends AppCompatActivity {
 
          */
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Database Helper And Firebase Authentication xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+        flagLogin = login.flag;
+        flag = MainActivity.flag;
+        if(flag == 1 || flagLogin == 1){
+            FirebaseUser currentUser = mAuth.getCurrentUser();
+            preShopEmail = currentUser.getEmail();
+            Menu nav_menu = nav_view.getMenu();
+            nav_menu.findItem(R.id.updatePassword).setVisible(false);
+            /*Toast.makeText(home.this, "Entry 1 -> " + login.flag,
+                    Toast.LENGTH_SHORT).show();*/
+        }
+        else if(flag == 2 || flagLogin == 2){
+            sharedPreferences = getApplicationContext().getSharedPreferences("Preferences", 0);
+            String strPassword = sharedPreferences.getString("LOGIN", null);
+            preShopEmail = sharedPreferences.getString("EMAIL", null);
 
-        sharedPreferences = getApplicationContext().getSharedPreferences("Preferences", 0);
-        String strPassword = sharedPreferences.getString("LOGIN", null);
-        preShopEmail = sharedPreferences.getString("EMAIL", null);
+            if(strPassword != null){
+                mAuth.signInWithEmailAndPassword(preShopEmail, strPassword).addOnCompleteListener(home.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
 
-        if(strPassword != null){
-            mAuth.signInWithEmailAndPassword(preShopEmail, strPassword).addOnCompleteListener(home.this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            if (user != null) {
+                                boolean emailVerified = user.isEmailVerified();
+                                if(emailVerified == false){
+                                    new AlertDialog.Builder(home.this)
+                                            .setTitle("Email Verification")
+                                            .setMessage("Please verify your email id")
+                                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
 
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        if (user != null) {
-                            boolean emailVerified = user.isEmailVerified();
-                            if(emailVerified == false){
-                                new AlertDialog.Builder(home.this)
-                                        .setTitle("Email Verification")
-                                        .setMessage("Please verify your email id")
-                                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-
-                                            }
-                                        }).show();
+                                                }
+                                            }).show();
+                                }
                             }
                         }
+                        else{
+                            Toast.makeText(home.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
                     }
-                    else{
-                        Toast.makeText(home.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
+                });
+            }
+            else{
+                /*Toast.makeText(home.this, "Entry 2",
+                        Toast.LENGTH_SHORT).show();*/
+                startSmwActivity();
+            }
         }
-        else{
-            startSmwActivity();
-        }
+
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
 
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Firebase Helper and Firebase Authentication xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
@@ -203,7 +222,7 @@ public class home extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final NavigationView nav_view = (NavigationView)findViewById(R.id.nav_view);
+
 
         nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -225,22 +244,27 @@ public class home extends AppCompatActivity {
                     Toast.makeText(home.this, "Update Shop Logo", Toast.LENGTH_SHORT).show();
                     startUpdateShopLogoActivity();
                 }
-                else if (id == R.id.updateOwnerDetails){
-                    Toast.makeText(home.this, "Update Owner Details", Toast.LENGTH_SHORT).show();
-                    startUpdateOwnerDetailsActivity();
-                }
                 else if(id == R.id.contactUs){
                     Toast.makeText(home.this, "Contact Us", Toast.LENGTH_SHORT).show();
                     startContactUsActivity();
                 }
                 else if(id == R.id.Logout){
                     Toast.makeText(home.this, "Logout", Toast.LENGTH_SHORT).show();
-
-                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("Preferences", 0);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.remove("LOGIN");
-                    editor.commit();
-                    startLogoutActivity();
+                    if(flag == 1 || flagLogin == 1){
+                        FirebaseAuth.getInstance().signOut();
+                        startLogoutActivity();
+                    }
+                    else if(flag == 2 || flagLogin == 2){
+                        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("Preferences", 0);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.remove("LOGIN");
+                        editor.commit();
+                        FirebaseAuth.getInstance().signOut();
+                        startLogoutActivity();
+                    }
+                    else{
+                        startSmwActivity();
+                    }
                 }
                 return false;
             }
@@ -317,7 +341,7 @@ public class home extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         Uri uri = Uri.parse(pa);
         intent.setDataAndType(uri, "*/*");
-        Toast.makeText(home.this, "Select File Manager", Toast.LENGTH_SHORT).show();
+        Toast.makeText(home.this, "Select file manager", Toast.LENGTH_SHORT).show();
         startActivity(Intent.createChooser(intent, "Open folder"));
     }
     public void startTransferMoneyActivity(){
@@ -335,6 +359,8 @@ public class home extends AppCompatActivity {
     }
 
     public void startLogoutActivity(){
+        flag = 0;
+        flagLogin = 0;
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

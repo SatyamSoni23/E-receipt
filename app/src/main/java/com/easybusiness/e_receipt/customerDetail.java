@@ -30,9 +30,24 @@ public class customerDetail extends AppCompatActivity {
     EditText customerName, customerMobile, customerAddress, customerPincode, customerEmail, otherDetail;
     //Spinner rBackground;
     public static String strRBackground, strCustomerName, strCustomerMobile, strCustomerAddress, strCustomerPincode, strCustomerEmail, strOtherDetail;
-    String detailsCheck = "Incorrect";
+    String preShopEmail = null, detailsCheck = "Incorrect";
     ProgressDialog nDialog;
     public static List<String> list = new ArrayList<>();
+
+    @Override
+    protected void onStart() {
+        Cursor res = myDb.getAllData(home.preShopEmail);
+        if(res != null && res.getCount() > 0){
+            preShopEmail = home.preShopEmail;
+            detailsCheck = "correct";
+        }
+        else{
+            Toast.makeText(customerDetail.this, "Please update your shop details", Toast.LENGTH_LONG).show();
+            startUpdateShopDetailAvtivity();
+        }
+        super.onStart();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +93,7 @@ public class customerDetail extends AppCompatActivity {
         rBackground.setAdapter(arrayAdapter);
 
  */
+
         rootRef = FirebaseDatabase.getInstance().getReference();
         //demoRef = rootRef.child("E-Receipt").child(login.strUsername);
         next.setOnClickListener(new View.OnClickListener() {
@@ -88,15 +104,7 @@ public class customerDetail extends AppCompatActivity {
                 nDialog.setIndeterminate(false);
                 nDialog.setCancelable(true);
                 nDialog.show();
-                String preShopEmail = null;
-                Cursor res = myDb.getEmail();
-                if(res != null && res.getCount() > 0){
-                    res.moveToFirst();
-                    do{
-                        preShopEmail = res.getString(0);
-                        detailsCheck = "correct";
-                    }while(res.moveToNext());
-                }
+
                 /*demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -118,7 +126,7 @@ public class customerDetail extends AppCompatActivity {
                             return;
                         }*/
                 if(preShopEmail != null){
-                        if(detailsCheck == "correct"){
+                        //if(detailsCheck == "correct"){
                             strCustomerName = customerName.getText().toString();
                             strCustomerMobile = customerMobile.getText().toString();
                             strCustomerAddress = customerAddress.getText().toString();
@@ -168,12 +176,12 @@ public class customerDetail extends AppCompatActivity {
                                 return;
                             }
                             startNextActivity();
-                        }
-                        else{
+                        //}
+                        /*else{
                             Toast.makeText(customerDetail.this, "Preshop Email is null",Toast.LENGTH_LONG).show();
                             nDialog.dismiss();
                             return;
-                        }
+                        }*/
                     }
                 else{
                     Toast.makeText(customerDetail.this, "Please update your shop details",Toast.LENGTH_LONG).show();

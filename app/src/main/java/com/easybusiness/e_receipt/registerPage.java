@@ -2,6 +2,7 @@ package com.easybusiness.e_receipt;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -20,6 +21,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,6 +38,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class registerPage extends AppCompatActivity {
+    DatabaseHelper myDb;
     Button signin;
     DatabaseReference rootRef, demoRef, demoRef1;
     private FirebaseAuth mAuth;
@@ -44,26 +47,55 @@ public class registerPage extends AppCompatActivity {
     public static int count = 100000;
     Button next;
     ProgressDialog nDialog;
+    public static int flag = 0, authFlag = 0;
+
+    private static final String TAG = "registerPage";
+    private Button signInButton;
+    private GoogleApiClient.Builder googleApiClient;
+    private static final int RC_SIGN_IN = 1;
+    String idToken;
+    private FirebaseAuth.AuthStateListener authStateListener;
+    GoogleSignInClient mGoogleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
 
-        signin = findViewById(R.id.signin);
+        myDb = new DatabaseHelper(this);
+        signInButton = findViewById(R.id.signin);
         next = findViewById(R.id.next);
         uname = findViewById(R.id.username);
         pwd = findViewById(R.id.password);
         rePwd = findViewById(R.id.rePassword);
         mAuth = FirebaseAuth.getInstance();
+        nDialog = new ProgressDialog(registerPage.this);
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Google Integration xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
+        GoogleSignInOptions gso =  new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))//you can also use R.string.default_web_client_id
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nDialog.setMessage("Loading..");
+                nDialog.setIndeterminate(false);
+                nDialog.setCancelable(true);
+                nDialog.show();
+                flag = 1;
+                signIn();
+            }
+        });
+
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
         rootRef = FirebaseDatabase.getInstance().getReference();
         demoRef = rootRef.child("E-Receipt");
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nDialog = new ProgressDialog(registerPage.this);
                 nDialog.setMessage("Loading..");
                 nDialog.setIndeterminate(false);
                 nDialog.setCancelable(true);
@@ -143,6 +175,11 @@ public class registerPage extends AppCompatActivity {
         startActivity(intent);
         nDialog.dismiss();
     }
+    public void startSomethingWentWrongActivity(){
+        Intent intent = new Intent(this, offline.class);
+        startActivity(intent);
+        nDialog.dismiss();
+    }
 
     @Override
     public void onBackPressed() {
@@ -174,4 +211,81 @@ public class registerPage extends AppCompatActivity {
     }
 //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
 
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx Google Integration xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
+
+    private void signIn(){
+        Intent intent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 1){
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try{
+                final GoogleSignInAccount account = task.getResult(ApiException.class);
+                rootRef = FirebaseDatabase.getInstance().getReference();
+                strUsername = account.getEmail();
+                username =strUsername.replaceAll("[@.]","");
+                demoRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.child(username).exists()){
+                            Toast.makeText(registerPage.this, "An account with this email id already exists.",Toast.LENGTH_LONG).show();
+                            nDialog.dismiss();
+                        }
+                        else{
+                            firebasebaseAuthWithGoogle(account);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        startOfflineActivity();
+                    }
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void firebasebaseAuthWithGoogle(GoogleSignInAccount account) {
+
+        final Cursor res = myDb.getAllData(strUsername);
+
+        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCredential:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            userEmail = user.getEmail();
+                            if(res != null && res.getCount() > 0){
+                                login.flag = 1;
+                                startActivity(new Intent(registerPage.this, home.class));
+                            }
+                            else{
+                                startActivity(new Intent(registerPage.this, shopFirstDetail.class));
+                            }
+                            nDialog.dismiss();
+                            //updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            Toast.makeText(registerPage.this, "Authentication Failed.", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(registerPage.this, somethingWentWrong.class));
+                            nDialog.dismiss();
+                        }
+
+                        // ...
+                    }
+                });
+    }
+//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx//
 }

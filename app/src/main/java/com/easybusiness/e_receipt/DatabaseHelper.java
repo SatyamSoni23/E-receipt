@@ -79,7 +79,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
  */
-    public boolean insertImage(int keyName, byte[] image){
+    public boolean insertImage(String keyName, byte[] image){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_IMG_1, keyName);
@@ -99,21 +99,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return res;
     }
 
-    public Cursor getInfo(){
+    public Cursor getInfo(String shopEmail){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from e_receipt_shop_info", null);
+        Cursor res = db.rawQuery("select * from e_receipt_shop_info where shopEmail = '"+shopEmail+"'", null);
         return res;
     }
 
-    public Cursor getEmail(){
+    public Cursor getImageInfo(String key_name){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select shopEmail from e_receipt_shop_info", null);
-        return res;
-    }
-
-    public Cursor getImageInfo(){
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from e_receipt_shop_logo", null);
+        Cursor res = db.rawQuery("select * from e_receipt_shop_logo where KEY_NAME = '"+key_name+"'", null);
         return res;
     }
     public boolean updateData(String shopName, String shopMobile, String shopAddress, String shopPincode, String shopEmail, String gstNumber, String slogan){
@@ -129,7 +123,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean updateImage(int keyName, byte[] image){
+    public boolean updateImage(String keyName, byte[] image){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_IMG_1, keyName);
