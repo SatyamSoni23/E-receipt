@@ -60,6 +60,7 @@
             android:inputType="text"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+            android:paddingHorizontal="17dp"
             android:stateListAnimator="@animator/button_state_list_anim"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorAccent"
@@ -85,6 +86,7 @@
             android:textColorHint="@color/colorAccent"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
+            android:paddingHorizontal="17dp"
             android:gravity="center"
             android:inputType="textPassword"
             android:stateListAnimator="@animator/button_state_list_anim" />

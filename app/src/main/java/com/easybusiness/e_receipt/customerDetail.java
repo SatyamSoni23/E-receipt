@@ -159,14 +159,14 @@ public class customerDetail extends AppCompatActivity {
                                 return;
                             }
                             if(strCustomerPincode.matches("")){
-                                Toast.makeText(customerDetail.this, "Enter pincode",Toast.LENGTH_LONG).show();
-                                return;
+                                //Toast.makeText(customerDetail.this, "Enter pincode",Toast.LENGTH_LONG).show();
+                                strCustomerPincode = "-";
                             }
-                            if(strCustomerPincode.length() != 6){
+                            /*if(strCustomerPincode.length() != 6){
                                 Toast.makeText(customerDetail.this, "Enter valid pincode number",Toast.LENGTH_LONG).show();
                                 nDialog.dismiss();
                                 return;
-                            }
+                            }*/
                             if(strCustomerEmail.matches("")){
                                 strCustomerEmail = "None";
                             }

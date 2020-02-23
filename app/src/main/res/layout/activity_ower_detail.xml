@@ -85,7 +85,7 @@
             android:layout_height="0dp"
             android:layout_weight="1.8"
             android:layout_marginHorizontal="35dp"
-            android:hint="*Pincode"
+            android:hint="*Pincode/Zipcode"
             android:textSize="25dp"
             android:fontFamily="sans-serif-condensed"
             android:textStyle="italic"

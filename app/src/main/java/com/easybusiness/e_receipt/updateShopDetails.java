@@ -197,19 +197,19 @@ public class updateShopDetails extends AppCompatActivity {
                 //Cursor res = myDb.getInfo();
                 if(flag == 1){
                     if(myDb.updateData(strShopName, strShopMobile, strShopAddress, strShopPincode, strShopEmail, strGstNumber, strSlogan)){
-                        Toast.makeText(updateShopDetails.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(updateShopDetails.this, "Update Successfull", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Toast.makeText(updateShopDetails.this, "Error in data insertion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(updateShopDetails.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                         startSmwActivity();
                     }
                 }
                 else{
                     if(myDb.insertData(strShopName, strShopMobile, strShopAddress, strShopPincode, strShopEmail, strGstNumber, strSlogan)){
-                        Toast.makeText(updateShopDetails.this, "Data Inserted", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(updateShopDetails.this, "Update Successfull", Toast.LENGTH_SHORT).show();
                     }
                     else{
-                        Toast.makeText(updateShopDetails.this, "Error in data insertion", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(updateShopDetails.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                         startSmwActivity();
                     }
 

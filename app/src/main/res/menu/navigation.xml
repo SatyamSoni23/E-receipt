@@ -10,6 +10,6 @@
             android:title="Transfer Money"/>
     <item
             android:id="@+id/customerDetails"
-            android:icon="@drawable/customerdetail"
-            android:title="Customer Details"/>
+            android:icon="@drawable/pastinvoice"
+            android:title="Past Invoices"/>
 </menu>

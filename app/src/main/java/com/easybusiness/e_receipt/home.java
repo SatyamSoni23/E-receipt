@@ -282,7 +282,8 @@ public class home extends AppCompatActivity {
                     startTransferMoneyActivity();
                 }
                 else if(id == R.id.customerDetails){
-                    startCustomerDetailActivity();
+                    //startCustomerDetailActivity();
+                    startPastInvoiceActivity();
                 }
                 return false;
             }
@@ -329,6 +330,10 @@ public class home extends AppCompatActivity {
     }
     public void startAboutEreceiptActivity(){
         Intent intent = new Intent(this, aboutEreceipt.class);
+        startActivity(intent);
+    }
+    public void startPastInvoiceActivity(){
+        Intent intent = new Intent(this, pdfMainActivity.class);
         startActivity(intent);
     }
     public void startCustomerDetailActivity() {

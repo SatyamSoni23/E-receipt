@@ -126,9 +126,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public boolean updateImage(String keyName, byte[] image){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_IMG_1, keyName);
+        //contentValues.put(COL_IMG_1, keyName);
         contentValues.put(COL_IMG_2, image);
-        long result = db.update(TABLE_NAME_IMAGE, contentValues, "KEY_NAME="+keyName, null);
+        long result = db.update(TABLE_NAME_IMAGE, contentValues, "KEY_NAME = ?", new String[] {keyName});
         if(result == -1){
             return false;
         }
