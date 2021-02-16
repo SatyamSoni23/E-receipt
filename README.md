@@ -10,8 +10,8 @@ E-receipt is a mobile app has following specs. You can create invoice of bill al
   </tr>
 <tr>
    <td><img src="https://github.com/SatyamSoni23/E-receipt/blob/master/Screenshots/4.jpg" width=320 height=440 padding = "20"/></td>
-    <td><img src="https://github.com/SatyamSoni23/E-receipt/blob/master/Screenshots/5.jpg" width=320 height=440 padding = "20"/></td>
-<td><img src="https://github.com/SatyamSoni23/E-receipt/blob/master/Screenshots/6.jpg" width=320 height=440 padding = "20"/></td>
+    <td><img src="https://github.com/SatyamSoni23/E-receipt/blob/master/Screenshots/5.JPG" width=320 height=440 padding = "20"/></td>
+<td><img src="https://github.com/SatyamSoni23/E-receipt/blob/master/Screenshots/6.JPG" width=320 height=440 padding = "20"/></td>
 </tr>
 <tr>
 <td><img src="https://github.com/SatyamSoni23/E-receipt/blob/master/Screenshots/7.png" width=320 height=440 padding = "20"/></td>
